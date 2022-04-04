@@ -1,0 +1,114 @@
+@use "../../../../../styles/" as *;
+
+// form add and update
+.form-school {
+  width: 884px;
+  min-height: 510px;
+  height: auto;
+  
+  &__add {
+    .ant-select-arrow {
+      color: $color-primary !important;
+    }
+    &-year {
+      &__check {
+        @include flex(center, static);
+
+        padding-left: 73px;
+        margin-bottom: 9px;
+      }
+
+      &__selected {
+        align-items: center;
+        justify-content: center;
+      }
+    }
+    &-setting,
+    &-field {
+      @include flex(center, static);
+      margin-bottom: 16px;
+      &__name {
+        @include flex(center, static);
+      }
+      &__icon {
+        color: $color-blue;
+        width: 24px;
+        height: 24px;
+        margin-right: 12px;
+        opacity: 1;
+        cursor: pointer;
+        transition: opacity ease-in-out 0.3s;
+
+        &:hover {
+          opacity: 0.8;
+        }
+      }
+      .ant-input {
+        border: 1px solid rgba(55, 56, 57, 0.5);
+        border-radius: 8px;
+      }
+      .ant-input:focus,
+      .ant-input-focused {
+        border-color: rgba(55, 56, 57, 0.5);
+        box-shadow: 0 0 0 1px rgba(55, 56, 57, 0.5);
+        border-right-width: 1px;
+        outline: 0;
+      }
+
+      &__date {
+        @include flex(center, center);
+        &-start {
+          @include flex(center, center);
+        }
+        &-end {
+          @include flex(center, center);
+        }
+        .ant-picker-suffix {
+          color: $color-primary;
+        }
+      }
+    }
+    
+    &-field {
+      margin-bottom: 71px;
+    }
+  }
+  &__title-18-orange {
+    @include title-18;
+    color: $color-orange;
+    font-weight: 600;
+  }
+  &__title-16 {
+    @include title-16;
+    font-weight: 700;
+    line-height: 20px;
+  }
+  &__content {
+    @include title-14;
+  }
+  &-select {
+    width: 144px;
+    height: 32px;
+  }
+  
+ 
+}
+
+// form delete
+.form-school-delete {
+
+  width: 435px;
+  height: 243px;
+  display: inline-block;
+  padding: 24px;
+  
+
+   &__content {
+    margin: 0;
+    justify-content: center;
+    width: 345px;
+    margin: 16px auto 21px 16px;
+  
+   }
+}
+

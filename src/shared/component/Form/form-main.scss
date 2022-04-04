@@ -1,0 +1,56 @@
+@use "../../../styles/index.scss" as *;
+
+.form-delete-main {
+  width: 435px;
+  height: 243px;
+  padding: 24px !important;
+  background: $main-color;
+  position: relative;
+  border: 1px solid;
+}
+
+.form-export {
+  .ant-input-affix-wrapper {
+    padding-left: 40px;
+    height: 30px !important;
+  }
+  .ant-input-affix-wrapper {
+    &::after {
+      content: "";
+      height: 23px;
+      position: absolute;
+      left: 10%;
+      top: 2px;
+      border-right: 1px solid #c9c4c0;
+    }
+  }
+  &__attach-icon {
+    position: absolute;
+    left: 10px;
+    width: 14px;
+    height: 16px;
+    color: $color-primary !important;
+  }
+  &__upload {
+    width: 172px;
+    height: 32px;
+    @include flex(center, center);
+    position: relative;
+
+    background: #ffd8b8;
+    margin-left: 24px;
+
+    border: 1px solid $color-primary;
+    border-radius: 4px;
+  }
+
+  &__download {
+    @include flex(center, flex-start);
+    &-icon {
+      width: 24px;
+      height: 23px;
+      color: $color-primary;
+      margin-right: 8px;
+    }
+  }
+}

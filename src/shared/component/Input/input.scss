@@ -1,0 +1,12 @@
+@use '../../../styles/' as *;
+
+.input {
+    position: relative;
+    .ant-input {
+        @include title-16;
+        color: $txt-black;
+        background: $color-gray;
+        border-radius: $border-radius-event;
+        transition: all ease-in-out 0.3s;
+    }
+}

@@ -21,8 +21,9 @@ $color-secondary: #F18021;
 $color-white: #fff;
 $color-red: #ED2025;
 $color-gray: #F2F2F2;
-$color-orange: #FF7506;
+$color-orange: #CC5C00;
 $color-black: #373839;
+$color-blue: #0B80EC;
 
 //chart color
 
@@ -57,7 +58,10 @@ $border-checkbox:  #0B80EC;
 
 //border radius 
 $border-radius: 16px;
-$border-radius-btn: 8px;
+$border-radius-event: 8px;
+
+// transition
+$transition: opacity ease-in-out 0.3s;
 
 //letter-spacing 
 $letter-spacing: 0.015em;

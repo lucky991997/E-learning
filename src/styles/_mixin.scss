@@ -14,7 +14,7 @@
   letter-spacing: $letter-spacing;
 }
 @mixin title-28($color) {
-  @include flex(center, center);
+  @include flex(center, static);
   font-size: 28px;
   line-height: 32px;
   font-family: $font-family;
@@ -24,27 +24,29 @@
 }
 
 @mixin title-18 {
-  @include flex(center, center);
+  @include flex(center, static);
+  font-weight: 600;
   font-family: $font-family;
   font-size: 18px;
   line-height: 21px;
   letter-spacing: $letter-spacing;
   color: $txt-black;
   opacity: 0.7;
+
 }
 
 @mixin title-16 {
-  @include flex(center, center);
+  @include flex(center, static);
   font-family: $font-title;
   font-style: normal;
   font-weight: 400;
-  font-size: 16px;
+  font-size: 16px !important;
   line-height: 130%;
   color: $txt-black;
 }
 
 @mixin title-16-bold($color) {
-  @include flex(center, center);
+  @include flex(center, static);
   font-family: $font-title;
   font-style: normal;
   font-weight: 700;
@@ -52,4 +54,15 @@
   line-height: 20px;
   letter-spacing: $letter-spacing;
   color: $color;
+}
+
+@mixin title-14 {
+
+  font-family: $font-title;
+  font-style: normal;
+  font-weight: 400;
+  font-size: 14px;
+  line-height: 18px;
+  letter-spacing: $letter-spacing;
+  color: $txt-black;
 }

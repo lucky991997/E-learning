@@ -1,0 +1,90 @@
+@import "./styles/";
+
+@import url("https://fonts.googleapis.com/css2?family=Mulish:wght@300;400;500;600;700&display=swap");
+@import url("https://fonts.googleapis.com/css2?family=Source+Sans+Pro&display=swap");
+
+body {
+  padding: 0;
+  margin: 0;
+  font-weight: normal;
+  font-family: $font-family, $font-title;
+}
+h1,
+h2,
+h3,
+h4 {
+  margin: 0;
+}
+//margin
+.mr-32 {
+  margin-right: 32px;
+}
+
+.mb-48 {
+  margin-bottom: 48px;
+}
+
+.mb-32 {
+  margin-bottom: 32px;
+}
+.mb-28 {
+  margin-bottom: 28px;
+}
+
+.mb-24 {
+  margin-bottom: 24px;
+}
+
+.mb-16 {
+  margin-bottom: 16px;
+}
+
+.mt-51 {
+  margin-top: 50px;
+}
+
+.mt-32 {
+  margin-top: 32px;
+}
+.mt-24 {
+  margin-top: 24px;
+}
+.mt-16 {
+  margin-top: 16px !important;
+}
+
+// justify-content
+.j-center {
+  justify-content: center;
+}
+
+// main-title
+.main-title {
+  @include title-48;
+}
+
+.title-16 {
+  @include title-16;
+}
+.title-16-bold {
+  @include title-16;
+  font-weight: 700;
+}
+
+.title-28 {
+  @include title-28($txt-black);
+
+  font-weight: 700;
+}
+.title-18-orange {
+  @include title-18;
+  color: $txt-title-orange !important;
+  font-weight: 700;
+}
+
+//border bottom form layout
+.border-bottom {
+  width: 100%;
+  border: 1px solid $color-gray;
+  margin: 24px 0;
+}
