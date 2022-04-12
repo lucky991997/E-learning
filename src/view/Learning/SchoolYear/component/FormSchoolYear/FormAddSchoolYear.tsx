@@ -7,6 +7,7 @@ import {
 import { Row, Col, Select, Checkbox, Input, DatePicker } from "antd";
 import "./index.scss";
 import Button from "../../../../../shared/component/Button/Button";
+import { MdDateRange } from "react-icons/md";
 
 const FormAddSchoolYear = () => {
   const { Option } = Select;
@@ -14,7 +15,7 @@ const FormAddSchoolYear = () => {
 
   return (
     <div className="form-layout form-school">
-      <h1 className="title-28">Thiết lập niên khoá</h1>
+      <h2 className="title-28 ">Thiết lập niên khoá</h2>
       <div className="form-school__add">
         <div className="form-school__add-year">
           <Row>
@@ -29,13 +30,13 @@ const FormAddSchoolYear = () => {
                 className="form-school__add-year__select"
                 style={{ display: "flex" }}
               >
-               <Select className='form-school-select' value={2020}>
-                   {
-                       date.map((item,index) => (
-                           <Option value={item} key={index} >{item}</Option>
-                       ))
-                   }
-               </Select>
+                <Select className='form-school-select' value={2020}>
+                  {
+                    date.map((item, index) => (
+                      <Option value={item} key={index} >{item}</Option>
+                    ))
+                  }
+                </Select>
                 <h3
                   className="form-school__title-16"
                   style={{
@@ -46,12 +47,12 @@ const FormAddSchoolYear = () => {
                   đến:
                 </h3>
                 <Select className='form-school-select' value={2021}>
-                   {
-                       date.map((item,index) => (
-                           <Option value={item} key={index} >{item + 1}</Option>
-                       ))
-                   }
-               </Select>
+                  {
+                    date.map((item, index) => (
+                      <Option value={item} key={index} >{item + 1}</Option>
+                    ))
+                  }
+                </Select>
               </div>
             </Col>
 
@@ -60,17 +61,17 @@ const FormAddSchoolYear = () => {
                 <Checkbox style={{ marginRight: "10px" }}></Checkbox>
                 <h3
                   className="form-school__title-16"
-                  style={{ marginBottom: "0" }}
+                  style={{ margin: '0 16px 0 0' }}
                 >
                   Kế thừa dữ liệu:
                 </h3>
                 <Select className='form-school-select' placeholder='Niên Khóa'>
-                   {
-                       date.map((item,index) => (
-                           <Option value={item} key={index} >{item + 1}</Option>
-                       ))
-                   }
-               </Select>
+                  {
+                    date.map((item, index) => (
+                      <Option value={item} key={index} >{item + 1}</Option>
+                    ))
+                  }
+                </Select>
               </div>
               <div style={{ display: "flex", paddingLeft: "73px" }}>
                 <AiOutlineInfoCircle
@@ -81,7 +82,7 @@ const FormAddSchoolYear = () => {
                     height: 20,
                   }}
                 />
-                
+
                 <div className="form-school__content">
                   <span style={{ display: "block" }}>
                     Dữ liệu được kế thừa bao gồm các thông tin:
@@ -98,7 +99,7 @@ const FormAddSchoolYear = () => {
             </Col>
           </Row>
         </div>
-        <div className="border-bottom"></div>
+        <div className="border-bottom mt-16"></div>
         <h2
           className="form-school__title-18-orange"
           style={{ marginBottom: "24px" }}
@@ -126,17 +127,17 @@ const FormAddSchoolYear = () => {
               <h3 className="title-16" style={{ margin: "0 15px" }}>
                 Từ
               </h3>
-              <DatePicker className="select__calendar" picker="date" />
+              <DatePicker className="select__calendar" picker="date" suffixIcon={<MdDateRange className="select__calendar-icon" style={{ right: '3%' }} />} />
             </div>
             <div className="form-school__add-setting__date-end">
               <h3 className="title-16" style={{ margin: "0 15px" }}>
                 đến
               </h3>
-              <DatePicker className="select__calendar" picker="date" />
+              <DatePicker className="select__calendar" picker="date" suffixIcon={<MdDateRange className="select__calendar-icon" />} />
             </div>
           </div>
         </div>
-       
+
         <div className="form-school__add-field">
           <AiFillPlusCircle
             className="form-school__add-field__icon"
@@ -149,7 +150,7 @@ const FormAddSchoolYear = () => {
             Thêm học kì mới
           </h3>
         </div>
-        
+
         <div className="form-layout-btn">
           <Button
             style={{ marginRight: "32px" }}

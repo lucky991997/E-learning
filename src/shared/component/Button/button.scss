@@ -9,10 +9,16 @@
   }
   &-M {
     min-width: 87px;
+    width: 100px !important;
     min-height: 36px;
-    padding: 11px 16px;
+    padding: 8px 16px;
+    border: none !important;
+    span {
+      @include title-16;
+    }
   }
   &-gray,
+  &-file,
   &-primary,
   &-secondary {
     @include flex(center, center);
@@ -41,6 +47,7 @@
     }
   }
   &-secondary {
+    margin-right: 32px;
     background-color: $btn-secondary;
     span {
       color: $txt-black;
@@ -57,5 +64,48 @@
     &:hover {
       opacity: 0.7;
     }
+  }
+  &-file {
+  
+    background-color: $color-white;
+    border: 1px solid $color-primary;
+    span {
+      color: $txt-primary;
+      opacity: 1;
+      transition: all ease-in-out 0.3s;
+    }
+    &:hover {
+      opacity: 0.7;
+    }
+  }
+
+  &-course {
+    @include flex(center, center);
+    background: #C5C5C5;
+    padding: 8px 16px;
+    min-width: 70px;
+    height: 37px;
+    border-radius: 32px;
+    border: none;
+    margin-right: 16px;
+    margin-bottom: 16px;
+    opacity: 1;
+    cursor: pointer;
+    transition: all linear 0.5s;
+    span {
+      @include title-16; 
+      color: $txt-white;
+
+    }
+    &:hover {
+      opacity: 0.7;
+    }
+  }
+
+  &-icon {
+    height: 24px;
+    width: 24px;
+    margin-right: 10px;
+    color: #fff;
   }
 }

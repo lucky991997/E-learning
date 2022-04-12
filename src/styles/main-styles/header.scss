@@ -1,0 +1,33 @@
+@use "../index.scss" as *;
+
+.header {
+  height: 24px;
+  width: 100%;
+  position: relative;
+  @include flex(center, flex-end);
+  &-icon {
+    width: 33px;
+    height: 33px;
+    color: $color-primary;
+    margin-right: 6px;
+  }
+
+  &-tabs {
+    @include flex(center, static);
+    &-border {
+      height: 38px;
+      border-left: 1px solid $color-black;
+      margin: 0 12px;
+    }
+    .ant-tabs-tab {
+      padding-bottom: 2px;
+    }
+    .ant-tabs-tab-btn {
+      @include title-16;
+      color: $txt-primary !important;
+    }
+    .ant-tabs-ink-bar {
+      background-color: $color-primary !important;
+    }
+  }
+}

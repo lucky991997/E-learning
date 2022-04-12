@@ -18,6 +18,7 @@
     }
   }
   &-title {
+    @include title-16;
     color: $txt-blue !important;
     cursor: pointer;
     opacity: 1;
@@ -26,4 +27,11 @@
       opacity: 0.8;
     }
   }
+}
+.sort-icon {
+  @include flex (center, center);
+  flex-direction: column;
+  height: 24px;
+  font-size: 14px;
+  margin-left: 10px;
 }

@@ -7,7 +7,9 @@ $main-color: #fff;
 //background  box color
 $bg-box-primary: linear-gradient(270deg, #FF5400 0%, #F17F21 80.56%);
 $bg-box-secondary: linear-gradient(98.91deg, #56CCF2 1.13%, #2F80ED 100%);
-$btn-box-blue: linear-gradient(98.89deg, rgba(46, 172, 238, 0.7) 4.77%, rgba(0, 22, 218, 0.7) 96.59%);    
+$bg-box-blue: linear-gradient(98.89deg, rgba(46, 172, 238, 0.7) 4.77%, rgba(0, 22, 218, 0.7) 96.59%);    
+
+
 
 //box shadow
 $box-shadow: 4px 4px 25px 4px rgba(154, 202, 245, 0.25);
@@ -41,10 +43,10 @@ $btn-secondary: #F2F2F2;
 $btn-gray: #C9C4C0;
 
 // text color
+$txt-primary: #FF7506;
 $txt-black: #373839;
 $txt-white: #fff;
 $txt-blue: #0B80EC;
-$txt-orange: #FF7506;
 $txt-red: #ED2025;
 $txt-green: #3CC13B;
 $txt-title-orange: #CC5C00;

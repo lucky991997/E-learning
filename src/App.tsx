@@ -1,14 +1,19 @@
 import React from "react";
-import ConfigRoute from "./routers/ConfigRoute";
+
 import './styles/index.scss'
-import Login from "./view/Auth/Login/Login";
-import './view/index.scss'
+
+import './styles/main-styles/form-layout.scss'
+
+import RouteComponent from "./routers/RouteComponent";
+import Index from "./layout/Index";
+
 
 function App() {
   return <>
-    
-    <ConfigRoute/>
-  </>;
+
+    <Index />
+
+  </>
 }
 
 export default App;

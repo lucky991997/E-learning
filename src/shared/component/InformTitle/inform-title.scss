@@ -1,0 +1,60 @@
+@use "../../../styles/index.scss" as *;
+
+.box-inform {
+  position: relative;
+  width: 430px;
+  height: 121px;
+
+  padding: 20px 0;
+  border-radius: $border-radius;
+  &__info {
+    @include flex(center, center);
+    flex-direction: column;
+  }
+  &-circle {
+    position: relative;
+    &-xl {
+      width: 152px;
+      height: 152px;
+      background: $color-white;
+      position: absolute;
+      left: 75%;
+      bottom: -90px;
+      border-radius: 50%;
+      opacity: 0.2;
+    }
+    &:after {
+      content: "";
+      width: 104px;
+      height: 104px;
+      background: $color-white;
+      position: absolute;
+      top: -14px;
+      left: 65%;
+      border-radius: 50%;
+      opacity: 0.1;
+    }
+    &:before {
+      content: "";
+      width: 104px;
+      height: 104px;
+      background: $color-white;
+      position: absolute;
+      top: -14px;
+      left: -40px;
+      border-radius: 50%;
+      opacity: 0.1;
+      top: -140px;
+    }
+  }
+  &-primary {
+    background: $bg-box-primary;
+  }
+  &-secondary {
+    background: $bg-box-secondary;
+  }
+  &-blue {
+    background: $bg-box-blue;
+    box-shadow: 4px 4px 25px 4px rgba(154, 202, 245, 0.25);
+  }
+}
