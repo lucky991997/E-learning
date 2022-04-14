@@ -3,9 +3,10 @@ import { AiFillPlusCircle, AiFillMinusCircle, AiOutlineDown, AiOutlineUp, AiOutl
 import { FiEdit } from "react-icons/fi";
 import { MdKeyboardArrowLeft, MdKeyboardArrowRight } from "react-icons/md";
 import { RiDeleteBin6Line } from "react-icons/ri";
+import { HiOutlineClipboardList } from 'react-icons/hi'
 import { InputForm } from "../Input/Input";
-
 import "./icon.scss";
+import { BsArrowRepeat } from "react-icons/bs";
 
 interface IIconProps {
   title?: string;
@@ -75,6 +76,9 @@ const IconEdit = (props: any) => {
 const IconList = (props: any) => {
   return <AiOutlineUnorderedList {...props} />
 }
+const IconListTitle = (props: any) => {
+  return <HiOutlineClipboardList {...props} />
+}
 const IconEye = (props: any) => {
   return <AiOutlineEye {...props} />
 }
@@ -86,4 +90,16 @@ const IconArrowLeft = (props: any) => {
 const IconArrowRight = (props: any) => {
   return <MdKeyboardArrowRight {...props} />
 }
-export { IconAdd, IconMinus, IconSort, IconDelete, IconEdit, IconList, IconEye, IconArrowLeft, IconArrowRight };
+const IconArrowDown = (props: any) => {
+  return <AiOutlineDown {...props} />
+}
+const IconUpdate = (props: any) => {
+  return <BsArrowRepeat {...props} />
+}
+
+export {
+  IconAdd, IconMinus, IconSort, IconDelete, IconEdit,
+  IconList, IconListTitle, IconEye, IconArrowLeft, 
+  IconArrowDown,
+  IconArrowRight, IconUpdate
+};

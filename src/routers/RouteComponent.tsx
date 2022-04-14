@@ -1,12 +1,11 @@
 import React, { useEffect } from "react";
-import { Route, Routes, useNavigate } from "react-router-dom";
-import Index from "../layout/Index";
+import { Route, Routes } from "react-router-dom";
 
-import ForgotPassword from "../view/Auth/ForgotPassword/ForgotPassword";
-import Login from "../view/Auth/Login/Login";
-import Logout from "../view/Auth/Logout/Logout";
 import Home from "../view/Home/Home";
 import Learning from "../view/Learning/Learning";
+import Setting from "../view/Setting/Setting";
+import StudentProfiles from "../view/StudentProfile/StudentProfiles";
+import TeacherProfile from "../view/TeacherProfiles";
 
 
 
@@ -17,6 +16,9 @@ const RouteComponent = () => {
             <Routes>
                 <Route path="*" element={<Home />}></Route>
                 <Route path="/learning" element={<Learning />}></Route>
+                <Route path="/student" element={<StudentProfiles />}></Route>
+                <Route path="/teacher" element={<TeacherProfile />}></Route>
+                <Route path="/setting" element={<Setting />}></Route>
             </Routes>
 
         </>

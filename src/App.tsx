@@ -1,17 +1,15 @@
 import React from "react";
-
 import './styles/index.scss'
-
 import './styles/main-styles/form-layout.scss'
-
-import RouteComponent from "./routers/RouteComponent";
 import Index from "./layout/Index";
+import { BrowserRouter } from "react-router-dom";
 
 
 function App() {
   return <>
-
-    <Index />
+    <BrowserRouter>
+      <Index />
+    </BrowserRouter>
 
   </>
 }

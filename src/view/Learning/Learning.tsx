@@ -50,7 +50,7 @@ const Learning = () => {
     }
     const activeTableContent = (index: number) => {
         if (active === index) {
-            return 'active-table-content'
+            return 'active-tab-vertical'
         }
         else {
             return ''
@@ -64,8 +64,8 @@ const Learning = () => {
                     <>
                         <h1 className="main-title mb-32">Khai báo dữ liệu</h1>
                         <div style={{ display: 'flex', justifyContent: 'flex-start' }}>
-                            <div className="learning-control mr-24">
-                                <div className="learning-control__select">
+                            <div className="tab-control mr-24">
+                                <div className="tab-control__select">
                                     <h3 className="title-16" style={{ color: '#fff', marginBottom: '8px' }} >Đang chọn xem:</h3>
                                     <div className="select" style={{ marginBottom: '8px' }}>
                                         <h3 className="title-16-bold" style={{ color: '#fff', marginRight: '27px' }}>Trường:</h3>
@@ -84,8 +84,8 @@ const Learning = () => {
                                 </div>
                                 {
                                     tableContent.map((item, index) => (
-                                        <div key={index} className={`learning-control__content ${activeTableContent(index)}`} onClick={() => handleActive(index)}>
-                                            <h3 className="title-18" style={{ color: '#000' }}>{item.name}</h3>
+                                        <div key={index} className={`tab-control__content ${activeTableContent(index)}`} onClick={() => handleActive(index)}>
+                                            <h3 className="title-18" style={{ color: '#000', display:'flex' }}>{item.name}</h3>
                                         </div>
                                     ))
                                 }

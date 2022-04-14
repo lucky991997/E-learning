@@ -1,7 +1,7 @@
-import React from "react";
-import { createRoot } from "react-dom/client";
+import React, { StrictMode } from "react";
+
 import ReactDOM from 'react-dom'
-import { BrowserRouter } from "react-router-dom";
+
 import App from "./App";
 import "antd/dist/antd.css";
 import './styles/body.scss'
@@ -19,9 +19,9 @@ import './styles/body.scss'
 
 ReactDOM.render(
 
-  <BrowserRouter>
+  <StrictMode>
     <App />
-  </BrowserRouter>,
+  </StrictMode>,
 
   document.getElementById("root")
 );

@@ -1,0 +1,75 @@
+@use "../../../styles/index.scss" as *;
+
+.status {
+  @include flex(center, flex-start);
+  min-width: 100px;
+  max-width: 175px;
+  height: 37px;
+  padding: 8px 12px;
+  position: relative;
+  border-radius: 8px;
+  &__open {
+    border: 1px solid $color-green;
+  }
+  &__coming {
+    border: 1px solid $color-primary;
+  }
+  &__end {
+    border: 1px solid $color-red;
+  }
+  &__change {
+    border: 1px solid $color-black;
+  }
+  &__graduate {
+    border: 1px solid $color-blue;
+  }
+
+  &-dot {
+    width: 8px;
+    height: 8px;
+    border-radius: 50%;
+    &__open {
+      background-color: $color-green;
+      border: 1px solid $color-green;
+    }
+    &__coming {
+      background-color: $color-primary;
+      border: 1px solid $color-primary;
+    }
+    &__end {
+      background-color: $color-red;
+      border: 1px solid $color-red;
+    }
+    &__change {
+      background-color: $color-black;
+      border: 1px solid $color-black;
+    }
+    &__graduate {
+    
+      background-color: $color-blue;
+      border: 1px solid $color-blue;
+    }
+  }
+  &-title {
+    margin-left: 8px;
+    font-size: 16px;
+    line-height: 15px;
+    font-weight: 400;
+   
+    &__open {
+      color: $color-green;
+    }
+    &__coming {
+      color: $color-primary;
+    }
+    &__end {
+      color: $color-red;
+    }
+    &__change {
+      color: $color-black;
+    }
+    &__graduate {
+      color: $color-blue;
+    }
+  }
+}

@@ -1,0 +1,60 @@
+@use '../index.scss' as *;
+
+
+.box-title {
+    &-primary {
+        background: $bg-box-primary;
+    }
+    &-secondary {
+        background: $bg-box-secondary;
+    }
+    width: 430px;
+    height: 120px;
+    opacity: 0.9;
+    cursor: pointer;
+    padding: 18px 24px;
+    border-radius: $border-radius;
+    position: relative;
+    transition: all ease-in-out 0.3s;
+    h2{
+        color: $txt-white;
+        margin-bottom: 8px;
+    }
+    &-pie {
+        position: absolute;
+        width: 152px;
+        height: 152px;
+        background: #fff;
+        opacity: 0.1;
+        border-radius: 50%;
+        right: -42px;
+        top: 36px;
+       
+    }
+    &::after{
+        content: "";
+        position: absolute;
+        width: 104px;
+        height: 104px;
+        background: $color-white;
+        opacity: 0.1;
+        border-radius: 50%;
+        right: 15%;
+    }
+    &::before{
+        content: "";
+        position: absolute;
+        width: 104px;
+        height: 104px;
+        background: #fff;
+        opacity: 0.1;
+        border-radius: 50%;
+        top: -52px;
+        left: -52px;
+    }
+    &:hover{
+        opacity: 0.7;
+        
+    }
+
+}

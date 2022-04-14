@@ -23,13 +23,13 @@ const Sidebar = () => {
             icon: <AiOutlineLineChart className="sidebar__link-icon" />,
         },
         {
-            path: '/',
-            section: 'home',
+            path: '/student',
+            section: 'student',
             icon: <AiOutlineTeam className="sidebar__link-icon" />,
         },
         {
-            path: '/',
-            section: 'home',
+            path: '/teacher',
+            section: 'teacher',
             icon: <MdOutlineWorkOutline className="sidebar__link-icon " />,
 
         },
@@ -40,8 +40,8 @@ const Sidebar = () => {
 
         },
         {
-            path: '/',
-            section: 'home',
+            path: '/setting',
+            section: 'setting',
             icon: <FiSettings className="sidebar__link-icon" />,
 
         },

@@ -51,6 +51,9 @@ h4 {
 .mb-16 {
   margin-bottom: 16px;
 }
+.mb-12 {
+  margin-bottom: 12px;
+}
 
 .mt-51 {
   margin-top: 51px;
@@ -66,6 +69,9 @@ h4 {
 }
 .mt-8 {
   margin-top: 8px;
+}
+.ml-16 {
+  margin-left: 16px;
 }
 .ml-8 {
   margin-left: 8px;
@@ -125,6 +131,11 @@ h4 {
   @include title-16;
   font-weight: 700;
 }
+.title-16-orange {
+  @include title-18;
+  color: $txt-title-orange !important;
+  font-weight: 700;
+}
 .title-16-note {
   @include title-16;
   opacity: 0.5;
@@ -142,7 +153,10 @@ h4 {
   height: 100%;
   border: 1px solid $color-gray;
 }
-
+.border-h {
+  height: 52px;
+  border: 1px solid $color-gray;
+}
 .icon {
   width: 32px;
   height: 32px;
@@ -184,11 +198,40 @@ h4 {
   opacity: 1;
   animation: hide-active-role 0.4s ease-in-out;
 }
-.active-table-content {
+.active-tab-vertical {
   animation: changeColorContent ease-in-out 0.5s;
   background: #cc5c00;
   h3 {
     color: $txt-white !important;
+  }
+  &:hover {
+    background: #cc5c00;
+    opacity: 1;
+    cursor: default;
+  }
+}
+
+//active list edit of class
+.active-profile,
+.active-list {
+  @include flex(center, center);
+  height: 36px;
+  // width: 244px;
+  background-color: #373839;
+  border-radius: 24px;
+  cursor: pointer;
+  transition: all ease-in-out 0.3s;
+  h3 {
+    margin-right: 10px;
+    color: #fff !important;
+    opacity: 1;
+  }
+}
+
+//active tab profile
+.active-list {
+  h3 {
+    margin-right: 0;
   }
 }
 
@@ -198,7 +241,7 @@ h4 {
   h3 {
     margin-right: 6px;
   }
-  
+
   .ant-select-selector {
     width: 136px !important;
     height: 32px !important;
@@ -218,6 +261,67 @@ h4 {
   .ant-select-arrow {
     font-size: 14px;
     color: $color-primary;
+  }
+}
+//btn
+.control {
+  @include flex (center, space-between);
+  &-btn {
+    @include flex(center, static);
+  }
+}
+//input search and show value of table
+.title {
+  position: relative;
+  width: 1337px;
+  &__show-value {
+    display: inline-block;
+    position: absolute;
+    bottom: 34px;
+    left: 64px;
+    input {
+      width: 48px;
+      height: 32px;
+      border: 1px solid $color-primary;
+      margin: 0 8px;
+      padding: 5px 8px;
+      &:focus-visible {
+        outline: none;
+      }
+    }
+  }
+  &-content {
+    width: 1337px;
+    height: 802px;
+    background: $main-color;
+    border-radius: $border-radius;
+    box-shadow: $box-shadow;
+    padding: 24px 64px;
+    &__search {
+      @include flex(center, space-between);
+
+      .ant-input {
+        padding-left: 54px;
+      }
+      .ant-input-group-addon {
+        position: absolute;
+        top: 4px;
+        left: 10px !important;
+        z-index: 99999;
+      }
+
+      .ant-input,
+      .ant-input-search {
+        width: 438px !important;
+        height: 40px !important;
+        background-color: #f0f3f6;
+        border-radius: 24px !important;
+      }
+      .ant-btn {
+        background-color: #f0f3f6 !important;
+        border: none;
+      }
+    }
   }
 }
 

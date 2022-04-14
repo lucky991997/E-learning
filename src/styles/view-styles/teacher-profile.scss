@@ -1,0 +1,61 @@
+@use "../index.scss" as *;
+
+.teacher {
+  position: relative;
+  &__title {
+    @include flex(center, static);
+  }
+  &__control {
+    @include flex(center, space-between);
+
+    &__event {
+      @include flex(center, static);
+    }
+  }
+  &__list {
+    width: 1640px;
+    height: 809px;
+    background-color: $main-color;
+    box-shadow: $box-shadow;
+    border-radius: $border-radius;
+    padding: 24px 64px;
+  }
+}
+.assign {
+  &__title {
+    @include flex(center, static);
+  }
+  &__content {
+    &__event {
+      @include flex(center, flex-end);
+      width: 1340px;
+    }
+    &__list {
+      width: 1340px;
+      height: 802px;
+      background: $main-color;
+      box-shadow: $box-shadow;
+      border-radius: $border-radius;
+      padding: 24px 64px;
+    }
+  }
+}
+.title-list {
+  &__title {
+    @include flex(center, space-between);
+  }
+  &__info {
+    @include flex(center, static);
+    &-teacher {
+      margin-right: 60px;
+      @include flex(center, static);
+    }
+    &-class {
+      margin-right: 60px;
+      @include flex(center, static);
+    }
+    &-course {
+      @include flex(center, static);
+    }
+  }
+}

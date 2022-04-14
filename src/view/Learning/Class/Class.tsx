@@ -7,7 +7,7 @@ import Button from '../../../shared/component/Button/Button'
 export type EditProps ={
   setShowEdit: any,
 }
-interface IData {
+export interface IData {
   key: number,
   id: string,
   name: string,

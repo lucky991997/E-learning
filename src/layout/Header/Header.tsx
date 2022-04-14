@@ -6,7 +6,7 @@ import '../../styles/main-styles/header.scss'
 const Header = () => {
     const { TabPane } = Tabs;
     return (
-        <div className="header">
+        <div className="header mb-12" >
             <div >
                 <MdOutlineAccountCircle className="header-icon" />
             </div>
