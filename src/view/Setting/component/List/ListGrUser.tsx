@@ -1,56 +1,61 @@
 import { Select, Table } from 'antd'
 import Search from 'antd/lib/input/Search'
-import React from 'react'
+import React, { useState } from 'react'
 import { IconDelete, IconEdit, IconSort } from '../../../../shared/component/Icon/Icon'
+import ModalForm from '../../../../shared/component/Modal/Modal'
+import FormDeleteSchoolYear from '../../../Learning/SchoolYear/component/FormSchoolYear/FormDeleteSchoolYear'
+import FormRoles from '../../Form/FormRoles'
 
 const ListGrUser = () => {
+  const [isModalVisible, setIsModalVisible] = useState(false)
+  const [isModaldelete, setIsModalDelete] = useState(false)
   const data = [
     {
-      key: 1, 
+      key: 1,
       name: 'Quản trị viên',
-      total: 6, 
+      total: 6,
       note: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nullam malesuada posuere justo.',
     },
     {
-      key: 2, 
+      key: 2,
       name: 'Học sinh tiểu học',
-      total: 6, 
+      total: 6,
       note: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nullam malesuada posuere justo.',
     },
     {
-      key: 3, 
+      key: 3,
       name: 'Phòng hành chính',
-      total: 6, 
+      total: 6,
       note: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nullam malesuada posuere justo.',
     },
     {
-      key: 4, 
+      key: 4,
       name: 'Nhân viên',
-      total: 6, 
+      total: 6,
       note: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nullam malesuada posuere justo.',
     },
     {
-      key: 5, 
+      key: 5,
       name: 'Quản trị viên',
-      total: 6, 
+      total: 6,
       note: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nullam malesuada posuere justo.',
     },
     {
-      key: 6, 
+      key: 6,
       name: 'Học sinh tiểu học',
-      total: 6, 
+      total: 6,
       note: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nullam malesuada posuere justo.',
     },
     {
-      key: 7, 
+      key: 7,
       name: 'Phòng hành chính',
-      total: 6, 
+      total: 6,
       note: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nullam malesuada posuere justo.',
     },
     {
-      key: 8, 
+      key: 8,
       name: 'Nhân viên',
-      total: 6, 
+      total: 6,
       note: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nullam malesuada posuere justo.',
     },
   ]
@@ -58,7 +63,7 @@ const ListGrUser = () => {
     {
       title: (
         <div style={{ display: 'flex', alignItems: 'center', marginLeft: '20%' }}>
-         Tên nhóm
+          Tên nhóm
           <IconSort />
         </div>
       ),
@@ -110,8 +115,8 @@ const ListGrUser = () => {
       render: () => {
         return (
           <div style={{ display: 'flex' }}>
-            <IconEdit className="icon mr-24" />
-            <IconDelete className="icon" />
+            <IconEdit onClick={() => setIsModalVisible(true)} className='icon mr-24' />
+            <IconDelete onClick={() => setIsModalDelete(true)} className='icon' />
           </div>
 
         )
@@ -134,7 +139,20 @@ const ListGrUser = () => {
           hàng trong mỗi trang
         </h3>
       </div>
-
+      {isModalVisible === true ?
+        (
+          <ModalForm isModalVisible={isModalVisible} setIsModalVisible={setIsModalVisible}>
+            <FormRoles setIsModalVisible={setIsModalVisible} />
+          </ModalForm>
+        ) : ''
+      }
+      {isModaldelete === true ?
+        (
+          <ModalForm isModalVisible={isModaldelete} setIsModalVisible={setIsModalDelete}>
+            <FormDeleteSchoolYear setIsModalDelete={setIsModalDelete} title="Xóa nhóm người dùng" />
+          </ModalForm>
+        ) : ''
+      }
     </>
   )
 }

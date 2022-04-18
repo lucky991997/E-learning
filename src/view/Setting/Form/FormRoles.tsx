@@ -1,8 +1,9 @@
 import { Checkbox, Col, Form, Input, Row } from 'antd'
 import React, { useState } from 'react'
 import Button from '../../../shared/component/Button/Button'
+import { IModal } from '../../../shared/component/Modal/Modal'
 
-const FormRoles = () => {
+const FormRoles = ({setIsModalVisible} : IModal) => {
     const data = ['Xem', 'Chỉnh sửa', 'Xóa', 'Thêm mới']
     const [showRole, setShowRole] = useState(false)
     const handleShow = () => {
@@ -13,7 +14,7 @@ const FormRoles = () => {
 
     }
     return (
-        <div className="form-layout">
+        <div className="form-layout" style={{width:'884px'}}>
             <h2 className="title-28 j-center mb-24">Thiệt lập nhóm người dùng</h2>
             <div className="form-input">
                 <Form
@@ -162,7 +163,9 @@ const FormRoles = () => {
 
                     <Form.Item wrapperCol={{ offset: 6, span: "12" }}>
                         <div className="form-layout-btn mt-32">
-                            <Button variant="secondary">Hủy</Button>
+                            <Button variant="secondary"
+                                onClick={() => setIsModalVisible(false)}
+                            >Hủy</Button>
                             <Button variant="primary">Lưu</Button>
                         </div>
                     </Form.Item>

@@ -1,10 +1,13 @@
 import { Col, Input, Row, Table } from 'antd'
-import React from 'react'
+import React, { useState } from 'react'
 
 import { FiEdit } from 'react-icons/fi'
 import { RiDeleteBinLine } from 'react-icons/ri'
 import Button from '../../../shared/component/Button/Button'
 import { IconDelete, IconEdit, IconSort } from '../../../shared/component/Icon/Icon'
+import ModalForm from '../../../shared/component/Modal/Modal'
+import FormAddSchoolYear from './component/FormSchoolYear/FormAddSchoolYear'
+import FormDeleteSchoolYear from './component/FormSchoolYear/FormDeleteSchoolYear'
 
 
 const SchoolYear = () => {
@@ -91,20 +94,22 @@ const SchoolYear = () => {
       render: () => {
         return (
           <div >
-            <IconEdit className='icon mr-24' />
-            <IconDelete className='icon' />
+            <IconEdit onClick={() => setIsModalVisible(true)} className='icon mr-24' />
+            <IconDelete onClick={() => setIsModalDelete(true)} className='icon' />
           </div>
         )
       }
     }
   ]
-
+  const [isModalVisible, setIsModalVisible] = useState(false)
+  const [isModaldelete,setIsModalDelete ] = useState(false)
   const { Search } = Input
+
   return (
     <>
-      <Row className="mb-24" justify='end' style={{width: '100%'}}>
+      <Row className="mb-24" justify='end' style={{ width: '100%' }}>
         <Col >
-          <Button variant="primary" icon="add">
+          <Button onClick={() => setIsModalVisible(true)} variant="primary" icon="add">
             Thêm mới
           </Button>
         </Col>
@@ -112,7 +117,7 @@ const SchoolYear = () => {
       <Row>
         <div className="learning-title learning-content">
 
-          <div className="learning-title-table__search mb-24">
+          <div className="title-content__search mb-24">
 
             <h3 className="title-22">Niên Khóa</h3>
 
@@ -128,6 +133,21 @@ const SchoolYear = () => {
 
         </div>
       </Row>
+
+      {isModalVisible === true ?
+        (
+          <ModalForm isModalVisible={isModalVisible} setIsModalVisible={setIsModalVisible}>
+            <FormAddSchoolYear setIsModalVisible={setIsModalVisible} />
+          </ModalForm>
+        ) : ''
+      }
+      {isModaldelete === true ?
+        (
+          <ModalForm isModalVisible={isModaldelete} setIsModalVisible={setIsModalDelete} style={{width:'435px'}}>
+            <FormDeleteSchoolYear setIsModalDelete={setIsModalDelete}/>
+          </ModalForm>
+        ) : ''
+      }
     </>
 
 

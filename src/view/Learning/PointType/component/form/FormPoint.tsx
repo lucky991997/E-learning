@@ -1,12 +1,13 @@
 import { Col, Form, Input, Row, Select } from "antd";
 import React from "react";
 import Button from "../../../../../shared/component/Button/Button";
+import { IModal } from "../../../../../shared/component/Modal/Modal";
 
-const FormPoint = () => {
+const FormPoint = ({setIsModalVisible}: IModal) => {
   const { Option } = Select;
   const point = [1, 2, 3];
   return (
-    <div className="form-layout form-point">
+    <div className="form-layout form-point" style={{width:'884px', minHeight:'390px',}}>
       <h2 className="title-28 j-center mb-24">Thêm loại điểm mới</h2>
       <Form labelCol={{ span: 6 }} wrapperCol={{ span: 18 }}>
         <Row>
@@ -55,9 +56,11 @@ const FormPoint = () => {
           </Row>
         </div>
 
-        <Form.Item>
+        <Form.Item wrapperCol={{offset:0}}>
           <div className="form-layout-btn">
-            <Button variant="secondary" styles="mr-32">
+            <Button variant="secondary" styles="mr-32"
+              onClick = {() => setIsModalVisible(false)}
+            >
               Hủy
             </Button>
             <Button variant="primary">Lưu</Button>

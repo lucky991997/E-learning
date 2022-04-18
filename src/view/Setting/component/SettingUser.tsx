@@ -4,8 +4,12 @@ import Button from '../../../shared/component/Button/Button'
 import { IconArrowRight } from '../../../shared/component/Icon/Icon'
 import ListGrUser from './List/ListGrUser'
 import ListUser from './List/ListUser'
-import { IShowComponent } from '../Setting' 
-const SettingUser = ( {setShowComponent} : IShowComponent) => {
+import { IShowComponent } from '../Setting'
+import ModalForm from '../../../shared/component/Modal/Modal'
+import FormRoles from '../Form/FormRoles'
+
+const SettingUser = ({ setShowComponent }: IShowComponent) => {
+
     const editList = [
         {
             name: 'Nhóm người dùng',
@@ -17,6 +21,7 @@ const SettingUser = ( {setShowComponent} : IShowComponent) => {
         },
     ]
     const [itemIndex, setItemIndex] = useState(0)
+    const [isModalVisible, setIsModalVisible] = useState(false)
 
     const handleListIndex = (index: number) => {
         setItemIndex(index)
@@ -31,7 +36,7 @@ const SettingUser = ( {setShowComponent} : IShowComponent) => {
             <div className="config__title mb-32" onClick={() => setShowComponent(true)}>
                 <h3 className="title-18-black mr-32">Cài đặt hệ thống</h3>
                 <IconArrowRight className="icon  mr-32" />
-                <h1 className="main-title">Người dùng hệ th</h1>
+                <h1 className="main-title">Người dùng hệ thống</h1>
             </div>
             <div className="control mb-24">
                 <div className="select">
@@ -40,7 +45,7 @@ const SettingUser = ( {setShowComponent} : IShowComponent) => {
                     <Select defaultValue="Chọn khối">
                     </Select>
                 </div>
-                <div className="tab__list__content" style={{ marginLeft: '-35%'}}>
+                <div className="tab__list__content" style={{ marginLeft: '-35%' }}>
                     {
                         editList && editList.map((item, index) => (
                             <div className={`tab__list__content-title ${activeIndex(index) ? activeIndex(index) : ''}`} key={index} onClick={() => handleListIndex(index)}>
@@ -51,7 +56,9 @@ const SettingUser = ( {setShowComponent} : IShowComponent) => {
                     }
                 </div>
                 <div className="control-btn">
-                    <Button variant="primary" icon="add">Thêm mới</Button>
+                    <Button variant="primary" icon="add"
+                        onClick={() => setIsModalVisible(true)}
+                    >Thêm mới</Button>
                 </div>
             </div>
             <div className="setting-user__list">
@@ -68,7 +75,13 @@ const SettingUser = ( {setShowComponent} : IShowComponent) => {
                     ))
                 }
             </div>
-
+            {isModalVisible === true ?
+                (
+                    <ModalForm isModalVisible={isModalVisible} setIsModalVisible={setIsModalVisible}>
+                        <FormRoles setIsModalVisible={setIsModalVisible} />
+                    </ModalForm>
+                ) : ''
+            }
 
         </>
     )

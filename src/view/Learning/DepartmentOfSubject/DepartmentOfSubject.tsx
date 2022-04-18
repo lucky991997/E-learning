@@ -1,11 +1,19 @@
 import { Col, Input, Row, Table } from 'antd'
-import React from 'react'
+import React, { useState } from 'react'
 
 import { IconDelete, IconEdit, IconList, IconSort } from '../../../shared/component/Icon/Icon'
 import Button from '../../../shared/component/Button/Button'
+import ClassList from './component/ClassList'
+import ModalForm from '../../../shared/component/Modal/Modal'
+import FormAddChangeSchool from '../../StudentProfile/ChangeSchool/form/FormAddChangeSchool'
+import FormDeleteSchoolYear from '../SchoolYear/component/FormSchoolYear/FormDeleteSchoolYear'
+import FormDepartment from '../Department/component/form/FormDepartment'
 
 
 const DepartmentOfSubject = () => {
+  const [isModalVisible, setIsModalVisible] = useState(false)
+  const [isModaldelete,setIsModalDelete ] = useState(false)
+
   const data = [
     {
       key: 1,
@@ -71,9 +79,9 @@ const DepartmentOfSubject = () => {
       render: () => {
         return (
           <div >
-            <IconList className='icon mr-24' />
-            <IconEdit className='icon mr-24' />
-            <IconDelete className='icon' />
+            <IconList onClick={() => setIsModalVisible(true)} className='icon mr-24' />
+            <IconEdit  onClick = {() => setIsModalVisible(true)} className='icon mr-24' />
+            <IconDelete onClick= {() => setIsModalDelete(true)} className='icon' />
           </div>
         )
       }
@@ -87,20 +95,21 @@ const DepartmentOfSubject = () => {
 
       <Row className="mb-24" justify='end' style={{ width: '100%' }}>
         <Col >
-          <Button variant="primary" icon="add">
+          <Button variant="primary" icon="add"
+           onClick = {() => setIsModalVisible(true)}
+          >
             Thêm mới
           </Button>
         </Col>
       </Row>
 
       <div className="learning-title learning-content">
-        <div className="learning-title-table__search mb-24">
-
-          <h3 className="title-22">Khoa - khối</h3>
-
-
+        <div className="title-content__search mb-24">
+          <h2 className="title-22">Danh sách học viên</h2>
           <Search onChange={(e) => console.log(e.target.value)} placeholder="input search text" style={{ width: 200 }} />
+
         </div>
+
 
         <div className="table-content">
 
@@ -108,7 +117,22 @@ const DepartmentOfSubject = () => {
 
         </div>
 
+     
       </div>
+      {isModalVisible === true ?
+        (
+          <ModalForm isModalVisible={isModalVisible} setIsModalVisible={setIsModalVisible}>
+            <FormDepartment setIsModalVisible={setIsModalVisible}/>
+          </ModalForm>
+        ) : ''
+      }
+      {isModaldelete === true ?
+        (
+          <ModalForm isModalVisible={isModaldelete} setIsModalVisible={setIsModalDelete}>
+              <FormDeleteSchoolYear setIsModalDelete={setIsModalDelete} title="Xóa Khoa - Khối"/>
+          </ModalForm>
+        ) : ''
+      }
     </>
   )
 }

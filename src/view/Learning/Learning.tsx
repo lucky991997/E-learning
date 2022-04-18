@@ -8,7 +8,7 @@ import Department from './Department/component/Department'
 import DepartmentOfSubject from './DepartmentOfSubject/DepartmentOfSubject'
 import PointType from './PointType/PointType'
 import SchoolYear from './SchoolYear/SchoolYear'
-import Subject from './Subject/component/Subject'
+import Subject from './Subject/Subject'
 import EditClass from './Class/component/Edit/EditClass'
 
 

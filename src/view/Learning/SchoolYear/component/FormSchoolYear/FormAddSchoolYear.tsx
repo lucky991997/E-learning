@@ -8,14 +8,17 @@ import { Row, Col, Select, Checkbox, Input, DatePicker } from "antd";
 import "./index.scss";
 import Button from "../../../../../shared/component/Button/Button";
 import { MdDateRange } from "react-icons/md";
+import { IModal } from "../../../../../shared/component/Modal/Modal";
 
-const FormAddSchoolYear = () => {
+
+
+const FormAddSchoolYear = ({ setIsModalVisible }: IModal) => {
   const { Option } = Select;
   const date = ["2020", "2021", "2022"];
 
   return (
     <div className="form-layout form-school">
-      <h2 className="title-28 ">Thiết lập niên khoá</h2>
+      <h2 className="title-28 j-center mb-24">Thiết lập niên khoá</h2>
       <div className="form-school__add">
         <div className="form-school__add-year">
           <Row>
@@ -26,10 +29,8 @@ const FormAddSchoolYear = () => {
               >
                 Niên khóa:
               </h2>
-              <div
-                className="form-school__add-year__select"
-                style={{ display: "flex" }}
-              >
+             
+              <div className="select">
                 <Select className='form-school-select' value={2020}>
                   {
                     date.map((item, index) => (
@@ -154,7 +155,7 @@ const FormAddSchoolYear = () => {
         <div className="form-layout-btn">
           <Button
             style={{ marginRight: "32px" }}
-            onClick={() => console.log(123)}
+            onClick={() => setIsModalVisible(false)}
             variant="secondary"
           >
             Hủy

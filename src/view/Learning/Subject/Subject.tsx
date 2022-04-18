@@ -1,14 +1,18 @@
 import { Col, Input, Row, Select, Table } from 'antd'
-import React from 'react'
-import { FiEdit } from 'react-icons/fi'
-import { RiDeleteBinLine } from 'react-icons/ri'
-import { AiOutlineUnorderedList } from 'react-icons/ai'
-import Button from '../../../../shared/component/Button/Button'
-import { IconDelete, IconEdit, IconSort } from '../../../../shared/component/Icon/Icon'
+import React, { useState } from 'react'
+
+
+import Button from '../../../shared/component/Button/Button'
+import { IconDelete, IconEdit, IconSort } from '../../../shared/component/Icon/Icon'
+import ModalForm from '../../../shared/component/Modal/Modal'
+import FormDeleteSchoolYear from '../SchoolYear/component/FormSchoolYear/FormDeleteSchoolYear'
+import FormSubject from './form/FormSubject'
 
 
 const Subject = () => {
-  interface IData  {
+  const [isModalVisible, setIsModalVisible] = useState(false)
+  const [isModaldelete,setIsModalDelete ] = useState(false)
+  interface ISubject  {
     key: number, 
     id: string,
     name: string,
@@ -16,7 +20,7 @@ const Subject = () => {
     sem1: number, 
     sem2: number,
   }
-  const data:IData[] = [
+  const data:ISubject[] = [
     {
       key: 1,
       id: 'KHTN',
@@ -142,21 +146,18 @@ const Subject = () => {
       render: () => {
         return (
           <div >
-            <IconEdit onClick={() => console.log(123)} className='icon mr-24' />
-            <IconDelete className='icon' />
+            <IconEdit  onClick = {() => setIsModalVisible(true)} className='icon mr-24' />
+            <IconDelete  onClick = {() => setIsModalDelete(true)} className='icon' />
           </div>
         )
       }
     }
   ]
+  const [selectRow, setSelectRow] = useState<ISubject[]>([])
   const rowSelection = {
-    onChange: (selectedRowKeys: React.Key[], selectedRows: IData[]) => {
-      console.log(`selectedRowKeys: ${selectedRowKeys}`, 'selectedRows: ', selectedRows);
+    onChange: (selectedRowKeys: React.Key[], selectedRows: ISubject[]) => {
+      setSelectRow(selectedRows)
     },
-    getCheckboxProps: (record: IData) => ({
-      disabled: record.name === 'Disabled User', // Column configuration not to be checked
-      name: record.name,
-    }),
   };
 
   const { Search } = Input
@@ -181,9 +182,11 @@ const Subject = () => {
           </div>
         </Col>
         <Col style={{ display: 'flex', alignItems: 'center' }}>
-          <IconDelete className="icon mr-16 " onClick={() => console.log(123)} style={{ color: '#C9C4C0' }} />
+          <IconDelete className="icon mr-16 " onClick = {() => setIsModalDelete(true)}  style={{ color:`${selectRow.length > 0 ? '#FF7506' :'#C9C4C0'}`  }} />
           <div className="border-left mr-16"></div>
-          <Button variant="primary" icon="add">
+          <Button variant="primary" icon="add"
+             onClick = {() => setIsModalVisible(true)}
+          >
             Thêm mới
           </Button>
         </Col>
@@ -191,7 +194,7 @@ const Subject = () => {
       <Row>
         <div className="learning-title learning-content">
 
-          <div className="learning-title-table__search mb-24">
+          <div className="title-content__search mb-24">
 
             <h3 className="title-22">Môn Học</h3>
 
@@ -207,6 +210,24 @@ const Subject = () => {
 
         </div>
       </Row>
+
+
+
+
+      {isModalVisible === true ?
+        (
+          <ModalForm isModalVisible={isModalVisible} setIsModalVisible={setIsModalVisible}>
+            <FormSubject setIsModalVisible={setIsModalVisible}/>
+          </ModalForm>
+        ) : ''
+      }
+      {isModaldelete === true ?
+        (
+          <ModalForm isModalVisible={isModaldelete} setIsModalVisible={setIsModalDelete}>
+              <FormDeleteSchoolYear setIsModalDelete={setIsModalDelete} title="Xóa"/>
+          </ModalForm>
+        ) : ''
+      }
     </>
 
 

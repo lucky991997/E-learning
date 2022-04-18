@@ -6,10 +6,11 @@
   padding: 24px !important;
   background: $main-color;
   position: relative;
-  border: 1px solid;
+
 }
 
 .form-export {
+  width: 884px;
   .ant-input-affix-wrapper {
     padding-left: 45px;
     height: 30px !important;

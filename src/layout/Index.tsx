@@ -14,7 +14,6 @@ const Index = () => {
             <Sidebar />
             <Header />
             <div className="container">
-
                 <RouteComponent />
             </div>
         </div>

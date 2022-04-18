@@ -2,10 +2,13 @@ import { Col, Form, Input, Row, Select } from "antd";
 import React, { useState } from "react";
 import Button from "../../../../../shared/component/Button/Button";
 import { IconAdd, IconMinus } from "../../../../../shared/component/Icon/Icon";
+import { IModal } from "../../../../../shared/component/Modal/Modal";
 
 import "./index-form.scss";
 
-const FormDept = () => {
+
+
+const FormDept = ({setIsModalVisible}: IModal) => {
   const { Option } = Select;
   const [value, setValue] = useState("");
   const select = ["Trần Quốc Tuấn", "Nguyễn Văn A"];
@@ -23,8 +26,7 @@ const FormDept = () => {
           labelCol={{ span: 8 }}
           wrapperCol={{ span: 16 }}
           initialValues={{ remember: true }}
-          //   onFinish={onFinish}
-          //   onFinishFailed={onFinishFailed}
+         
           autoComplete="off"
         >
           <div className="form-input-required">
@@ -102,7 +104,9 @@ const FormDept = () => {
           <div style={{ marginLeft: "-50%" }}>
             <Form.Item wrapperCol={{ offset: 8, span: 16 }}>
               <div className="form-layout-btn mt-51">
-                <Button variant="secondary" styles="mr-32">
+                <Button variant="secondary" styles="mr-32"
+                  onClick={() => setIsModalVisible(false)}
+                >
                   Hủy
                 </Button>
                 <Button variant="primary">Thêm</Button>

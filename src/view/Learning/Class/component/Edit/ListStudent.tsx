@@ -1,9 +1,13 @@
 import { Table } from 'antd'
-import React from 'react'
+import React, { useState } from 'react'
 import { IconEdit, IconSort } from '../../../../../shared/component/Icon/Icon'
+import ModalForm from '../../../../../shared/component/Modal/Modal'
 import Status from '../../../../../shared/component/status/Status'
+import FormSubject from '../../../Subject/form/FormSubject'
 
 const ListStudent = () => {
+
+
   const data = [
     {
       key: 1,
@@ -162,7 +166,7 @@ const ListStudent = () => {
       render: () => {
         return (
           <div >
-            <IconEdit onClick={() => console.log(123)} className='icon mr-24' />
+            <IconEdit onClick={() =>console.log(123)} className='icon mr-24' />
           </div>
         )
       }
@@ -171,6 +175,7 @@ const ListStudent = () => {
   return (
     <div className="table-content">
       <Table columns={columns} dataSource={data} />
+     
     </div>
   )
 }

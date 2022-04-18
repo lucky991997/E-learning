@@ -1,13 +1,14 @@
 import { Form, Input, Switch, Typography } from 'antd'
 import React from 'react'
 import Button from '../../../shared/component/Button/Button'
+import { IModal } from '../../../shared/component/Modal/Modal'
 
-const FormConfig = () => {
+const FormConfig = ({setIsModalVisible}:IModal) => {
     return (
-        <div className="form-layout">
+        <div className="form-layout" style={{width: '884px'}}>
             <h2 className="title-28 j-center mb-24">Thiệt lập người dùng</h2>
             <div className="form-input-required">
-                <Form
+                <Form 
                     labelCol={{ span: 6 }}
                     wrapperCol={{ span: 18 }}
                 >
@@ -44,7 +45,10 @@ const FormConfig = () => {
                     >
                         <div className="form-layout-btn mt-32">
 
-                            <Button variant="secondary">Hủy</Button>
+                            <Button variant="secondary"
+                            onClick={() => setIsModalVisible(false)}
+                            
+                            >Hủy</Button>
                             <Button variant="primary">Lưu</Button>
                         </div>
                     </Form.Item>

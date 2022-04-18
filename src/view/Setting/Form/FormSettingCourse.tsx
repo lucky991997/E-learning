@@ -1,10 +1,11 @@
 import { Form, Input, Switch, Typography } from 'antd'
 import React from 'react'
 import Button from '../../../shared/component/Button/Button'
+import {IModal} from '../../../shared/component/Modal/Modal'
 
-const FormSettingCourse = () => {
+const FormSettingCourse = ({setIsModalVisible}: IModal) => {
     return (
-        <div className="form-layout">
+        <div className="form-layout" style={{width: '884px'}}>
             <h2 className="title-28 j-center mb-24">Thiệt lập môn học</h2>
             <div className="form-input">
                 <Form
@@ -37,7 +38,7 @@ const FormSettingCourse = () => {
                     </Form.Item>
                     <Form.Item wrapperCol={{ offset: 8, span: "12" }}>
                         <div className="form-layout-btn mt-32">
-                            <Button variant="secondary">Hủy</Button>
+                            <Button variant="secondary" onClick={() => setIsModalVisible(false)}>Hủy</Button>
                             <Button variant="primary">Lưu</Button>
                         </div>
                     </Form.Item>

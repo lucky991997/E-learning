@@ -3,10 +3,11 @@ import React from "react";
 import { AiOutlineDownload } from "react-icons/ai";
 import { ImAttachment } from "react-icons/im";
 import Button from "../Button/Button";
+import { IModal } from "../Modal/Modal";
 
 import "./form-main.scss";
 
-const FormExport: React.FC = () => {
+const FormExport = ({setIsModalVisible}: IModal) => {
   return (
     <div className="form-layout form-export">
       <h2 className="title-28 mb-24 j-center">Tải lên file </h2>
@@ -45,6 +46,7 @@ const FormExport: React.FC = () => {
         <Button
           style={{ width: "192px", marginRight: "32px" , background:'#fff'}}
           variant="secondary"
+          onClick= {() => setIsModalVisible(false)}
         >
          <span style={{color:'#FF7506'}}>Hủy</span> 
         </Button>

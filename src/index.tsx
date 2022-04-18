@@ -19,9 +19,9 @@ import './styles/body.scss'
 
 ReactDOM.render(
 
-  <StrictMode>
-    <App />
-  </StrictMode>,
+
+  <App />
+  ,
 
   document.getElementById("root")
 );

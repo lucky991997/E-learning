@@ -5,6 +5,7 @@ import Profile from './Profiles/Profile'
 import '../../styles/main-styles/tab-vertical.scss'
 import '../../styles/view-styles/teacher-profile.scss'
 import { useLocation } from 'react-router-dom'
+import InfoTeacher from './Profiles/component/InfoTeacher'
 
 const TeacherProfile = () => {
   const { pathname } = useLocation();

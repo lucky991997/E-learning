@@ -2,7 +2,8 @@
 
 
 .form-class {
-    border: 1px solid;
+    min-width: 884px;
+    min-height: 778px;
     &-inherit {
         @include flex(center, flex-start);
     }

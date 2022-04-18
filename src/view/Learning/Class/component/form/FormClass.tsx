@@ -4,8 +4,9 @@ import { IconAdd, IconMinus } from "../../../../../shared/component/Icon/Icon";
 import Button from "../../../../../shared/component/Button/Button";
 
 import "./form-class.scss";
+import { IModal } from "../../../../../shared/component/Modal/Modal";
 
-const FormClass = () => {
+const FormClass = ({ setIsModalVisible }: IModal) => {
   const { Option } = Select;
   const year = ["2020-2021"];
   const Class = ["Lớp cơ bản", "Lớp nâng cao"];
@@ -21,11 +22,15 @@ const FormClass = () => {
               <Col span="12">
                 <div className="form-input-select__year">
                   <Form.Item label="Niên khoá:">
-                    <Select style={{ width: "130px" }}>
-                      {year.map((item, index) => (
-                        <Option key={index}>{item}</Option>
-                      ))}
-                    </Select>
+                    <div className="select">
+
+
+                      <Select style={{ width: "130px" }}>
+                        {year.map((item, index) => (
+                          <Option key={index}>{item}</Option>
+                        ))}
+                      </Select>
+                    </div>
                   </Form.Item>
                 </div>
               </Col>
@@ -91,7 +96,7 @@ const FormClass = () => {
             <Form.Item label="Mô tả:">
               <Input.TextArea value=" Lorem ipsum dolor sit amet, consectetur adipiscing elit. Utnec augue quis
                  nulla dictum ornare eu vitae neque. In sodales tincidunt purus eget porttitor.">
-               
+
               </Input.TextArea>
             </Form.Item>
           </div>
@@ -107,14 +112,16 @@ const FormClass = () => {
               Kế thừa dữ liệu:{" "}
             </h3>
             <div className="form-input-select__year">
-              <Select
-                style={{ width: "144px", color: "#7C7C7C" }}
-                placeholder="niên khóa"
-              >
-                {year.map((item, index) => (
-                  <Option key={index}>{item}</Option>
-                ))}
-              </Select>
+              <div className="select">
+                <Select
+                  style={{ width: "144px", color: "#7C7C7C" }}
+                  placeholder="niên khóa"
+                >
+                  {year.map((item, index) => (
+                    <Option key={index}>{item}</Option>
+                  ))}
+                </Select>
+              </div>
             </div>
           </div>
           <div className="form-class-course mb-24">
@@ -141,7 +148,9 @@ const FormClass = () => {
           <div style={{ marginLeft: "25%" }} className="mt-51">
             <Form.Item>
               <div className="form-layout-btn ">
-                <Button variant="secondary" styles="mr-32">
+                <Button variant="secondary" styles="mr-32" 
+                  onClick = {() => setIsModalVisible(false)}
+                >
                   Hủy
                 </Button>
 

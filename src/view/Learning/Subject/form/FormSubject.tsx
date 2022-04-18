@@ -1,9 +1,10 @@
 import { Col, Form, Input, Row, Select } from "antd";
 import React, { useState } from "react";
-import Button from "../../../../../shared/component/Button/Button";
+import Button from "../../../../shared/component/Button/Button";
+import { IModal } from "../../../../shared/component/Modal/Modal";
 
 import "./subject.scss";
-const FormSubject = () => {
+const FormSubject = ({setIsModalVisible} : IModal) => {
   const { Option } = Select;
   const typeSubject = ["Môn học bắt buộc", "Môn học tự chon"];
   const department = ["Khoa học tự nhiên", "Văn hóa xã hội"];
@@ -95,7 +96,9 @@ const FormSubject = () => {
         <div style={{ marginLeft: "25%" }}>
           <Form.Item>
             <div className="form-layout-btn">
-              <Button variant="secondary" styles="mr-32">
+              <Button variant="secondary" styles="mr-32"
+              onClick = {() => setIsModalVisible(false)}
+              >
                 Hủy
               </Button>
               <Button variant="primary">Lưu</Button>

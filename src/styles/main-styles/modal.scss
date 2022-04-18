@@ -1,0 +1,19 @@
+@use '../index.scss' as *;
+
+.modal-form{  
+    .ant-modal-body {
+        padding: 0 !important;
+    }
+    .ant-modal-centered {
+        width: 884px !important;
+        min-width: 884px;
+    }
+    .ant-modal-content {
+        border-radius: $border-radius;
+    }
+}
+.ant-modal {
+    // min-width: 884px !important;
+    width: auto !important;
+    border-radius: $border-radius;
+}

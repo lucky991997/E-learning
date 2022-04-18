@@ -1,12 +1,14 @@
 import React, { Fragment, useState } from 'react'
 import { IconArrowRight, IconDelete, IconEdit } from '../../../../../shared/component/Icon/Icon'
 import { EditProps } from '../../Class'
-
-
 import '../../../../../styles/view-styles/edit-class.scss'
 import { Col, Row } from 'antd'
 import ListStudent from './ListStudent'
 import ListCourse from './ListCourse'
+import ModalForm from '../../../../../shared/component/Modal/Modal'
+import FormClass from '../form/FormClass'
+import FormDeleteSchoolYear from '../../../SchoolYear/component/FormSchoolYear/FormDeleteSchoolYear'
+import FormDeleteMain from '../../../../../shared/component/Form/FormDeleteMain'
 
 const EditClass = ({ setShowEdit }: EditProps) => {
   const editList = [
@@ -21,6 +23,8 @@ const EditClass = ({ setShowEdit }: EditProps) => {
   ]
   const [itemIndex, setItemIndex] = useState(0)
 
+  const [isModalVisible, setIsModalVisible] = useState(false)
+  const [isModaldelete, setIsModalDelete] = useState(false)
   const handleListIndex = (index: number) => {
     setItemIndex(index)
   }
@@ -43,8 +47,8 @@ const EditClass = ({ setShowEdit }: EditProps) => {
         <div className="edit-class__info__content">
           <h3 className="title-18-orange">Thông tin chung</h3>
           <div>
-            <IconEdit className="icon mr-24" />
-            <IconDelete className="icon" />
+          <IconEdit onClick={() => setIsModalVisible(true)} className='icon mr-24' />
+            <IconDelete onClick={() => setIsModalDelete(true)} className='icon' />
           </div>
         </div>
         <Row>
@@ -97,7 +101,7 @@ const EditClass = ({ setShowEdit }: EditProps) => {
       </div>
 
       <div className="edit-class__list mt-24">
-        <div className="edit-class__list__content mb-24" style={{width:'519px'}}>
+        <div className="edit-class__list__content mb-24" style={{ width: '519px' }}>
           {
             editList && editList.map((item, index) => (
               <div className={`edit-class__list__content-title ${activeIndex(index) ? activeIndex(index) : ''}`} key={index} onClick={() => handleListIndex(index)}>
@@ -117,6 +121,20 @@ const EditClass = ({ setShowEdit }: EditProps) => {
 
         }
       </div>
+      {isModalVisible === true ?
+        (
+          <ModalForm isModalVisible={isModalVisible} setIsModalVisible={setIsModalVisible}>
+            <FormClass setIsModalVisible={setIsModalVisible} />
+          </ModalForm>
+        ) : ''
+      }
+      {isModaldelete === true ?
+        (
+          <ModalForm isModalVisible={isModaldelete} setIsModalVisible={setIsModalDelete}>
+            <FormDeleteMain setIsModalDelete={setIsModalDelete}  />
+          </ModalForm>
+        ) : ''
+      }
 
     </div>
   )

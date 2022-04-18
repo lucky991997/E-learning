@@ -1,10 +1,15 @@
 import { Select, Table } from 'antd'
 import Search from 'antd/lib/input/Search'
-import React from 'react'
+import React, { useState } from 'react'
 import Button from '../../../shared/component/Button/Button'
 import { IconArrowRight, IconDelete, IconEdit, IconSort } from '../../../shared/component/Icon/Icon'
-import { IShowComponent } from '../Setting' 
-const SettingLevel = ({setShowComponent} : IShowComponent) => {
+import ModalForm from '../../../shared/component/Modal/Modal'
+import FormDeleteSchoolYear from '../../Learning/SchoolYear/component/FormSchoolYear/FormDeleteSchoolYear'
+import FormSettingTrain from '../Form/FormSettingTrain'
+import { IShowComponent } from '../Setting'
+const SettingLevel = ({ setShowComponent }: IShowComponent) => {
+    const [isModalVisible, setIsModalVisible] = useState(false)
+    const [isModaldelete, setIsModalDelete] = useState(false)
     const data = [
         {
             key: 1,
@@ -59,7 +64,7 @@ const SettingLevel = ({setShowComponent} : IShowComponent) => {
         {
             title: (
                 <div style={{ display: 'flex', alignItems: 'center', marginLeft: '20%' }}>
-                   Trình Độ
+                    Trình Độ
                     <IconSort />
                 </div>
             ),
@@ -102,12 +107,12 @@ const SettingLevel = ({setShowComponent} : IShowComponent) => {
             title: (
                 <div style={{ display: 'flex', marginLeft: '15%' }}>
                     Ghi chú
-                    
+
                 </div>
             ),
             dataIndex: 'note',
             key: 'note',
-     
+
         },
         {
             title: '',
@@ -116,8 +121,9 @@ const SettingLevel = ({setShowComponent} : IShowComponent) => {
             render: () => {
                 return (
                     <div style={{ display: 'flex' }}>
-                        <IconEdit className="icon mr-24" />
-                        <IconDelete className="icon" />
+                        <IconEdit onClick={() => setIsModalVisible(true)} className='icon mr-24' />
+                        <IconDelete onClick={() => setIsModalDelete(true)} className='icon' />
+
                     </div>
 
                 )
@@ -129,7 +135,7 @@ const SettingLevel = ({setShowComponent} : IShowComponent) => {
             <div className="config__title mb-32" onClick={() => setShowComponent(true)}>
                 <h3 className="title-18-black mr-32">Cài đặt hệ thống</h3>
                 <IconArrowRight className="icon  mr-32" />
-                <h1 className="main-title">Cấu hình</h1>
+                <h1 className="main-title">Quản lý bậc đào tạo</h1>
             </div>
             <div className="control mb-24">
                 <div className="select">
@@ -138,7 +144,9 @@ const SettingLevel = ({setShowComponent} : IShowComponent) => {
                     </Select>
                 </div>
                 <div className="control-btn">
-                    <Button variant="primary" icon="add">Thêm mới</Button>
+                    <Button variant="primary" icon="add"
+                        onClick={() => setIsModalVisible(true)}
+                    >Thêm mới</Button>
                 </div>
             </div>
             <div className="setting-class__list">
@@ -157,6 +165,20 @@ const SettingLevel = ({setShowComponent} : IShowComponent) => {
                     </h3>
                 </div>
             </div>
+            {isModalVisible === true ?
+                (
+                    <ModalForm isModalVisible={isModalVisible} setIsModalVisible={setIsModalVisible}>
+                        <FormSettingTrain setIsModalVisible={setIsModalVisible} />
+                    </ModalForm>
+                ) : ''
+            }
+            {isModaldelete === true ?
+                (
+                    <ModalForm isModalVisible={isModaldelete} setIsModalVisible={setIsModalDelete}>
+                        <FormDeleteSchoolYear setIsModalDelete={setIsModalDelete} title="Xóa bậc đào tạo" />
+                    </ModalForm>
+                ) : ''
+            }
         </div>
     )
 }

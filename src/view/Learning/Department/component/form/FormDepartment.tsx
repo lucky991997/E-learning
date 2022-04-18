@@ -1,10 +1,11 @@
 import { Form, Input, Select } from "antd";
 import React, { useState } from "react";
 import Button from "../../../../../shared/component/Button/Button";
+import { IModal } from "../../../../../shared/component/Modal/Modal";
 
 import "./department.scss";
 
-const FormDepartment = () => {
+const FormDepartment = ({setIsModalVisible} : IModal) => {
   const [valueId, setValueId] = useState("");
   const [valueDept, setValueDept] = useState("");
   const handleChangeId = (e: any) => {
@@ -48,7 +49,9 @@ const FormDepartment = () => {
           <div style={{ marginLeft: "25%" }} >
             <Form.Item>
               <div className="form-layout-btn mt-32">
-                <Button variant="secondary" styles="mr-32">
+                <Button variant="secondary" styles="mr-32"
+                  onClick={() => setIsModalVisible(false)}
+                >
                   Hủy
                 </Button>
                 <Button

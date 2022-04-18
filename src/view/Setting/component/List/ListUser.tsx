@@ -1,9 +1,14 @@
 import { Select, Table } from 'antd'
 import Search from 'antd/lib/input/Search'
-import React from 'react'
+import React, { useState } from 'react'
 import { IconDelete, IconEdit, IconSort } from '../../../../shared/component/Icon/Icon'
+import ModalForm from '../../../../shared/component/Modal/Modal'
+import FormDeleteSchoolYear from '../../../Learning/SchoolYear/component/FormSchoolYear/FormDeleteSchoolYear'
+import FormConfig from '../../Form/FormConfig'
 
 const ListUser = () => {
+  const [isModalVisible, setIsModalVisible] = useState(false)
+  const [isModaldelete, setIsModalDelete] = useState(false)
   const data = [
     {
       key: 1,
@@ -136,7 +141,7 @@ const ListUser = () => {
               Đang hoạt động
             </h3>
           ) : (
-            <h3 className="title-16-note" style={{marginLeft: '20%' }}>
+            <h3 className="title-16-note" style={{ marginLeft: '20%' }}>
               Đã vô hiệu
             </h3>
           )
@@ -150,8 +155,9 @@ const ListUser = () => {
       render: () => {
         return (
           <div style={{ display: 'flex' }}>
-            <IconEdit className="icon mr-24" />
-            <IconDelete className="icon" />
+            <IconEdit onClick={() => setIsModalVisible(true)} className='icon mr-24' />
+            <IconDelete onClick={() => setIsModalDelete(true)} className='icon' />
+            
           </div>
 
         )
@@ -174,7 +180,20 @@ const ListUser = () => {
           hàng trong mỗi trang
         </h3>
       </div>
-
+      {isModalVisible === true ?
+        (
+          <ModalForm isModalVisible={isModalVisible} setIsModalVisible={setIsModalVisible}>
+            <FormConfig setIsModalVisible={setIsModalVisible} />
+          </ModalForm>
+        ) : ''
+      }
+      {isModaldelete === true ?
+        (
+          <ModalForm isModalVisible={isModaldelete} setIsModalVisible={setIsModalDelete}>
+            <FormDeleteSchoolYear setIsModalDelete={setIsModalDelete} title="Xóa tài khoản" />
+          </ModalForm>
+        ) : ''
+      }
     </>
   )
 }

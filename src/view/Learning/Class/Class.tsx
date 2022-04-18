@@ -1,13 +1,17 @@
-import { Col, Input, Row, Select, Table } from 'antd'
+import { Col, Input, Modal, Row, Select, Table } from 'antd'
 import React, { useState } from 'react'
 
 import { IconDelete, IconEdit, IconEye, IconSort } from '../../../shared/component/Icon/Icon'
 import Button from '../../../shared/component/Button/Button'
+import ModalForm from '../../../shared/component/Modal/Modal'
+import FormClass from './component/form/FormClass'
+import FormDeleteSchoolYear from '../SchoolYear/component/FormSchoolYear/FormDeleteSchoolYear'
+import FormExport from '../../../shared/component/Form/FormExport'
 
-export type EditProps ={
+export type EditProps = {
   setShowEdit: any,
 }
-export interface IData {
+export interface IClass {
   key: number,
   id: string,
   name: string,
@@ -16,7 +20,16 @@ export interface IData {
 }
 const Class = ({ setShowEdit }: EditProps) => {
 
-  const data: IData[] = [
+  const [isModalVisible, setIsModalVisible] = useState(false)
+  const [isModaldelete, setIsModalDelete] = useState(false)
+  
+  const [isModalFile, setIsModalFile] = useState(false)
+
+  const [showBtnAdd, setShowBtnAdd] = useState(false)
+  
+  const { Search } = Input
+  const { Option } = Select
+  const data: IClass[] = [
     {
       key: 1,
       id: '2020-6A',
@@ -76,23 +89,6 @@ const Class = ({ setShowEdit }: EditProps) => {
       teacher: 'Trần Quốc Tuấn',
     },
   ]
-  const { Search } = Input
-  const { Option } = Select
-
-
-  const rowSelection = {
-    onChange: (selectedRowKeys: React.Key[], selectedRows: IData[]) => {
-      console.log(`selectedRowKeys: ${selectedRowKeys}`, 'selectedRows: ', selectedRows);
-    },
-    getCheckboxProps: (record: IData) => ({
-      disabled: record.name === 'Disabled User', // Column configuration not to be checked
-      name: record.name,
-    }),
-  };
-
-  const handleShowEditClass = () => {
-    setShowEdit(false)
-  }
   const columns = [
 
     {
@@ -133,13 +129,38 @@ const Class = ({ setShowEdit }: EditProps) => {
         return (
           <div >
             <IconEye onClick={() => handleShowEditClass()} className='icon mr-24' />
-            <IconEdit onClick={() => console.log(123)} className='icon mr-24' />
-            <IconDelete className='icon' />
+            <IconEdit onClick={() => setIsModalVisible(true)} className='icon mr-24' />
+            <IconDelete onClick={() => setIsModalDelete(true)} className='icon' />
+
           </div>
         )
       }
     }
   ]
+
+  const rowSelection = {
+    onChange: (selectedRowKeys: React.Key[], selectedRows: IClass[]) => {
+      console.log(`selectedRowKeys: ${selectedRowKeys}`, 'selectedRows: ', selectedRows);
+    },
+    getCheckboxProps: (record: IClass) => ({
+      disabled: record.name === 'Disabled User', // Column configuration not to be checked
+      name: record.name,
+    }),
+  };
+
+
+  //handle event 
+  const handleShowEditClass = () => {
+    setShowEdit(false)
+  }
+  const handleShowAdd= () => {
+    setShowBtnAdd(false)
+    setIsModalVisible(true)
+  }
+  const handleShowAddFile = () => {
+    setShowBtnAdd(false)
+    setIsModalFile(true)
+  }
   return (
     <>
 
@@ -161,15 +182,46 @@ const Class = ({ setShowEdit }: EditProps) => {
           <Button variant="file" style={{ marginRight: '16px' }}>
             Xuất file
           </Button>
-          <Button variant="primary" icon="add">
+          <Button variant="primary" icon="add" onClick={() => setShowBtnAdd(true)}>
             Thêm mới
+
           </Button>
+          {
+            showBtnAdd === true ? (
+              <>
+                <Modal
+                  visible={showBtnAdd}
+                  footer={false}
+                  closable={false}
+                  onCancel={() => setShowBtnAdd(false)}
+                  bodyStyle={{
+                    float: 'right',
+                    marginTop: '5%',
+                    marginRight: '10px',
+                  }}
+                >
+                  <Button variant="file" style={{ marginBottom: '12px' }}
+                   onClick={() => handleShowAddFile()}
+                  >
+                    Tải file lên
+                  </Button>
+                  <Button variant="file"
+                    onClick={() => handleShowAdd()}
+                  >
+                    Nhập thủ công
+                  </Button>
+                </Modal>
+
+              </>
+            ) : ''
+          }
+
         </Col>
       </Row>
       <Row>
         <div className="learning-title learning-content" >
 
-          <div className="learning-title-table__search mb-24">
+          <div className="title-content__search mb-24">
 
             <h3 className="title-22">Môn Học</h3>
 
@@ -186,7 +238,27 @@ const Class = ({ setShowEdit }: EditProps) => {
         </div>
       </Row>
 
-
+      {isModalVisible === true ?
+        (
+          <ModalForm isModalVisible={isModalVisible} setIsModalVisible={setIsModalVisible}>
+            <FormClass setIsModalVisible={setIsModalVisible} />
+          </ModalForm>
+        ) : ''
+      }
+      {isModaldelete === true ?
+        (
+          <ModalForm isModalVisible={isModaldelete} setIsModalVisible={setIsModalDelete}>
+            <FormDeleteSchoolYear setIsModalDelete={setIsModalDelete} title="Xóa" />
+          </ModalForm>
+        ) : ''
+      }
+       {isModalFile === true ?
+        (
+          <ModalForm isModalVisible={isModalFile} setIsModalVisible={setIsModalFile}>
+            <FormExport setIsModalVisible={setIsModalFile}/>
+          </ModalForm>
+        ) : ''
+      }
 
     </>
 

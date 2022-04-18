@@ -1,8 +1,9 @@
 import { Checkbox, Col, Form, Input, Row } from 'antd'
 import React, { useState } from 'react'
 import Button from '../../../shared/component/Button/Button'
+import { IModal } from '../../../shared/component/Modal/Modal'
 
-const FormSettingTrain = () => {
+const FormSettingTrain = ({ setIsModalVisible }: IModal) => {
     const [year, setYear] = useState(false)
     const [tin, setTin] = useState(false)
     return (
@@ -30,10 +31,10 @@ const FormSettingTrain = () => {
                         name=""
                     >
                         <Row>
-                            <div className="form-checkbox-main" style={{marginTop: '5px', marginRight: '10%'}}>
+                            <div className="form-checkbox-main" style={{ marginTop: '5px', marginRight: '10%' }}>
 
-                                <Col span='8' style={{ width: '100%' , minHeight:"40px"}}>
-                                    <Checkbox style={{ width: '100px'  }} onChange={e => setYear(e.target.checked)}><span >Niên chế</span></Checkbox>
+                                <Col span='8' style={{ width: '100%', minHeight: "40px" }}>
+                                    <Checkbox style={{ width: '100px' }} onChange={e => setYear(e.target.checked)}><span >Niên chế</span></Checkbox>
                                 </Col>
                             </div>
                             {
@@ -119,7 +120,9 @@ const FormSettingTrain = () => {
 
                     >
                         <div className="form-layout-btn mt-32">
-                            <Button variant="secondary">Hủy</Button>
+                            <Button variant="secondary"
+                                onClick={() => setIsModalVisible(false)}
+                            >Hủy</Button>
                             <Button variant="primary">Lưu</Button>
                         </div>
                     </Form.Item>

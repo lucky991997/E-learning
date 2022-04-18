@@ -1,37 +1,40 @@
 import { Col, Input, Row, Table } from 'antd'
-import React from 'react'
-import { FiEdit } from 'react-icons/fi'
-import { RiDeleteBinLine } from 'react-icons/ri'
-import { AiOutlineUnorderedList } from 'react-icons/ai'
-import { IconDelete, IconEdit, IconList, IconSort } from '../../../shared/component/Icon/Icon'
+import React, { useState } from 'react'
+
+import { IconDelete, IconEdit, IconSort } from '../../../shared/component/Icon/Icon'
 import Button from '../../../shared/component/Button/Button'
+import FormDeleteMain from '../../../shared/component/Form/FormDeleteMain'
+import ModalForm from '../../../shared/component/Modal/Modal'
+import FormPoint from './component/form/FormPoint'
 
 
 const PointType = () => {
+  const [isModalVisible, setIsModalVisible] = useState(false)
+  const [isModaldelete,setIsModalDelete ] = useState(false)
   const data = [
     {
-      key:1,
+      key: 1,
       type: 'Kiểm tra miệng',
       heso: 1,
       sem1: 3,
       sem2: 3,
     },
     {
-      key:2,
+      key: 2,
       type: 'Kiểm tra 15 phút',
       heso: 1,
       sem1: 2,
       sem2: 2,
     },
     {
-      key:3,
+      key: 3,
       type: 'Kiểm tra 45 phút',
       heso: 2,
       sem1: 2,
       sem2: 2,
     },
     {
-      key:4,
+      key: 4,
       type: 'Kiểm tra giữa kỳ',
       heso: 2,
       sem1: 1,
@@ -110,9 +113,10 @@ const PointType = () => {
       render: () => {
         return (
           <div >
-            <IconList className='icon mr-24' />
-            <IconEdit className='icon mr-24' />
-            <IconDelete className='icon' />
+            
+            <IconEdit  onClick = {() => setIsModalVisible(true)} className='icon mr-24' />
+            <IconDelete  onClick = {() => setIsModalDelete(true)} className='icon' />
+          
           </div>
         )
       }
@@ -125,7 +129,9 @@ const PointType = () => {
 
       <Row className="mb-24" justify='end' style={{ width: '100%' }}>
         <Col >
-          <Button variant="primary" icon="add">
+          <Button variant="primary" icon="add"
+            onClick = {() => setIsModalVisible(true)}
+          >
             Thêm mới
           </Button>
         </Col>
@@ -134,7 +140,7 @@ const PointType = () => {
 
 
         <div className="learning-title learning-content">
-          <div className="learning-title-table__search mb-24">
+          <div className="title-content__search mb-24">
 
             <h3 className="title-22">Loại điểm</h3>
 
@@ -150,6 +156,22 @@ const PointType = () => {
 
         </div>
       </Row>
+
+
+      {isModalVisible === true ?
+        (
+          <ModalForm isModalVisible={isModalVisible} setIsModalVisible={setIsModalVisible}>
+            <FormPoint setIsModalVisible={setIsModalVisible}/>
+          </ModalForm>
+        ) : ''
+      }
+      {isModaldelete === true ?
+        (
+          <ModalForm isModalVisible={isModaldelete} setIsModalVisible={setIsModalDelete}>
+              <FormDeleteMain setIsModalDelete={setIsModalDelete}/>
+          </ModalForm>
+        ) : ''
+      }
     </>
   )
 }

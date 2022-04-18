@@ -6,6 +6,8 @@ import Profiles from './Profiles/Profiles'
 import Resever from './Reserve/Reserve'
 import '../../styles/view-styles/student-profiles.scss'
 import { useLocation } from 'react-router-dom'
+import InfoStudent from './Profiles/component/InfoStudent'
+import Process from './Profiles/component/Process'
 const StudentProfiles = () => {
   const { pathname } = useLocation();
 
@@ -23,7 +25,7 @@ const StudentProfiles = () => {
       case 2:
         return <Resever />
       default:
-        return <Profiles />
+        return <InfoStudent />
     }
 
   };

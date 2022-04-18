@@ -1,10 +1,16 @@
 import { Select, Table } from 'antd'
 import Search from 'antd/lib/input/Search'
-import React from 'react'
+import React, { useState } from 'react'
 import Button from '../../../shared/component/Button/Button'
 import { IconArrowRight, IconDelete, IconEdit, IconSort } from '../../../shared/component/Icon/Icon'
+import ModalForm from '../../../shared/component/Modal/Modal'
+import FormDeleteSchoolYear from '../../Learning/SchoolYear/component/FormSchoolYear/FormDeleteSchoolYear'
+import FormSettingCourse from '../Form/FormSettingCourse'
+import FormSettingTrain from '../Form/FormSettingTrain'
 import { IShowComponent } from '../Setting'
 const SettingClass = ({setShowComponent} : IShowComponent) => {
+    const [isModalVisible, setIsModalVisible] = useState(false)
+    const [isModaldelete, setIsModalDelete] = useState(false)
     const data = [
         {
             key: 1,
@@ -116,8 +122,9 @@ const SettingClass = ({setShowComponent} : IShowComponent) => {
             render: () => {
                 return (
                     <div style={{ display: 'flex' }}>
-                        <IconEdit className="icon mr-24" />
-                        <IconDelete className="icon" />
+                        <IconEdit onClick={() => setIsModalVisible(true)} className='icon mr-24' />
+                        <IconDelete onClick={() => setIsModalDelete(true)} className='icon' />
+
                     </div>
 
                 )
@@ -138,7 +145,10 @@ const SettingClass = ({setShowComponent} : IShowComponent) => {
                     </Select>
                 </div>
                 <div className="control-btn">
-                    <Button variant="primary" icon="add">Thêm mới</Button>
+                    <Button variant="primary" icon="add"
+                    onClick = {() => setIsModalVisible(true)}
+                    
+                    >Thêm mới</Button>
                 </div>
             </div>
             <div className="setting-class__list">
@@ -157,6 +167,20 @@ const SettingClass = ({setShowComponent} : IShowComponent) => {
                     </h3>
                 </div>
             </div>
+            {isModalVisible === true ?
+                (
+                    <ModalForm isModalVisible={isModalVisible} setIsModalVisible={setIsModalVisible}>
+                        <FormSettingCourse setIsModalVisible={setIsModalVisible} />
+                    </ModalForm>
+                ) : ''
+            }
+            {isModaldelete === true ?
+                (
+                    <ModalForm isModalVisible={isModaldelete} setIsModalVisible={setIsModalDelete}>
+                        <FormDeleteSchoolYear setIsModalDelete={setIsModalDelete} title="Xóa lớp học" />
+                    </ModalForm>
+                ) : ''
+            }
         </div>
     )
 }

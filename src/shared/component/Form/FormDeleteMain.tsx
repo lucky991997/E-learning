@@ -3,14 +3,15 @@ import Button from "../Button/Button";
 
 import "./form-main.scss";
 
-export interface IFormDeleteProps {
-  handleCancel: () => void;
-  handleDelete: () => void;
-}
+// export interface IFormDelete {
+//   handleCancel: () => void;
+//   handleDelete: () => void;
+// }
 
-const FormDeleteMain: React.FC<IFormDeleteProps> = ({
-  handleCancel,handleDelete
-}: IFormDeleteProps) => {
+type IFormDeleteProps = {
+  setIsModalDelete: any
+} 
+const FormDeleteMain = ({setIsModalDelete}: IFormDeleteProps) => {
 
   return (
     <div className="form-layout form-delete-main">
@@ -26,13 +27,13 @@ const FormDeleteMain: React.FC<IFormDeleteProps> = ({
       </span>
       <div className="form-layout-btn">
         <Button
-          onClick={() => handleCancel()}
+          onClick={() => setIsModalDelete(false)}
           variant="secondary"
           styles="mr-32"
         >
           Hủy
         </Button>
-        <Button onClick={() => handleDelete()} variant="primary">
+        <Button variant="primary">
           Xóa
         </Button>
       </div>
