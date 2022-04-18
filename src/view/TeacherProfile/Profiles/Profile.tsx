@@ -1,7 +1,7 @@
 import { Input, Select, Table } from 'antd'
 import React from 'react'
 import Button from '../../../shared/component/Button/Button'
-import { IconArrowRight, IconDelete, IconEdit, IconSort, IconUpdate } from '../../../shared/component/Icon/Icon'
+import { IconArrowRight, IconDelete, IconEdit, IconEye, IconSort, IconUpdate } from '../../../shared/component/Icon/Icon'
 import Status from '../../../shared/component/status/Status'
 
 const Profile = () => {
@@ -190,7 +190,7 @@ const Profile = () => {
             render: () => {
                 return (
                     <div >
-                        <IconEdit onClick={() => console.log(123)} className='icon mr-24' />
+                        <IconEye onClick={() => console.log(123)} className='icon mr-24' />
                         <IconUpdate onClick={() => console.log(123)} className='icon mr-24' />
                         <IconDelete onClick={() => console.log(123)} className='icon mr-24' />
                     </div>
@@ -222,7 +222,7 @@ const Profile = () => {
             </div>
             <div className="teacher__list">
                 <div className="title-content__search mb-24">
-                    <h2 className="title-22">Danh sách học viên</h2>
+                    <h2 className="title-22">Danh sách giảng viên</h2>
                     <Search onChange={(e) => console.log(e.target.value)} placeholder="input search text" style={{ width: 200 }} />
 
                 </div>

@@ -178,7 +178,7 @@ h4 {
   background-color: $main-color;
   border-radius: $border-radius;
   padding: 24px 64px;
-  // border: 1px solid;
+  border: 1px solid;
   position: relative;
 }
 
@@ -188,7 +188,7 @@ h4 {
   width: 1640px;
   height: auto;
   background-color: $main-color;
-  // border: 1px solid;
+  border: 1px solid;
   position: relative;
   margin-left: 150px;
 }
@@ -234,6 +234,22 @@ h4 {
     margin-right: 0;
   }
 }
+//active item menu
+.active-ant-menu {
+  h3 {
+    color: $color-primary !important;
+  }
+  svg {
+    color: $color-primary !important;
+  }
+  border-right: 4px solid $color-primary !important;
+}
+//activie submenu
+.active-sub {
+  font-weight: 700;
+  transition: font-weight ease-in-out 0.3s;
+ 
+}
 
 //select-year
 .select {
@@ -265,11 +281,12 @@ h4 {
 }
 //btn
 .control {
-  @include flex (center, space-between);
+  @include flex(center, space-between);
   &-btn {
     @include flex(center, static);
   }
 }
+
 //input search and show value of table
 .title {
   position: relative;
@@ -291,15 +308,8 @@ h4 {
     }
   }
   &-content {
-    width: 1337px;
-    height: 802px;
-    background: $main-color;
-    border-radius: $border-radius;
-    box-shadow: $box-shadow;
-    padding: 24px 64px;
     &__search {
       @include flex(center, space-between);
-
       .ant-input {
         padding-left: 54px;
       }

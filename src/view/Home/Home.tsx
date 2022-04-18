@@ -47,7 +47,7 @@ const Home = () => {
                 <Row className="mb-32">
                     <div className="select" style={{ width: '250px' }}>
                         <h3 className="title-16" >Niên khoá: </h3>
-                        <Select>
+                        <Select defaultValue="2020-2021">
                             <Option>2020-2021</Option>
                         </Select>
                     </div>
@@ -72,7 +72,7 @@ const Home = () => {
                     <div className="home-student-chart__title mb-24">
                         <h3 className="title-18-bold">Thống kê kết quả học tập</h3>
                         <div className="select">
-                            <Select>
+                            <Select defaultValue="khối 6">
                                 <Option>Khối 6</Option>
                             </Select>
                         </div>
@@ -83,7 +83,7 @@ const Home = () => {
                     <div className="home-student-progress__title">
                         <h3 className="title-18-bold" >Số lượng học viên</h3>
                         <div className="select">
-                            <Select>
+                            <Select defaultValue="THCS  ">
                                 <Option>THCS</Option>
                             </Select>
                         </div>

@@ -69,6 +69,13 @@
   transform: translateX(-100%);
   opacity: 0;
   transition: all ease-in-out 0.5s;
+  .ant-menu:not(.ant-menu-horizontal) .ant-menu-item-selected {
+    background: $color-white !important;
+  }
+  .ant-menu-inline .ant-menu-item::after {
+    content: "";
+    border-right: none ;
+  }
   .ant-menu {
     width: 397px;
     height: 1080px;
@@ -76,19 +83,19 @@
     box-shadow: 4px 4px 10px rgba(133, 178, 220, 0.25);
   }
   .ant-menu-item:nth-child(1) {
-    margin-top: 69%;
+    margin-top: 69% !important;
   }
 
   .ant-menu-item {
     margin-bottom: 40px;
   }
   &__link {
-    @include flex(center, static);
+    @include flex(center, flex-start);
 
     &-icon {
       font-size: 22px;
       color: $color-black;
-      margin-right: 12px;
+      margin-right: 6px;
     }
   }
 
@@ -97,8 +104,9 @@
     margin-top: -12px;
 
     .ant-menu-item:nth-child(1) {
-      margin-top: -40px;
+      margin-top: 70%;
     }
+   
 
     .ant-menu-item {
       //   margin-left: 4px;

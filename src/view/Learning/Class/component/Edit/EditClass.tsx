@@ -97,7 +97,7 @@ const EditClass = ({ setShowEdit }: EditProps) => {
       </div>
 
       <div className="edit-class__list mt-24">
-        <div className="edit-class__list__content mb-24" >
+        <div className="edit-class__list__content mb-24" style={{width:'519px'}}>
           {
             editList && editList.map((item, index) => (
               <div className={`edit-class__list__content-title ${activeIndex(index) ? activeIndex(index) : ''}`} key={index} onClick={() => handleListIndex(index)}>

@@ -1,22 +1,6 @@
 @use "../index.scss" as *;
 
-.edit-class {
-  &__title {
-    @include flex(center, static);
-  }
-  &__info {
-    width: 1640px;
-    height: 258px;
-    background-color: $color-pink;
-    border: 1px solid $color-primary;
-    border-radius: $border-radius;
-    position: relative;
-    padding: 24px 64px;
-    &__content {
-      @include flex(center, space-between);
-      margin-bottom: 24px;
-    }
-  }
+.tab {
   &__list {
     width: 1640px;
     height: 642px;
@@ -40,9 +24,9 @@
         height: 36px;
         cursor: pointer;
       }
-      &-title:nth-child(1) {
-        margin-right: 80px;
-      }
+    //   &-title:nth-child(1) {
+    //     margin-right: 80px;
+    //   }
     }
   }
 }

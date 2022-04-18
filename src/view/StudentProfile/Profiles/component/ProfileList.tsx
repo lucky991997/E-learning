@@ -1,6 +1,6 @@
 import { Input, Table } from 'antd'
 import React from 'react'
-import { IconDelete, IconEdit, IconSort, IconUpdate } from '../../../../shared/component/Icon/Icon'
+import { IconDelete, IconEdit, IconEye, IconSort, IconUpdate } from '../../../../shared/component/Icon/Icon'
 import Status from '../../../../shared/component/status/Status'
 
 
@@ -190,7 +190,7 @@ const ProfileList = () => {
       render: () => {
         return (
           <div >
-            <IconEdit onClick={() => console.log(123)} className='icon mr-24' />
+            <IconEye onClick={() => console.log(123)} className='icon mr-24' />
             <IconUpdate onClick={() => console.log(123)} className='icon mr-24'/>
             <IconDelete onClick={() => console.log(123)} className='icon mr-24'/>
           

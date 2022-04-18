@@ -1,5 +1,5 @@
 import React, { CSSProperties, ReactNode, useState } from "react";
-import { AiFillPlusCircle, AiFillMinusCircle, AiOutlineDown, AiOutlineUp, AiOutlineUnorderedList, AiOutlineEye } from "react-icons/ai";
+import { AiFillPlusCircle, AiFillMinusCircle, AiOutlineDown, AiOutlineUp, AiOutlineUnorderedList, AiOutlineEye, AiFillCheckCircle, AiFillCloseCircle } from "react-icons/ai";
 import { FiEdit } from "react-icons/fi";
 import { MdKeyboardArrowLeft, MdKeyboardArrowRight } from "react-icons/md";
 import { RiDeleteBin6Line } from "react-icons/ri";
@@ -97,9 +97,15 @@ const IconUpdate = (props: any) => {
   return <BsArrowRepeat {...props} />
 }
 
+const IconCheck = (props:any) => {
+  return <AiFillCheckCircle {...props}/>
+}
+const IconClose = (props:any) => {
+  return <AiFillCloseCircle {...props}/>
+}
 export {
   IconAdd, IconMinus, IconSort, IconDelete, IconEdit,
   IconList, IconListTitle, IconEye, IconArrowLeft, 
-  IconArrowDown,
-  IconArrowRight, IconUpdate
+  IconArrowDown, IconArrowRight, IconUpdate, 
+  IconCheck,  IconClose,
 };

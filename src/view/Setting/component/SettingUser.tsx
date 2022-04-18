@@ -31,7 +31,7 @@ const SettingUser = ( {setShowComponent} : IShowComponent) => {
             <div className="config__title mb-32" onClick={() => setShowComponent(true)}>
                 <h3 className="title-18-black mr-32">Cài đặt hệ thống</h3>
                 <IconArrowRight className="icon  mr-32" />
-                <h1 className="main-title">Cấu hình</h1>
+                <h1 className="main-title">Người dùng hệ th</h1>
             </div>
             <div className="control mb-24">
                 <div className="select">
@@ -40,10 +40,10 @@ const SettingUser = ( {setShowComponent} : IShowComponent) => {
                     <Select defaultValue="Chọn khối">
                     </Select>
                 </div>
-                <div className="edit-class__list__content" style={{ marginLeft: '-35%' }}>
+                <div className="tab__list__content" style={{ marginLeft: '-35%'}}>
                     {
                         editList && editList.map((item, index) => (
-                            <div className={`edit-class__list__content-title ${activeIndex(index) ? activeIndex(index) : ''}`} key={index} onClick={() => handleListIndex(index)}>
+                            <div className={`tab__list__content-title ${activeIndex(index) ? activeIndex(index) : ''}`} key={index} onClick={() => handleListIndex(index)}>
                                 <h3 className='title-18-black' style={{ marginLeft: '10px' }}>{item.name}</h3>
                             </div>
 

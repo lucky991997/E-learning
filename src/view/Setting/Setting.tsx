@@ -5,6 +5,7 @@ import BoxTitle from '../../shared/component/BoxTitle/BoxTitle'
 
 import ConfigSetting from './component/ConfigSetting'
 import '../../styles/view-styles/setting.scss'
+import '../../styles/main-styles/tab-horizontal.scss'
 import InfoSchool from './component/InfoSchool'
 import SettingClass from './component/SettingClass'
 import SettingCourse from './component/SettingCourse'

@@ -1,0 +1,30 @@
+import React from 'react'
+import Assignment from './assignment/Assignment'
+import Profile from './Profiles/Profile'
+
+import '../../styles/main-styles/tab-vertical.scss'
+import '../../styles/view-styles/teacher-profile.scss'
+import { useLocation } from 'react-router-dom'
+
+const TeacherProfile = () => {
+  const { pathname } = useLocation();
+  const components = ["/teacher/profilesstudent", "/teacher/phancong"];
+  const component = components.findIndex((item) => item === pathname);
+  const ProfileTeacher = () => {
+    switch (component) {
+      case 0:
+        return <Profile />
+      case 1:
+        return <Assignment />
+
+      default:
+        return <Profile />
+    }
+
+  };
+  return (
+    ProfileTeacher()
+  )
+}
+
+export default TeacherProfile

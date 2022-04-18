@@ -1,13 +1,12 @@
-import React, { useState } from 'react'
+import React, { useEffect, useState } from 'react'
 
 import '../../styles/main-styles/sidebar.scss'
 
-import { Link } from 'react-router-dom'
+import { Link, useLocation } from 'react-router-dom'
 import { AiOutlineEye, AiOutlineTeam, AiOutlineLineChart } from 'react-icons/ai'
 import { BsBook } from 'react-icons/bs'
 import { FiSettings } from 'react-icons/fi'
 import { MdOutlineWorkOutline } from 'react-icons/md'
-import { Menu } from 'antd'
 import ItemMenu from './ItemMenu'
 
 const Sidebar = () => {
@@ -34,8 +33,8 @@ const Sidebar = () => {
 
         },
         {
-            path: '/',
-            section: 'home',
+            path: '/exam',
+            section: 'exam',
             icon: <BsBook className="sidebar__link-icon" />,
 
         },
@@ -47,11 +46,21 @@ const Sidebar = () => {
         },
 
     ]
-    const [itemMenu, setItemMenu] = useState(0)
+   
+    // const [activeMenu, setActiveMenu] = useState()
 
-    const handleItemMenu = (index:number) => {
-        setItemMenu(index)
+    const { pathname } = useLocation()
+    const curPath = pathname.split('/')[1]
+    const activeMenu = sideBar.findIndex(item => item.section === curPath)
+    const [itemMenu, setItemMenu] = useState(activeMenu)
+    useEffect(() => {
+        setItemMenu(curPath.length === 0 ? 0 : activeMenu)
+    }, [curPath, activeMenu])
+
+    const handleItemMenu = (index: number) => {
+        setItemMenu(activeMenu)
     }
+
     return (
         <>
             <div className="sidebar">
@@ -64,8 +73,8 @@ const Sidebar = () => {
                 <div className="sidebar__link active-sidebar">
                     {
                         sideBar.map((item, index) => (
-                            <div onClick= {() => handleItemMenu(index)} key={index} className={`${index === itemMenu ? "active-sidebar" : ''}`}>
-                                <Link to={item.path} >
+                            <div  key={index} className={`${index === itemMenu ? "active-sidebar" : ''}`}>
+                                <Link  onClick={() => handleItemMenu(index)} to={item.path} >
                                     {item.icon}
                                 </Link>
                             </div>
