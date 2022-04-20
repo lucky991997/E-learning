@@ -1,13 +1,16 @@
-import { Table } from 'antd'
+import { Select, Table } from 'antd'
 import React, { useState } from 'react'
 import { IconEdit, IconSort } from '../../../../../shared/component/Icon/Icon'
 import ModalForm from '../../../../../shared/component/Modal/Modal'
 import Status from '../../../../../shared/component/status/Status'
 import FormSubject from '../../../Subject/form/FormSubject'
 
+import '../../../../../styles/main-styles/table-list.scss'
+import Button from '../../../../../shared/component/Button/Button'
+
 const ListStudent = () => {
-
-
+  const { Option } = Select
+  const [isUpdateStatus, setIsUpdateStatus] = useState(false)
   const data = [
     {
       key: 1,
@@ -133,50 +136,98 @@ const ListStudent = () => {
     },
     {
       title: (
-        <div style={{ display: 'flex', alignItems: 'center'}}>
+        <div style={{ display: 'flex', alignItems: 'center' }}>
           Tình trạng
           <IconSort />
         </div>),
       sorter: true,
       dataIndex: 'status',
       key: 'status',
-      render: (status: any) => {
-
+      render: (status: string) => {
         switch (status) {
-          case 'isStudy': 
+          case 'isStudy':
             return <Status variant='open'>Đang theo học</Status>
-            case 'changSchool': 
+          case 'changSchool':
             return <Status variant='change'>Đã chuyển trường</Status>
-            case 'changClass': 
+          case 'changClass':
             return <Status variant='coming'>Đã chuyển lớp</Status>
-            case 'noStudy': 
-            return <Status styles={{width: '127px'}} variant='end'>Đả thôi học</Status>
-            case 'graduate': 
+          case 'noStudy':
+            return <Status styles={{ width: '130px' }} variant='end'>Đã thôi học</Status>
+          case 'graduate':
             return <Status variant='open'>Đang theo học</Status>
           default:
             return status
-        }
 
+        }
+      },
+      shouldComponentUpdate:() => {
+        return 
       }
     },
+
     {
       title: '',
-      dataIndex: 'subjectInfor',
-      key: 'subjectInfor',
-      render: () => {
+      dataIndex: 'key',
+      key: 'key',
+      render: (key: number) => {
         return (
           <div >
-            <IconEdit onClick={() =>console.log(123)} className='icon mr-24' />
+            {
+              key === rowKey && isUpdateStatus === false ? (
+                <Button
+                  variant="secondary"
+                  onClick={() => handleHideUpdate(key)}
+                  style={{
+                    width: '70px',
+                    background: '#FFD8B8',
+                    border: '1px solid #FF7506',
+                    marginRight: 0,
+                    height: '32px'
+                  }}
+                >
+                  Lưu
+                </Button>
+              ) : (
+                <IconEdit onClick={() => handleUpdateStatus(key)} className='icon mr-24' />
+
+              )
+            }
+            {/* <IconEdit onClick={() => setIsUpdateStatus(true)}className='icon mr-24' />
+            {
+              key === rowKey  && isUpdateStatus === false ? ( <h1  onClick={() => setIsUpdateStatus(true)} >test 1 </h1>) : (<h2 onClick={() => setIsUpdateStatus(false)}>test 2</h2>)
+              
+            } */}
+
           </div>
         )
       }
     }
   ]
+  const [key, setKey] = useState<number>(1)
+  const [rowKey, setRowKey] = useState<number>()
+
+  const handleHideUpdate = (key: number) => {
+    setKey(key)
+    setIsUpdateStatus(true)
+  }
+  const handleUpdateStatus = (key: number) => {
+    setKey(key)
+    setIsUpdateStatus(false)
+  }
   return (
-    <div className="table-content">
-      <Table columns={columns} dataSource={data} />
-     
-    </div>
+    <>
+      <div className="table-content">
+        <Table
+          onRow={(r) => (
+            { onClick: () => setRowKey(r.key), }
+          )}
+
+          columns={columns}
+          dataSource={data}
+        />
+
+      </div>
+    </>
   )
 }
 

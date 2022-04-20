@@ -2,11 +2,18 @@ import { Table } from 'antd'
 import React, { useState } from 'react'
 import { IconDelete, IconSort } from '../../../../shared/component/Icon/Icon'
 
-const ClassList = () => {
+
+
+
+
+export interface IModalList {
+    setIsModalList: any,
+}
+const CourseList = ({setIsModalList} :IModalList) => {
     const data = [
         {
             key: 1,
-            id: 'vl009',
+            id: 'vl012',
             name: 'Vật lý ',
         },
         {
@@ -54,7 +61,7 @@ const ClassList = () => {
         {
             title: (
                 <div style={{ display: 'flex', alignItems: 'center', justifyContent: 'center ' }}>
-                    Mã lớp học
+                    Mã môn học
                     <IconSort />
                 </div>
             ),
@@ -66,7 +73,7 @@ const ClassList = () => {
         {
             title: (
                 <div style={{ display: 'flex', alignItems: 'center', justifyContent: 'center ' }}>
-                   Tên lớp học 
+                    Tên môn học
                     <IconSort />
                 </div>
             ),
@@ -85,7 +92,7 @@ const ClassList = () => {
     console.log(rowKey)
     return (
         <div className="course-list">
-            <h2 className="title-28 j-center mb-24">Danh sách lớp học</h2>
+            <h2 className="title-28 j-center mb-24">Danh sách môn học</h2>
             <IconDelete
                 className="icon mb-16"
                 style={{ float: 'right', color: `${rowKey.length > 0 ? '#FF7506' : '#999796'}` }} />
@@ -102,4 +109,4 @@ const ClassList = () => {
     )
 }
 
-export default ClassList
+export default CourseList

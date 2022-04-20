@@ -1,15 +1,17 @@
 import { Input, Table } from 'antd'
 import React from 'react'
-import { IconDelete, IconEdit, IconEye, IconSort, IconUpdate } from '../../../../shared/component/Icon/Icon'
+import { Link } from 'react-router-dom'
+import { IconDelete, IconEye, IconSort, IconUpdate } from '../../../../shared/component/Icon/Icon'
 import Status from '../../../../shared/component/status/Status'
 
 
 const ProfileList = () => {
+ 
   const data = [
     {
       key: 1,
       id: '2020-6A',
-      name: 'Nguyễn Văn A ', 
+      name: 'Nguyễn Văn A ',
       birthday: '12/02/1998',
       gender: 'Nam',
       nation: 'Kinh',
@@ -190,11 +192,14 @@ const ProfileList = () => {
       render: () => {
         return (
           <div >
-            <IconEye onClick={() => console.log(123)} className='icon mr-24' />
-            <IconUpdate onClick={() => console.log(123)} className='icon mr-24'/>
-            <IconDelete onClick={() => console.log(123)} className='icon mr-24'/>
-          
-          
+            <Link to='/student/info'>
+
+              <IconEye className='icon mr-24' />
+            </Link>
+            <IconUpdate onClick={() => console.log(123)} className='icon mr-24' />
+            <IconDelete onClick={() => console.log(123)} className='icon mr-24' />
+
+
           </div>
         )
       }
@@ -204,16 +209,16 @@ const ProfileList = () => {
 
   return (
     <>
-      <div className="title-content__search mb-24">
+      <div className="title-content__search mb-24" >
         <h2 className="title-22">Danh sách học viên</h2>
         <Search onChange={(e) => console.log(e.target.value)} placeholder="input search text" style={{ width: 200 }} />
 
       </div>
 
       <div className="table-content">
-        <Table rowSelection={{type: 'checkbox'}} showSorterTooltip={false} columns={columns} dataSource={data} />
+        <Table rowSelection={{ type: 'checkbox' }} showSorterTooltip={false} columns={columns} dataSource={data} />
       </div>
-      <div className="title__show-value" style={{bottom: 0}}>
+      <div className="title__show-value" style={{ bottom: 0 }}>
         <h3 className="title-16">
           Hiển thị
           <input defaultValue="8" onChange={(e) => e.target.value} />

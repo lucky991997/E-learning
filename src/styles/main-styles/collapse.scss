@@ -1,0 +1,58 @@
+@use "../index.scss" as *;
+
+.collapse {
+  .ant-collapse {
+    border: none;
+    background: $main-color;
+  }
+  .ant-collapse-item {
+    
+
+    border: none !important;
+  }
+  .ant-collapse-content > .ant-collapse-content-box {
+    padding: 0;
+   
+
+  }
+  .ant-collapse-content {
+
+    padding: 24px 64px !important;
+    border: 1px solid #F2F2F2;
+
+  }
+  .ant-collapse-header {
+    height: 56px !important;
+    background: $main-color;
+    align-items: center;
+    font-size: 18px;
+    font-weight: 700;
+    border-radius: $border-radius-event ;
+    border: 1px solid $color-gray;
+    span {
+      color: $color-black;
+      font-size: 18px;
+      font-weight: 700;
+    }
+    svg {
+      color: $color-primary;
+      width: 18px;
+      height: 12px;
+    }
+  }
+  .ant-collapse-item-active {
+    .ant-collapse-header {
+      color: $color-white !important;
+      background: linear-gradient(270deg, #ff5400 0%, #f17f21 80.56%);
+      border-bottom-left-radius: 0 !important;
+      border-bottom-right-radius: 0 !important;
+      border-bottom: none !important;
+    }
+    .ant-collapse-header svg  {
+        color: $color-white;
+    }
+  }
+  .ant-table-thead > tr > th{
+    background: $color-black !important;
+  }
+}

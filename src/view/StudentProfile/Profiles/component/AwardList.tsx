@@ -1,10 +1,13 @@
 import { Input, Table } from 'antd'
-import React from 'react'
-import { IconDelete, IconEdit, IconEye, IconSort, IconUpdate } from '../../../../shared/component/Icon/Icon'
-import Status from '../../../../shared/component/status/Status'
+import React, { useState } from 'react'
+import { Link } from 'react-router-dom'
+import {IconEye, IconSort } from '../../../../shared/component/Icon/Icon'
+import ModalForm from '../../../../shared/component/Modal/Modal'
+
 
 
 const AwardList = () => {
+  const [isModalVisible, setIsModalVisible] = useState()
   const data = [
     {
       key: 1,
@@ -88,10 +91,10 @@ const AwardList = () => {
       sorter: true,
       dataIndex: 'id',
       key: 'id',
-      render: (id:string) => {
-          return (
-            <div style={{textAlign: 'left', marginLeft: '50px'}}>{id}</div>
-          )
+      render: (id: string) => {
+        return (
+          <div style={{ textAlign: 'left', marginLeft: '50px' }}>{id}</div>
+        )
       }
     },
     {
@@ -133,9 +136,9 @@ const AwardList = () => {
       sorter: true,
       dataIndex: 'awards',
       key: 'awards',
-      render: (awards:number) => {
+      render: (awards: number) => {
         return (
-          <div style={{textAlign: 'left', marginLeft:'25%'}}>{awards}</div>
+          <div style={{ textAlign: 'left', marginLeft: '25%' }}>{awards}</div>
         )
       }
     },
@@ -146,7 +149,10 @@ const AwardList = () => {
       render: () => {
         return (
           <div >
-            <IconEye onClick={() => console.log(123)} className='icon mr-24' />
+            <Link to='/student/info'>
+
+              <IconEye className='icon mr-24' />
+            </Link>
 
           </div>
         )
@@ -154,6 +160,8 @@ const AwardList = () => {
     }
   ]
   const { Search } = Input
+
+
 
   return (
     <>
@@ -173,6 +181,8 @@ const AwardList = () => {
           hàng trong mỗi trang
         </h3>
       </div>
+      <ModalForm isModalVisible={isModalVisible} setIsModalVisible={setIsModalVisible}
+      />
     </>
   )
 }

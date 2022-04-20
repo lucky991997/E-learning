@@ -1,8 +1,8 @@
 import { Col, Form, Input, Row, Select } from "antd";
 import React, { useState } from "react";
-import Button from "../../../../../shared/component/Button/Button";
-import { IconAdd, IconMinus } from "../../../../../shared/component/Icon/Icon";
-import { IModal } from "../../../../../shared/component/Modal/Modal";
+import Button from "../../../../shared/component/Button/Button";
+import { IconAdd, IconMinus } from "../../../../shared/component/Icon/Icon";
+import { IModal } from "../../../../shared/component/Modal/Modal";
 
 import "./index-form.scss";
 

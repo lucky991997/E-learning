@@ -7,13 +7,14 @@ import ClassList from './component/ClassList'
 import ModalForm from '../../../shared/component/Modal/Modal'
 import FormAddChangeSchool from '../../StudentProfile/ChangeSchool/form/FormAddChangeSchool'
 import FormDeleteSchoolYear from '../SchoolYear/component/FormSchoolYear/FormDeleteSchoolYear'
-import FormDepartment from '../Department/component/form/FormDepartment'
+import FormDepartment from '../Department/form/FormDepartment'
+import CourseList from '../Department/component/CourseList'
 
 
 const DepartmentOfSubject = () => {
   const [isModalVisible, setIsModalVisible] = useState(false)
   const [isModaldelete,setIsModalDelete ] = useState(false)
-
+  const [isModalList, setIsModalList] = useState(false)
   const data = [
     {
       key: 1,
@@ -79,7 +80,7 @@ const DepartmentOfSubject = () => {
       render: () => {
         return (
           <div >
-            <IconList onClick={() => setIsModalVisible(true)} className='icon mr-24' />
+            <IconList onClick = {() => setIsModalList(true)} className='icon mr-24' />
             <IconEdit  onClick = {() => setIsModalVisible(true)} className='icon mr-24' />
             <IconDelete onClick= {() => setIsModalDelete(true)} className='icon' />
           </div>
@@ -105,7 +106,7 @@ const DepartmentOfSubject = () => {
 
       <div className="learning-title learning-content">
         <div className="title-content__search mb-24">
-          <h2 className="title-22">Danh sách học viên</h2>
+          <h2 className="title-22">Khoa Khối</h2>
           <Search onChange={(e) => console.log(e.target.value)} placeholder="input search text" style={{ width: 200 }} />
 
         </div>
@@ -116,8 +117,8 @@ const DepartmentOfSubject = () => {
           <Table columns={columns} dataSource={data} showSorterTooltip={false} />
 
         </div>
-
-     
+    
+        
       </div>
       {isModalVisible === true ?
         (
@@ -130,6 +131,13 @@ const DepartmentOfSubject = () => {
         (
           <ModalForm isModalVisible={isModaldelete} setIsModalVisible={setIsModalDelete}>
               <FormDeleteSchoolYear setIsModalDelete={setIsModalDelete} title="Xóa Khoa - Khối"/>
+          </ModalForm>
+        ) : ''
+      }
+      {isModalList === true ?
+        (
+          <ModalForm isModalVisible={isModalList} setIsModalVisible={setIsModalList}>
+              <ClassList />
           </ModalForm>
         ) : ''
       }

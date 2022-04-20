@@ -101,4 +101,11 @@
       }
     }
   }
+  &-detail {
+    width: 884px;
+    height: 316px;
+    background: $main-color;
+    border-radius: $border-radius;
+    padding: 24px 64px;
+  }
 }

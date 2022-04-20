@@ -1,5 +1,6 @@
 import { Input, Select, Table } from 'antd'
 import React from 'react'
+import { Link } from 'react-router-dom'
 import Button from '../../../shared/component/Button/Button'
 import { IconArrowRight, IconEye, IconSort } from '../../../shared/component/Icon/Icon'
 
@@ -186,8 +187,10 @@ const Resever = () => {
       key: 'subjectInfor',
       render: () => {
         return (
-          <div >
-            <IconEye onClick={() => console.log(123)} className='icon mr-24' />
+          <div>
+            <Link to='/student/info'>
+              <IconEye className='icon mr-24' />
+            </Link>
           </div>
         )
       }

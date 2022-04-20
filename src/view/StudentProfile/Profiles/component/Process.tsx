@@ -1,66 +1,46 @@
-import { Col, Row, Select } from 'antd'
+import { Col, Collapse, Row, Select } from 'antd'
 import React, { useState } from 'react'
+import { Link, useNavigate } from 'react-router-dom'
+import { Panel } from '../../../../layout/Index'
 import Button from '../../../../shared/component/Button/Button'
 import { IconArrowRight, IconDelete, IconEdit } from '../../../../shared/component/Icon/Icon'
 import Status from '../../../../shared/component/status/Status'
 import { IShowComponent } from '../../../Setting/Setting'
 import InfoStudent from './InfoStudent'
 
-
+import '../../../../styles/main-styles/collapse.scss'
+import DisciplinaryListDetail from './DisciplinaryListDetail'
+import AwardListDetail from './AwardListDetail'
+import Result from './result/Result'
 
 const Process = () => {
     const { Option } = Select
-
-    const [itemIndex, setItemIndex] = useState(0)
-
-    const tabHorizontal = [
-        {
-            name: 'Thông tin chung',
-            component: <InfoStudent />,
-        },
-        {
-            name: 'Quá trình học tập',
-            component: <Process />,
-        },
-    ]
-    const handleListIndex = (index: number) => {
-        setItemIndex(index)
-    }
-    const activeIndex = (index: number) => {
-        if (itemIndex === index) {
-            return 'active-list'
-        }
-    }
+   
     const subComponent = [
         {
             name: 'Kết quả học tập',
+            component: <Result/>,
         },
         {
             name: 'Danh sách khen thưởng',
+            component: <AwardListDetail/>,
         },
         {
             name: 'Danh sách kỷ luật',
+            component: <DisciplinaryListDetail />,
         }
     ]
     return (
         <>
-            <div className="mb-32" style={{ display: 'flex', alignItems: 'center' }}>
-                <h3 className="title-18-black mr-32">Hồ sơ học viên</h3>
-                <IconArrowRight className="icon mr-32" />
-                <h1 className="main-title" >Quá trình học tập</h1>
-            </div>
-            <Row className="mb-24" justify='space-between' style={{ width: '100%' }}>
-
-                <div className="tab__list__content">
-                    {
-                        tabHorizontal.map((item, index) => (
-                            <div className={`tab__list__content-title ${activeIndex(index) ? activeIndex(index) : ''}`} key={index} onClick={() => handleListIndex(index)}>
-                                <h3 className='title-18-black' style={{ marginLeft: '10px' }}>{item.name}</h3>
-                            </div>
-                        ))
-                    }
-                </div>
-                <div className="select" style={{ marginLeft: '-20%' }}>
+            <div className="control"
+                style={{
+                    position: 'absolute',
+                    top: '82px',
+                    right: 0
+                }}>
+                <div className="select"
+                    style={{ marginRight: '600px', }}
+                >
                     <Select defaultValue="2020-2021" style={{ marginRight: '12px' }}>
                         <Option value="1">2020-2021</Option>
                     </Select>
@@ -70,21 +50,16 @@ const Process = () => {
                     </Select>
                 </div>
 
-                <Col style={{ display: 'flex', alignItems: 'center' }}>
-                    <IconDelete className="icon mr-16 " onClick={() => console.log(123)} style={{ color: '#C9C4C0' }} />
-                    <div className="border-left mr-16"></div>
-                    <Button variant="file" style={{ marginRight: '16px' }}>
+                <div style={{ display: 'flex', alignItems: 'center' }}>
+
+                    <Button variant="file">
                         Xuất file
                     </Button>
-                    <Button variant="primary" icon="add" onClick={() => console.log(123)}>
-                        Thêm mới
-
-                    </Button>
 
 
-                </Col>
 
-            </Row>
+                </div>
+            </div>
             <div className="edit-class__info mb-24">
                 <div className="edit-class__info__content">
                     <h3 className="title-18-orange">Thông tin chung</h3>
@@ -138,12 +113,25 @@ const Process = () => {
                     </Col>
                 </Row>
             </div>
-            <div className="process">
-                <div className="process__title">
-                    
-                </div>
+
+            <div className="collapse">
+                <Collapse defaultActiveKey={0}>
+                    {
+                        subComponent.map((item, index) =>
+
+                            <Panel header={item.name} key={index} style={{ marginBottom: '12px' }}>
+                                {item.component}
+                            </Panel>
+
+
+                        )
+                    }
+                </Collapse>
+
+
             </div>
-        </>
+
+        </ >
     )
 }
 

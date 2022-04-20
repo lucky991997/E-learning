@@ -1,7 +1,8 @@
 import { Form, Input, Select } from "antd";
 import React, { useState } from "react";
-import Button from "../../../../../shared/component/Button/Button";
-import { IModal } from "../../../../../shared/component/Modal/Modal";
+import Button from "../../../../shared/component/Button/Button";
+
+import { IModal } from "../../../../shared/component/Modal/Modal";
 
 import "./department.scss";
 

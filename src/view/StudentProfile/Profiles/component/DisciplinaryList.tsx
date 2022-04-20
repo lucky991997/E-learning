@@ -1,6 +1,7 @@
 import { Input, Table } from 'antd'
 import React from 'react'
-import {  IconEdit, IconEye, IconSort } from '../../../../shared/component/Icon/Icon'
+import { Link } from 'react-router-dom'
+import { IconEdit, IconEye, IconSort } from '../../../../shared/component/Icon/Icon'
 
 
 const DisciplinaryList = () => {
@@ -87,10 +88,10 @@ const DisciplinaryList = () => {
       sorter: true,
       dataIndex: 'id',
       key: 'id',
-      render: (id:string) => {
-          return (
-            <div style={{textAlign: 'left', marginLeft: '50px'}}>{id}</div>
-          )
+      render: (id: string) => {
+        return (
+          <div style={{ textAlign: 'left', marginLeft: '50px' }}>{id}</div>
+        )
       }
     },
     {
@@ -132,9 +133,9 @@ const DisciplinaryList = () => {
       sorter: true,
       dataIndex: 'awards',
       key: 'awards',
-      render: (awards:number) => {
+      render: (awards: number) => {
         return (
-          <div style={{textAlign: 'left', marginLeft:'25%'}}>{awards}</div>
+          <div style={{ textAlign: 'left', marginLeft: '25%' }}>{awards}</div>
         )
       }
     },
@@ -145,7 +146,10 @@ const DisciplinaryList = () => {
       render: () => {
         return (
           <div >
-            <IconEye onClick={() => console.log(123)} className='icon mr-24' />
+            <Link to='/student/info'>
+
+              <IconEye className='icon mr-24' />
+            </Link>
 
           </div>
         )

@@ -1,15 +1,21 @@
 import { Col, Input, Row, Table } from 'antd'
 import React, { useState } from 'react'
 
-import { IconDelete, IconEdit, IconList, IconSort } from '../../../../shared/component/Icon/Icon'
+import { IconDelete, IconEdit, IconList, IconSort } from '../../../shared/component/Icon/Icon'
 
-import Button from '../../../../shared/component/Button/Button'
-import ModalForm from '../../../../shared/component/Modal/Modal'
-import FormDept from '../../DepartmentOfSubject/component/form/FormAdd'
-import FormDeleteSchoolYear from '../../SchoolYear/component/FormSchoolYear/FormDeleteSchoolYear'
+import Button from '../../../shared/component/Button/Button'
+import ModalForm from '../../../shared/component/Modal/Modal'
+import FormDept from '../DepartmentOfSubject/form/FormAdd'
+import FormDeleteSchoolYear from '../SchoolYear/component/FormSchoolYear/FormDeleteSchoolYear'
+import CourseList from './component/CourseList'
 
 
 const Department = () => {
+  const [isModalVisible, setIsModalVisible] = useState(false)
+  const [isModaldelete, setIsModalDelete] = useState(false)
+  const [isModalList, setIsModalList] = useState(false)
+
+  const { Search } = Input
   const data = [
     {
       key: 1,
@@ -66,23 +72,21 @@ const Department = () => {
       render: () => {
         return (
           <div >
-            <IconList className='icon mr-24' />
-            <IconEdit  onClick = {() => setIsModalVisible(true)} className='icon mr-24' />
-            <IconDelete onClick= {() => setIsModalDelete(true)} className='icon' />
+            <IconList onClick={() => setIsModalList(true)}  className='icon mr-24' />
+            <IconEdit onClick={() => setIsModalVisible(true)} className='icon mr-24' />
+            <IconDelete onClick={() => setIsModalDelete(true)} className='icon' />
           </div>
         )
       }
     }
   ]
-  const [isModalVisible, setIsModalVisible] = useState(false)
-  const [isModaldelete,setIsModalDelete ] = useState(false)
-  const { Search } = Input
+
   return (
     <>
-      <Row className="mb-24" justify='end' style={{width: '100%'}}>
+      <Row className="mb-24" justify='end' style={{ width: '100%' }}>
         <Col >
-          <Button  variant="primary" icon="add"
-          onClick = {() => setIsModalVisible(true)}
+          <Button variant="primary" icon="add"
+            onClick={() => setIsModalVisible(true)}
           >
             Thêm mới
           </Button>
@@ -110,14 +114,21 @@ const Department = () => {
       {isModalVisible === true ?
         (
           <ModalForm isModalVisible={isModalVisible} setIsModalVisible={setIsModalVisible}>
-              <FormDept setIsModalVisible={setIsModalVisible}/>
+            <FormDept setIsModalVisible={setIsModalVisible} />
           </ModalForm>
         ) : ''
       }
       {isModaldelete === true ?
         (
-          <ModalForm isModalVisible={isModaldelete} setIsModalVisible={setIsModalDelete} style={{width:'435px'}}>
-              <FormDeleteSchoolYear setIsModalDelete={setIsModalDelete} title="Xóa Tổ - Bộ Môn"/>
+          <ModalForm isModalVisible={isModaldelete} setIsModalVisible={setIsModalDelete} style={{ width: '435px' }}>
+            <FormDeleteSchoolYear setIsModalDelete={setIsModalDelete} title="Xóa Tổ - Bộ Môn" />
+          </ModalForm>
+        ) : ''
+      }
+      {isModalList === true ?
+        (
+          <ModalForm isModalVisible={isModalList} setIsModalVisible={setIsModalList}>
+            <CourseList setIsModalList={setIsModalList} />
           </ModalForm>
         ) : ''
       }

@@ -1,66 +1,43 @@
 import { Col, Row, Select } from 'antd'
 import React, { useState } from 'react'
+import { Link, useNavigate } from 'react-router-dom'
 import Button from '../../../../shared/component/Button/Button'
 import { IconArrowRight, IconDelete, IconEdit } from '../../../../shared/component/Icon/Icon'
 import Status from '../../../../shared/component/status/Status'
-import { IShowComponent } from '../../../Setting/Setting'
 import Process from './Process'
 
 
 
 const InfoStudent = () => {
+    const navigate = useNavigate()
 
-    const [itemIndex, setItemIndex] = useState(0)
-
-    const tabHorizontal = [
-        {
-            name: 'Thông tin chung',
-            component: <InfoStudent  />,
-        },
-        {
-            name: 'Quá trình học tập',
-            component: <Process />,
-        },
-    ]
-    const handleListIndex = (index: number) => {
-        setItemIndex(index)
-    }
-    const activeIndex = (index: number) => {
-        if (itemIndex === index) {
-            return 'active-list'
-        }
-    }
     return (
         <>
-            <div className="mb-32" style={{ display: 'flex', alignItems: 'center' }}>
-                <h3 className="title-18-black mr-32">Hồ sơ học viên</h3>
-                <IconArrowRight className="icon mr-32" />
-                <h1 className="main-title" >Thông tin hoc viên</h1>
-            </div>
-            <Row className="mb-24" justify='space-between' style={{ width: '100%' }}>
-                <div className="tab__list__content">
+
+            <div
+                style={
                     {
-                        tabHorizontal.map((item, index) => (
-                            <div className={`tab__list__content-title ${activeIndex(index) ? activeIndex(index) : ''}`} key={index} onClick={() => handleListIndex(index)}>
-                                <h3 className='title-18-black' style={{ marginLeft: '10px' }}>{item.name}</h3>
-                            </div>
-                        ))
+                        display: 'flex',
+                        alignItems: 'center',
+                        position: 'absolute',
+                        right: 0,
+                        top: '7%',
                     }
-                </div>
-                <Col style={{ display: 'flex', alignItems: 'center' }}>
-                    <IconDelete className="icon mr-16 " onClick={() => console.log(123)} style={{ color: '#C9C4C0' }} />
-                    <div className="border-left mr-16"></div>
-                    <Button variant="file" style={{ marginRight: '16px' }}>
-                        Xuất file
-                    </Button>
-                    <Button variant="primary" icon="add" onClick={() => console.log(123)}>
-                        Thêm mới
 
-                    </Button>
+                }
+            >
+                <IconDelete className="icon mr-16 " onClick={() => console.log(123)} style={{ color: '#C9C4C0' }} />
+                <div className="border-left mr-16" style={{height: '52px'}}></div>
+                <Button variant="file" style={{ marginRight: '16px' }}>
+                    Xuất file
+                </Button>
+                <Button variant="primary" icon="add" onClick={() => console.log(123)}>
+                    Thêm mới
+
+                </Button>
 
 
-                </Col>
-            </Row>
+            </div>
             <div className="info">
                 <div className="info-general">
                     <div className="info-general__title">

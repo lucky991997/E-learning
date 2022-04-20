@@ -6,13 +6,12 @@ import Profiles from './Profiles/Profiles'
 import Resever from './Reserve/Reserve'
 import '../../styles/view-styles/student-profiles.scss'
 import { useLocation } from 'react-router-dom'
-import InfoStudent from './Profiles/component/InfoStudent'
-import Process from './Profiles/component/Process'
+import StudentDetail from './Profiles/component/StudentDetail'
 const StudentProfiles = () => {
   const { pathname } = useLocation();
 
 
-  const components = ["/student/profilesstudent", "/student/change", "/student/reserve"];
+  const components = ["/student/profilesstudent", "/student/change", "/student/reserve","/student/info" ];
 
   const component = components.findIndex((item) => item === pathname);
 
@@ -24,8 +23,11 @@ const StudentProfiles = () => {
         return <ChangeSchool />
       case 2:
         return <Resever />
+      case 3: 
+        return <StudentDetail/>
+
       default:
-        return <InfoStudent />
+        return <Profiles />
     }
 
   };

@@ -1,4 +1,4 @@
-  @use "../index.scss" as *;
+@use "../index.scss" as *;
 
 .learning {
   &-control {
@@ -32,7 +32,7 @@
       }
     }
   }
-  
+
   &-title {
     position: relative;
     width: 1337px;
@@ -61,7 +61,7 @@
       padding: 24px 64px;
       &__search {
         @include flex(center, space-between);
-      
+
         .ant-input {
           padding-left: 54px;
         }
@@ -92,8 +92,19 @@
     background-color: $main-color;
     border-radius: $border-radius;
   }
-  
 }
 
+// course-list  của folder tổ bô môn
 
-//schoolyear
+.course-list {
+  width: 884px;
+  max-height: 582px;
+  background: $main-color;
+  border-radius: $border-radius;
+  padding: 24px 64px;
+  .table-content {
+    .ant-spin-container {
+      max-height: 390px;
+    }
+  }
+}

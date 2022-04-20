@@ -22,10 +22,11 @@ const Class = ({ setShowEdit }: EditProps) => {
 
   const [isModalVisible, setIsModalVisible] = useState(false)
   const [isModaldelete, setIsModalDelete] = useState(false)
+
   
   const [isModalFile, setIsModalFile] = useState(false)
-
   const [showBtnAdd, setShowBtnAdd] = useState(false)
+
   
   const { Search } = Input
   const { Option } = Select
@@ -163,8 +164,6 @@ const Class = ({ setShowEdit }: EditProps) => {
   }
   return (
     <>
-
-
       <Row className="mb-24" justify='space-between' style={{ width: '100%' }}>
         <Col style={{ display: 'flex', alignItems: 'center' }}>
           <div className="select mr-32" style={{ marginBottom: '8px' }}>
@@ -223,7 +222,7 @@ const Class = ({ setShowEdit }: EditProps) => {
 
           <div className="title-content__search mb-24">
 
-            <h3 className="title-22">Môn Học</h3>
+            <h3 className="title-22">Lớp học</h3>
 
 
             <Search onChange={(e) => console.log(e.target.value)} placeholder="input search text" style={{ width: 200 }} />
