@@ -1,10 +1,11 @@
-import { Col, DatePicker, Form, Input, Row, Select, Upload } from "antd";
-import React from "react";
+import { Col, DatePicker, Form, Input, Row, Select, Typography, Upload } from "antd";
+import React, { Fragment } from "react";
 import Button from "../../../../shared/component/Button/Button";
 import { FiSearch } from "react-icons/fi";
 import { MdDateRange } from "react-icons/md";
 import { ImAttachment } from "react-icons/im";
-const FormReserve = () => {
+import { IModal } from "../../../../shared/component/Modal/Modal";
+const FormReserve = ({ setIsModalVisible }: IModal) => {
   const { Option } = Select;
   const curClass = ["Lớp 10A1", "Lớp 10A2"];
   return (
@@ -76,10 +77,10 @@ const FormReserve = () => {
             ]}
           >
             <Input.TextArea />
-            <h3 className="title-16-note">
-              Kết quả học tập của viên sẽ được bảo lưu trong hồ sơ học viên.
-            </h3>
           </Form.Item>
+          <h3 className="title-16-note j-center" style={{ margin:'-12px 0 10px 16px'}}>
+            Kết quả học tập của viên sẽ được bảo lưu trong hồ sơ học viên.
+          </h3>
           <Form.Item
             label="Tệp đính kèm:"
             name="file"
@@ -92,7 +93,7 @@ const FormReserve = () => {
           >
             <Row className="form-export__file">
               <Col span="12">
-                <Input suffix={<ImAttachment className="attach-icon"/>} />
+                <Input suffix={<ImAttachment className="attach-icon" />} />
                 <h3 className="title-16-note">
                   Kích thước tệp không vượt quá 250MB.
                 </h3>
@@ -106,7 +107,9 @@ const FormReserve = () => {
           </Form.Item>
           <Form.Item wrapperCol={{ offset: 8, span: "12" }}>
             <div className="form-layout-btn mt-32">
-              <Button variant="secondary">Hủy</Button>
+              <Button variant="secondary"
+                onClick={() => setIsModalVisible(false)}
+              >Hủy</Button>
               <Button variant="primary">Lưu</Button>
             </div>
           </Form.Item>

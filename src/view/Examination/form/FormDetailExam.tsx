@@ -1,8 +1,9 @@
 import { Col, Row } from 'antd'
 import React from 'react'
 import Button from '../../../shared/component/Button/Button'
+import { IModal } from '../../../shared/component/Modal/Modal'
 
-const FormDetailExam = () => {
+const FormDetailExam = ({setIsModalVisible}: IModal ) => {
     return (
         <div className="exam-detail">
             <h2 className="title-28 j-center mb-24">Xem chi tiết lịch thi</h2>
@@ -59,6 +60,9 @@ const FormDetailExam = () => {
                 style={{
                     background: '#FFD8B8',
                     border: '1px solid #FF7506',
+                    height: '33px',
+             
+                    width: '130px'
                 }}
             >Tải xuống</Button>
         </div>

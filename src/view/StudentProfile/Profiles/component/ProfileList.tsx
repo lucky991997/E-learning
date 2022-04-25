@@ -1,13 +1,38 @@
 import { Input, Table } from 'antd'
-import React from 'react'
+import React, { useState } from 'react'
 import { Link } from 'react-router-dom'
+import FormDeleteMain from '../../../../shared/component/Form/FormDeleteMain'
 import { IconDelete, IconEye, IconSort, IconUpdate } from '../../../../shared/component/Icon/Icon'
+import ModalForm from '../../../../shared/component/Modal/Modal'
 import Status from '../../../../shared/component/status/Status'
-
+import FormUpdateEvaluate from '../Form/FormUpdateBonus'
+import FormUpdateBonus from '../Form/FormUpdateBonus'
+import { FormUpdateClass, FormUpdateSchool } from '../Form/FormUpdateClass'
+import FormUpdateDecrease from '../Form/FormUpdateDecrease'
+import FormUpdateReserve from '../Form/FormUpdateReserve'
+import { ICollapseShow } from '../Profiles'
+export interface IProfile {
+  key: number,
+  id: string,
+  name: string,
+  birthday: string,
+  gender: string,
+  nation: string,
+  class: string,
+  status: string,
+}
 
 const ProfileList = () => {
- 
-  const data = [
+  const [isModaldelete, setIsModalDelete] = useState(false)
+  const [isUpdate, setIsUpdate] = useState(false)
+  const [isUpdateAward, setIsUpdateAward] = useState(false)
+  const [isUpdateDiscipli, setIsUpdateDiscipli] = useState(false)
+  const [isUpdateDecrease, setIsUpdateDecrease] = useState(false)
+  const [isUpdateReverse, setIsUpdateReverse] = useState(false)
+  const [isUpdateClass, setIsUpdateClass] = useState(false)
+  const [isUpdateSchool, setIsUpdateSchool] = useState(false)
+
+  const data: IProfile[] = [
     {
       key: 1,
       id: '2020-6A',
@@ -95,7 +120,30 @@ const ProfileList = () => {
       status: 'graduate',
     },
   ]
-
+  const handleUpdateAward = () => {
+    setIsUpdateAward(true)
+    setIsUpdate(false)
+  }
+  const handleUpdateDiscipli = () => {
+    setIsUpdateDiscipli(true)
+    setIsUpdate(false)
+  }
+  const handleUpdateDecrease = () => {
+    setIsUpdateDecrease(true)
+    setIsUpdate(false)
+  }
+  const handleUpdateReverse = () => {
+    setIsUpdateReverse(true)
+    setIsUpdate(false)
+  }
+  const handleUpdateClass = () => {
+    setIsUpdateClass(true)
+    setIsUpdate(false)
+  }
+  const handleUpdateSchool = () => {
+    setIsUpdateSchool(true)
+    setIsUpdate(false)
+  }
   const columns = [
     {
       title: (
@@ -187,25 +235,67 @@ const ProfileList = () => {
     },
     {
       title: '',
-      dataIndex: 'subjectInfor',
-      key: 'subjectInfor',
-      render: () => {
+      dataIndex: 'key',
+      key: 'key',
+      render: (key: number) => {
         return (
-          <div >
+          <div style={{ display: 'flex', alignItems: 'center' }}>
             <Link to='/student/info'>
 
-              <IconEye className='icon mr-24' />
+              <IconEye  className='icon mr-24' />
             </Link>
-            <IconUpdate onClick={() => console.log(123)} className='icon mr-24' />
-            <IconDelete onClick={() => console.log(123)} className='icon mr-24' />
+            <div className="icon-update" style={{ position: 'relative' }}>
+              <IconUpdate onClick={() => setIsUpdate(true)} className='icon mr-24' style={{ position: 'relative' }} />
+
+              {
+                key === rowKey && isUpdate === true ? (
+                  <div className="profile-update">
+                    <h3 className="title-16" onClick={() => setIsUpdate(false)}>Sửa hồ sơ</h3>
+                    <div className="profile-update__border-b"></div>
+
+                    <h3 className="title-16"
+                      onClick={() => handleUpdateClass()}
+                    >Chuyển lớp</h3>
+                    <div className="profile-update__border-b"></div>
+
+                    <h3 className="title-16"
+                      onClick={() => handleUpdateSchool()}
+                    >Chuyển trường</h3>
+                    <div className="profile-update__border-b"></div>
+
+                    <h3 className="title-16"
+                    onClick={() => handleUpdateReverse()}
+                    >Bảo lưu</h3>
+                    <div className="profile-update__border-b"></div>
+
+                    <h3 className="title-16"
+                      onClick={() => handleUpdateDecrease()}
+                    >Cập nhật miễn giảm</h3>
+                    <div className="profile-update__border-b"></div>
+
+                    <h3 className="title-16"
+                      onClick={() => handleUpdateAward()}
+                    >Cập nhật khen thưởng</h3>
+                    <div className="profile-update__border-b"></div>
+
+                    <h3 className="title-16 mb-8"
+                      onClick={() => handleUpdateDiscipli()}
+                    >Cập nhật kỷ luật</h3>
+                  </div>
+                ) : ''
+              }
+            </div>
+            <IconDelete onClick={() => setIsModalDelete(true)} className='icon mr-24' />
 
 
-          </div>
+          </div >
         )
       }
     }
   ]
   const { Search } = Input
+  const [rowKey, setRowKey] = useState<number>()
+
 
   return (
     <>
@@ -216,7 +306,14 @@ const ProfileList = () => {
       </div>
 
       <div className="table-content">
-        <Table rowSelection={{ type: 'checkbox' }} showSorterTooltip={false} columns={columns} dataSource={data} />
+        <Table
+          rowSelection={{ type: 'checkbox' }}
+          showSorterTooltip={false} columns={columns}
+          dataSource={data}
+          onRow={(r) => (
+            { onClick: () => setRowKey(r.key), }
+          )}
+        />
       </div>
       <div className="title__show-value" style={{ bottom: 0 }}>
         <h3 className="title-16">
@@ -225,6 +322,61 @@ const ProfileList = () => {
           hàng trong mỗi trang
         </h3>
       </div>
+
+
+      {isModaldelete === true ?
+        (
+          <ModalForm isModalVisible={isModaldelete} setIsModalVisible={setIsModalDelete}>
+            <FormDeleteMain data={data} setIsModalDelete={setIsModalDelete} />
+          </ModalForm>
+        ) : ''
+      }
+
+      {isUpdateAward === true ?
+        (
+          <ModalForm isModalVisible={isUpdateAward} setIsModalVisible={setIsUpdateAward}>
+            <FormUpdateEvaluate title='Khen thưởng' setIsModalVisible={setIsUpdateAward} />
+          </ModalForm>
+        ) : ''
+      }
+
+      {isUpdateDiscipli === true ?
+        (
+          <ModalForm isModalVisible={isUpdateDiscipli} setIsModalVisible={setIsUpdateDiscipli}>
+            <FormUpdateBonus title='kỉ luật' setIsModalVisible={setIsUpdateDiscipli} />
+          </ModalForm>
+        ) : ''
+      }
+
+      {isUpdateDecrease === true ?
+        (
+          <ModalForm isModalVisible={isUpdateDecrease} setIsModalVisible={setIsUpdateDecrease}>
+            <FormUpdateDecrease setIsModalVisible={setIsUpdateDecrease} />
+          </ModalForm>
+        ) : ''
+      }
+
+      {isUpdateReverse === true ?
+        (
+          <ModalForm isModalVisible={isUpdateReverse} setIsModalVisible={setIsUpdateReverse}>
+            <FormUpdateReserve setIsModalVisible={setIsUpdateReverse} />
+          </ModalForm>
+        ) : ''
+      }
+       {isUpdateClass === true ?
+        (
+          <ModalForm isModalVisible={isUpdateClass} setIsModalVisible={setIsUpdateClass}>
+            <FormUpdateClass setIsModalVisible={setIsUpdateClass} />
+          </ModalForm>
+        ) : ''
+      }
+       {isUpdateSchool === true ?
+        (
+          <ModalForm isModalVisible={isUpdateSchool} setIsModalVisible={setIsUpdateSchool}>
+            <FormUpdateSchool setIsModalVisible={setIsUpdateSchool} />
+          </ModalForm>
+        ) : ''
+      }
     </>
   )
 }

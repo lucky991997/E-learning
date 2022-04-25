@@ -1,10 +1,21 @@
 import { Input, Select, Table } from 'antd'
-import React from 'react'
+import React, { useState } from 'react'
+import { Link } from 'react-router-dom'
 import Button from '../../../shared/component/Button/Button'
+import FormDeleteMain from '../../../shared/component/Form/FormDeleteMain'
 import { IconArrowRight, IconDelete, IconEdit, IconEye, IconSort, IconUpdate } from '../../../shared/component/Icon/Icon'
+import ModalForm from '../../../shared/component/Modal/Modal'
 import Status from '../../../shared/component/status/Status'
+import FormAddContact from './component/Form/FormAddContact'
+import FormTeacherProfile from './component/Form/FormTeacherProfile'
 
 const Profile = () => {
+    const [isModalDelete, setIsModalDelete] = useState(false)
+    const [isUpdate, setIsUpdate] = useState(false)
+    const [isModalUpdateRetirement, setIsModalUpdateRetirement] = useState(false)
+    const [isModalUpdateOff, setIssModalUpdateOff] = useState(false)
+    const [isModalUpdateOffWork, setIsModalUpdateOffWork] = useState(false)
+    const [rowKey, setRowKey] = useState<number>()
     const data = [
         {
             key: 1,
@@ -93,7 +104,26 @@ const Profile = () => {
             status: 'graduate',
         },
     ]
-
+    const handleUpdateRetirement = () => {
+        setIsModalUpdateRetirement(true)
+        setIsUpdate(false)
+    }
+    const handleUpdateOff= () => {
+        setIssModalUpdateOff(true)
+        setIsUpdate(false)
+    }
+    const handleUpdateReverse = () => {
+        setIsModalUpdateOffWork(true)
+        setIsUpdate(false)
+    }
+    const handleShowIsUpdate = (key:number) => {
+        if(key === rowKey) {
+            setIsUpdate(false)
+        }
+        else {
+            setIsUpdate(true)
+        }
+    }
     const columns = [
         {
             title: (
@@ -185,13 +215,45 @@ const Profile = () => {
         },
         {
             title: '',
-            dataIndex: 'subjectInfor',
-            key: 'subjectInfor',
-            render: () => {
+            dataIndex: 'key',
+            key: 'key',
+            render: (key: number) => {
                 return (
-                    <div >
-                        <IconEye onClick={() => console.log(123)} className='icon mr-24' />
-                        <IconUpdate onClick={() => console.log(123)} className='icon mr-24' />
+                    <div style={{ display: 'flex', alignItems: 'center' }}>
+                        <Link to='/teacher/info'>
+
+                            <IconEye onClick={() => console.log(123)} className='icon mr-24' />
+
+                        </Link>
+                        <div className="icon-update" style={{ position: 'relative' }}>
+                            <IconUpdate onClick={() => handleShowIsUpdate(key)} className='icon mr-24' style={{ position: 'relative' }} />
+
+                            {
+                                key === rowKey && isUpdate === true ? (
+                                    <div className="profile-update" style={{height:'140px'}}>
+                                        <h3 className="title-16" onClick={() => setIsUpdate(false)}>Sửa hồ sơ</h3>
+                                        <div className="profile-update__border-b"></div>
+
+                                        <h3 className="title-16"
+                                            onClick={() => handleUpdateRetirement()}
+                                        >   Cập nhật nghỉ hưu</h3>
+                                        <div className="profile-update__border-b"></div>
+
+                                        <h3 className="title-16"
+                                            onClick={() => handleUpdateOff()}
+                                        >   Cập nhật nghỉ việc</h3>
+                                        <div className="profile-update__border-b"></div>
+
+                                        <h3 className="title-16"
+                                            onClick={() => handleUpdateReverse()}
+                                        >   Cập nhật tạm nghỉ</h3>
+                                       
+
+
+                                    </div>
+                                ) : ''
+                            }
+                        </div>
                         <IconDelete onClick={() => console.log(123)} className='icon mr-24' />
                     </div>
                 )
@@ -200,6 +262,12 @@ const Profile = () => {
     ]
     const { Search } = Input
     const { Option } = Select
+   
+
+    const handleHideUpdate = (key: number) => {
+        setRowKey(key)
+        setIsUpdate(true)
+    }
     return (
         <div className="teacher">
             <div className="teacher__title" style={{ marginBottom: '42px' }}>
@@ -214,10 +282,14 @@ const Profile = () => {
                     </Select>
                 </div>
                 <div className="teacher__control__event">
-                <IconDelete className="icon mr-16" ></IconDelete>
-                <div className="border-h mr-16"></div>
-                <Button variant="file" style={{marginRight: '16px'}}>Xuất file</Button>
-                <Button variant="primary" icon="add">Thêm</Button>
+                    <IconDelete className="icon mr-16"
+                        onClick={() => setIsModalDelete(true)}
+                    >
+
+                    </IconDelete>
+                    <div className="border-h mr-16"></div>
+                    <Button variant="file" style={{ marginRight: '16px' }}>Xuất file</Button>
+                    <Button variant="primary" icon="add">Thêm</Button>
                 </div>
             </div>
             <div className="teacher__list">
@@ -228,7 +300,15 @@ const Profile = () => {
                 </div>
 
                 <div className="table-content">
-                    <Table rowSelection={{ type: 'checkbox' }} showSorterTooltip={false} columns={columns} dataSource={data} />
+                    <Table
+                        rowSelection={{ type: 'checkbox' }}
+                        showSorterTooltip={false}
+                        columns={columns}
+                        dataSource={data}
+                        onRow={(r) => (
+                            { onClick: () => setRowKey(r.key), }
+                        )}
+                    />
                 </div>
                 <div className="title__show-value" style={{ bottom: 0 }}>
                     <h3 className="title-16">
@@ -238,6 +318,34 @@ const Profile = () => {
                     </h3>
                 </div>
             </div>
+            {isModalDelete === true ?
+                (
+                    <ModalForm isModalVisible={isModalDelete} setIsModalVisible={setIsModalDelete}>
+                        <FormDeleteMain setIsModalDelete={setIsModalDelete} />
+                    </ModalForm>
+                ) : ''
+            }
+            {isModalUpdateRetirement === true ?
+                (
+                    <ModalForm isModalVisible={isModalUpdateRetirement} setIsModalVisible={setIsModalUpdateRetirement}>
+                        <FormTeacherProfile setIsModalVisible={setIsModalUpdateRetirement} title="Nghỉ hưu"/>
+                    </ModalForm>
+                ) : ''
+            }
+             {isModalUpdateOff === true ?
+                (
+                    <ModalForm isModalVisible={isModalUpdateOff} setIsModalVisible={setIssModalUpdateOff}>
+                        <FormTeacherProfile setIsModalVisible={setIssModalUpdateOff} title="Nghỉ việc"/>
+                    </ModalForm>
+                ) : ''
+            }
+             {isModalUpdateOffWork === true ?
+                (
+                    <ModalForm isModalVisible={isModalUpdateOffWork} setIsModalVisible={setIsModalUpdateOffWork}>
+                        <FormTeacherProfile setIsModalVisible={setIsModalUpdateOffWork} title="Tạm nghỉ"/>
+                    </ModalForm>
+                ) : ''
+            }
         </div>
     )
 }

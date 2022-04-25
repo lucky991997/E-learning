@@ -2,6 +2,8 @@ import { Col, Row, Select, Table } from 'antd'
 import React, { useState } from 'react'
 import Button from '../../../shared/component/Button/Button'
 import { IconArrowRight, IconDelete } from '../../../shared/component/Icon/Icon'
+import ModalForm from '../../../shared/component/Modal/Modal'
+import FormDeleteSchoolYear from '../../Learning/SchoolYear/component/FormSchoolYear/FormDeleteSchoolYear'
 import AssignList from './component/AssignList'
 import TitleList from './component/TitleList'
 
@@ -31,7 +33,7 @@ const Assignment = () => {
 
   ]
   const [active, setActive] = useState(0)
-
+  const [isModaldelete, setIsModalDelete] = useState(false)
 
   const handleActive = (index: number) => {
     setActive(index)
@@ -102,7 +104,7 @@ const Assignment = () => {
               {
                 showTitleList === true ? (
                   <>
-                    <IconDelete className="icon mr-16" />
+                    <IconDelete onClick={() => setIsModalDelete(true)}className="icon mr-16" />
                     <div className="border-h mr-16"></div>
                     <Button variant="primary" icon="add">Thêm</Button>
 
@@ -140,7 +142,13 @@ const Assignment = () => {
         </Col>
       </Row>
 
-
+      {isModaldelete === true ?
+        (
+          <ModalForm isModalVisible={isModaldelete} setIsModalVisible={setIsModalDelete}>
+            <FormDeleteSchoolYear setIsModalDelete={setIsModalDelete} title="Phân công" />
+          </ModalForm>
+        ) : ''
+      }
     </div>
   )
 }

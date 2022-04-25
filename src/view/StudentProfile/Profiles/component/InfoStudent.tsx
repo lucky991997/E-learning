@@ -119,14 +119,14 @@ const InfoStudent = () => {
                             </Row>
 
                         </Col>
-                        <Row className="border-bottom mt-16 " style={{ height: '16px', background: '#F2F2F2' }}>
+                        <Row className="border-bottom mb-48 mt-16" style={{ height: '16px', background: '#F2F2F2' }}>
 
                         </Row>
                     </Row>
-                    <Row className="info-general__content">
+                    <Row className="info-general__content" style={{padding: 0, marginTop: '-38px'}}>
                         <Col offset="6" span="18">
                             <Row>
-                                <h3 className="title-16-orange mb-24">Thông tin liên hệ</h3>
+                                <h3 className="title-16-orange mb-24" style={{marginTop: '32px'}}>Thông tin liên hệ</h3>
                             </Row>
                             <Row>
                                 <Col span="18">

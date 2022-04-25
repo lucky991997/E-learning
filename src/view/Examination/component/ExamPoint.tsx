@@ -129,7 +129,7 @@ const ExamPoint = ({ setShowList }: ExamListProps) => {
         },
         {
             title: (
-                <div style={{ display: 'flex', alignItems: 'center' }}>
+                <div style={{ display: 'flex', alignItems: 'center', justifyContent: 'center ' }}>
                     Họ và Tên
                     <IconSort />
                 </div>
@@ -175,6 +175,11 @@ const ExamPoint = ({ setShowList }: ExamListProps) => {
                     title: 'Trung bình',
                     key: 'total',
                     dataIndex: 'total',
+                    render:(total:number) => {
+                        return (
+                            <h3 className='title-16 j-center' style={{color: '#0B80EC'}}>{total}</h3>
+                        )
+                    }
                 },
 
             ]

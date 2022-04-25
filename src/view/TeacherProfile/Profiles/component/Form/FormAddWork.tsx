@@ -3,13 +3,14 @@ import React from 'react'
 import { MdDateRange } from 'react-icons/md'
 import Button from '../../../../../shared/component/Button/Button'
 import { IconAdd, IconMinus } from '../../../../../shared/component/Icon/Icon'
+import { IModal } from '../../../../../shared/component/Modal/Modal'
 
-const FormAddWork = () => {
+const FormAddWork = ({setIsModalVisible}: IModal) => {
     const { Option } = Select
     const course = ['Toán - Lý - Hóa', 'Sinh - Sử - Địa', 'Nghệ Thuật']
     const chucVu = ['Giảng viên', 'Trưởng bộ môn', 'Trợ giảng']
     return (
-        <div className="form-layout">
+        <div className="form-layout" style={{width: '884px'}}>
             <h2 className="title-28 j-center mb-24">Thêm mới quá trình công tác</h2>
             <div className="form-input-required">
                 <Form labelCol={{ span: 6 }} wrapperCol={{ span: 18 }}
@@ -100,7 +101,9 @@ const FormAddWork = () => {
                     <Form.Item wrapperCol={{ offset: 8, span: "12" }}>
 
                         <div className="form-layout-btn mt-32">
-                            <Button variant="secondary">Hủy</Button>
+                            <Button variant="secondary" 
+                                onClick={() => setIsModalVisible(false)}
+                            >Hủy</Button>
                             <Button variant="primary">Lưu</Button>
                         </div>
                     </Form.Item>

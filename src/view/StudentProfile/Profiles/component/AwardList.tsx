@@ -80,7 +80,9 @@ const AwardList = () => {
       awards: 1,
     },
   ]
+  const handleList = () => {
 
+  }
   const columns = [
     {
       title: (
@@ -151,7 +153,7 @@ const AwardList = () => {
           <div >
             <Link to='/student/info'>
 
-              <IconEye className='icon mr-24' />
+              <IconEye onClick={() => handleList()}className='icon mr-24' />
             </Link>
 
           </div>

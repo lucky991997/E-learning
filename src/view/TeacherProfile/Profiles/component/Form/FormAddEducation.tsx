@@ -4,8 +4,9 @@ import { ImAttachment } from 'react-icons/im'
 import { MdDateRange } from 'react-icons/md'
 import Button from '../../../../../shared/component/Button/Button'
 import { IconAdd, IconMinus } from '../../../../../shared/component/Icon/Icon'
+import { IModal } from '../../../../../shared/component/Modal/Modal'
 
-const FormAddEducation = () => {
+const FormAddEducation = ({setIsModalVisible}: IModal) => {
     const { Option } = Select
     const course = ['Toán - Lý - Hóa', 'Sinh - Sử - Địa', 'Nghệ Thuật']
     const chucVu = ['Giảng viên', 'Trưởng bộ môn', 'Trợ giảng']
@@ -121,7 +122,9 @@ const FormAddEducation = () => {
                     <Form.Item wrapperCol={{ offset: 8, span: "12" }}>
 
                         <div className="form-layout-btn mt-32">
-                            <Button variant="secondary">Hủy</Button>
+                            <Button variant="secondary"
+                            onClick ={() => setIsModalVisible(false)} 
+                            >Hủy</Button>
                             <Button variant="primary">Lưu</Button>
                         </div>
                     </Form.Item>

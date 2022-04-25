@@ -6,9 +6,10 @@ import Button from "../../../../../shared/component/Button/Button";
 
 interface IFormTeacherProfileProps {
   title: 'Tạm nghỉ' | 'Nghỉ hưu' | 'Nghỉ việc';
+  setIsModalVisible: any
 }
 
-const FormTeacherProfile: React.FC<IFormTeacherProfileProps> = ({ title }) => {
+const FormTeacherProfile: React.FC<IFormTeacherProfileProps> = ({ title, setIsModalVisible }) => {
   return (
     <div className="form-layout">
       <h2 className="title-28 j-center mb-24"> Cập Nhật {title}</h2>
@@ -40,9 +41,11 @@ const FormTeacherProfile: React.FC<IFormTeacherProfileProps> = ({ title }) => {
               </Col>
             </Row>
           </Form.Item>
-          <Form.Item wrapperCol={{ offset: 10, span: "12" }}>
+          <Form.Item wrapperCol={{ offset: 6, span: "12" }}>
             <div className="form-layout-btn mt-32">
-              <Button variant="secondary">Hủy</Button>
+              <Button variant="secondary"
+                onClick={() => setIsModalVisible(false)}
+              >Hủy</Button>
               <Button variant="primary">Lưu</Button>
             </div>
           </Form.Item>

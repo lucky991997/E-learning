@@ -3,12 +3,13 @@ import { Col, DatePicker, Form, Input, Row, Select, Upload } from "antd";
 import { ImAttachment } from "react-icons/im";
 import { MdDateRange } from "react-icons/md";
 import Button from "../../../../shared/component/Button/Button";
-const FormUpdateDecrease = () => {
+import { IModal } from "../../../../shared/component/Modal/Modal";
+const FormUpdateDecrease = ({setIsModalVisible} : IModal) => {
   const { Option } = Select;
   const decrease = ["Con thương binh", "Sổ hộ nghèo", "sample"];
   return (
-    <div className="form-layout form-profile">
-      <h2 className="title-28 j-center mb-24">Cập nhật Bảo Lưu</h2>
+    <div className="form-layout form-profile" style={{width: '884px'}}>
+      <h2 className="title-28 j-center mb-24">Cập nhật miễn giảm</h2>
       <div className="form-input-required">
         <Form labelCol={{ span: 6 }} wrapperCol={{ span: 18 }}>
           <Form.Item label="Tên học viên:">
@@ -42,7 +43,9 @@ const FormUpdateDecrease = () => {
           </Form.Item>
           <Form.Item>
             <div className="form-layout-btn mt-32" style={{ marginLeft: "25%" }}>
-              <Button variant="secondary">Hủy</Button>
+              <Button variant="secondary"
+              onClick= {()=> setIsModalVisible(false)}
+              >Hủy</Button>
               <Button variant="primary">Lưu</Button>
             </div>
           </Form.Item>

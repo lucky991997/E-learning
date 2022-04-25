@@ -1,10 +1,13 @@
 import { Input, Select, Table } from 'antd'
-import React from 'react'
+import React, { useState } from 'react'
 import { Link } from 'react-router-dom'
 import Button from '../../../shared/component/Button/Button'
 import { IconArrowRight, IconEdit, IconEye, IconSort } from '../../../shared/component/Icon/Icon'
+import ModalForm from '../../../shared/component/Modal/Modal'
+import FormAddChangeSchool from './form/FormAddChangeSchool'
 
 const ChangeSchool = () => {
+  const [isModalVisible, setIsModalVisible] = useState(false)
   const { Option } = Select
   const { Search } = Input
   const data = [
@@ -208,7 +211,9 @@ const ChangeSchool = () => {
             <Option value="1">2020-2021</Option>
           </Select>
         </div>
-        <Button variant="primary" icon="add">Thêm</Button>
+        <Button variant="primary" icon="add"
+          onClick={() => setIsModalVisible(true)}
+        >Thêm</Button>
       </div>
       <div className="school__list">
         <div className="title-content__search mb-24">
@@ -229,6 +234,13 @@ const ChangeSchool = () => {
         </div>
 
       </div>
+      {
+        isModalVisible === true ? (
+          <ModalForm isModalVisible={isModalVisible} setIsModalVisible={setIsModalVisible}>
+            <FormAddChangeSchool setIsModalVisible={setIsModalVisible}/> 
+          </ModalForm>
+        ) : ''
+      }
     </div>
   )
 }

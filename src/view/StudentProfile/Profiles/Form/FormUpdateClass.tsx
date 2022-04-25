@@ -3,7 +3,8 @@ import { Col, DatePicker, Form, Input, Row, Select, Upload } from "antd";
 import { ImAttachment } from "react-icons/im";
 import { MdDateRange } from "react-icons/md";
 import Button from "../../../../shared/component/Button/Button";
-const FormUpdateClass = () => {
+import { IModal } from "../../../../shared/component/Modal/Modal";
+const FormUpdateClass = ({setIsModalVisible}: IModal) => {
   const { Option } = Select;
   const nameClass = ["10A3", "10A4", "10A5"];
   return (
@@ -29,7 +30,7 @@ const FormUpdateClass = () => {
             ]}
           >
             <Row>
-              <Col span="5" style={{ marginRight: "12px" }}>
+              <Col span="6" style={{ marginRight: "12px" }}>
                 <DatePicker
                   suffixIcon={<MdDateRange className="select__calendar-icon" />}
                   picker="date"
@@ -92,7 +93,8 @@ const FormUpdateClass = () => {
           </Form.Item>
           <Form.Item>
             <div className="form-layout-btn" style={{ marginLeft: "25%" }}>
-              <Button variant="secondary">Hủy</Button>
+              <Button variant="secondary"
+              onClick={() => setIsModalVisible(false)}>Hủy</Button>
               <Button variant="primary">Lưu</Button>
             </div>
           </Form.Item>
@@ -102,7 +104,7 @@ const FormUpdateClass = () => {
   );
 };
 
-const FormUpdateSchool = () => {
+const FormUpdateSchool = ({setIsModalVisible}: IModal) => {
   return (
     <div className="form-layout form-profile">
       <h2 className="title-28 j-center mb-24">Cập nhật chuyển Trường</h2>
@@ -116,7 +118,7 @@ const FormUpdateSchool = () => {
           </Form.Item>
 
           <Form.Item
-            label="Ngày chuyển lớp:"
+            label="Ngày chuyển trường:"
             name="date"
             rules={[
               {
@@ -126,7 +128,7 @@ const FormUpdateSchool = () => {
             ]}
           >
             <Row>
-              <Col span="5" style={{ marginRight: "12px" }}>
+              <Col span="6" style={{ marginRight: "12px" }}>
                 <DatePicker
                   suffixIcon={<MdDateRange className="select__calendar-icon" />}
                   picker="date"
@@ -150,7 +152,7 @@ const FormUpdateSchool = () => {
             <Input />
           </Form.Item>
           <Form.Item
-            label="Lý do chuyển lớp:"
+            label="Lý do chuyển trường:"
             name="reason"
             rules={[{ required: true, message: "please enter " }]}
           >
@@ -183,7 +185,8 @@ const FormUpdateSchool = () => {
           </Form.Item>
           <Form.Item>
             <div className="form-layout-btn" style={{ marginLeft: "25%" }}>
-              <Button variant="secondary">Hủy</Button>
+              <Button variant="secondary"
+              onClick={() => setIsModalVisible(false)}>Hủy</Button>
               <Button variant="primary">Lưu</Button>
             </div>
           </Form.Item>

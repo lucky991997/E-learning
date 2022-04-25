@@ -3,7 +3,8 @@ import { Col, DatePicker, Form, Input, Row, Upload } from "antd";
 import { ImAttachment } from "react-icons/im";
 import { MdDateRange } from "react-icons/md";
 import Button from "../../../../shared/component/Button/Button";
-const FormUpdateReserve = () => {
+import { IModal } from "../../../../shared/component/Modal/Modal";
+const FormUpdateReserve = ({setIsModalVisible}: IModal) => {
 
   return (
     <div className="form-layout form-profile">
@@ -28,7 +29,7 @@ const FormUpdateReserve = () => {
             ]}
           >
             <Row>
-              <Col span="5" style={{ marginRight: "12px" }}>
+              <Col span="6" style={{ marginRight: "12px" }}>
                 <DatePicker
                   suffixIcon={<MdDateRange className="select__calendar-icon" />}
                   picker="date"
@@ -98,7 +99,9 @@ const FormUpdateReserve = () => {
           </Form.Item>
           <Form.Item>
             <div className="form-layout-btn" style={{ marginLeft: "25%" }}>
-              <Button variant="secondary">Hủy</Button>
+              <Button variant="secondary"
+                onClick = {() => setIsModalVisible(false)}
+              >Hủy</Button>
               <Button variant="primary">Lưu</Button>
             </div>
           </Form.Item>

@@ -6,9 +6,10 @@ import Button from "../../../../shared/component/Button/Button";
 
 type FormUpdateEvaluateProps = {
   title: string;
-};
+  setIsModalVisible: any;
+}
 
-const FormUpdateEvaluate: React.FC<FormUpdateEvaluateProps> = ({ title }) => {
+const FormUpdateEvaluate: React.FC<FormUpdateEvaluateProps> = ({ title, setIsModalVisible }) => {
   return (
     <div className="form-layout form-profile">
       <h2 className="title-28 j-center mb-24">Cập nhật {title}</h2>
@@ -32,14 +33,14 @@ const FormUpdateEvaluate: React.FC<FormUpdateEvaluateProps> = ({ title }) => {
             ]}
           >
             <Row>
-              <Col span="5" style={{ marginRight: "12px" }}>
+              <Col span="6" style={{marginRight:'22px'}} >
                 <DatePicker
                   suffixIcon={<MdDateRange className="select__calendar-icon" />}
                   picker="date"
                   className="select__calendar"
                 />
               </Col>
-              <Col span="6" style={{ marginLeft: "18px" }}>
+              <Col span="8" style={{ marginLeft: "18px" }}>
                 <Input style={{ height: "32px", width: "100px" }} />
               </Col>
             </Row>
@@ -83,7 +84,9 @@ const FormUpdateEvaluate: React.FC<FormUpdateEvaluateProps> = ({ title }) => {
           </Form.Item>
           <Form.Item>
             <div className="form-layout-btn" style={{ marginLeft: "25%" }}>
-              <Button variant="secondary">Hủy</Button>
+              <Button variant="secondary"
+                onClick = {() => setIsModalVisible(false)}
+              >Hủy</Button>
               <Button variant="primary">Lưu</Button>
             </div>
           </Form.Item>

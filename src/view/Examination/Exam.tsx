@@ -7,17 +7,20 @@ import ExamList from './component/ExamList'
 import '../../styles/view-styles/exam.scss'
 import ExamDate from './component/ExamDate'
 import ExamListClass from './component/ExamListClass'
+import ModalForm from '../../shared/component/Modal/Modal'
+import FormAddExam from './form/FormAddExam'
 
 export type ExamListProps = {
-    setShowList : any
+    setShowList: any
 }
 const Exam = () => {
+    const [isModalVisible, setIsModalVisible] = useState(false)
     const [itemIndex, setItemIndex] = useState(0)
     const [showList, setShowList] = useState(false)
     const tabHorizontal = [
         {
             name: 'Xem theo bảng',
-            component: <ExamList  setShowList={setShowList}/>,
+            component: <ExamList setShowList={setShowList} />,
         },
         {
             name: 'Xem theo lịch',
@@ -25,7 +28,7 @@ const Exam = () => {
         },
     ]
     const { Option } = Select
-   
+
 
     const handleListIndex = (index: number) => {
         setItemIndex(index)
@@ -35,12 +38,12 @@ const Exam = () => {
             return 'active-list'
         }
     }
-    
+
     return (
         <>
             {
                 showList === true ? (
-                    <ExamListClass setShowList={setShowList}/>
+                    <ExamListClass setShowList={setShowList} />
                 )
                     : (<div className="exam">
                         <h1 className="main-title mb-32">Quản lý lịch thi</h1>
@@ -69,7 +72,9 @@ const Exam = () => {
                                 }
                             </div>
                             <div className="control-btn">
-                                <Button variant="primary" icon="add">Thêm mới</Button>
+                                <Button variant="primary" icon="add"
+                                    onClick={() => setIsModalVisible(true)}
+                                >Thêm mới</Button>
                             </div>
                         </div>
 
@@ -85,6 +90,15 @@ const Exam = () => {
 
                     </div>)
             }
+
+            {isModalVisible === true ?
+                (
+                    <ModalForm isModalVisible={isModalVisible} setIsModalVisible={setIsModalVisible}>
+                        <FormAddExam setIsModalVisible={setIsModalVisible} />
+                    </ModalForm>
+                ) : ''
+            }
+
         </>
 
 

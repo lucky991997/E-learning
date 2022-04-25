@@ -50,7 +50,10 @@
     }
     .ant-collapse-header svg  {
         color: $color-white;
-    }
+    } 
+  }
+  .ant-table {
+    min-height: 350px;
   }
   .ant-table-thead > tr > th{
     background: $color-black !important;

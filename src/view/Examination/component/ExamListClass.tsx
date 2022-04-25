@@ -3,6 +3,8 @@ import React, { useState } from 'react'
 import { BsBook } from 'react-icons/bs'
 import { useNavigate } from 'react-router-dom'
 import { IconArrowRight, IconDelete, IconEdit, IconListTitle, IconSort } from '../../../shared/component/Icon/Icon'
+import ModalForm from '../../../shared/component/Modal/Modal'
+import FormDeleteSchoolYear from '../../Learning/SchoolYear/component/FormSchoolYear/FormDeleteSchoolYear'
 import { ExamListProps } from '../Exam'
 import ExamPoint from './ExamPoint'
 
@@ -12,6 +14,7 @@ import ExamPoint from './ExamPoint'
 const ExamDate = ({setShowList} : ExamListProps) => {
   const { Option } = Select
   const [showPoint, setShowPoint] = useState(false)
+  const [isModalDelete, setIsModalDelete] = useState(false)
   const data = [
     {
       key: 1,
@@ -180,7 +183,7 @@ const ExamDate = ({setShowList} : ExamListProps) => {
           <div style={{ display: 'flex' }}>
 
             <IconEdit className="icon mr-24" />
-            <IconDelete className="icon" />
+            <IconDelete onClick={() => setIsModalDelete(true)}className="icon" />
           </div>
 
         )
@@ -200,7 +203,7 @@ const ExamDate = ({setShowList} : ExamListProps) => {
               <IconArrowRight className="icon mr-32" />
               <h1 className="main-title"> Danh sách lớp tham gia</h1>
             </div>
-            <div className="select mb-32">
+            <div className="select mb-32">  
               <Select defaultValue="2020-2021">
                 <Option>2020-2021</Option>
               </Select>
@@ -302,7 +305,13 @@ const ExamDate = ({setShowList} : ExamListProps) => {
                 </div>
               </Col>
             </Row>
-
+            {isModalDelete === true ?
+                (
+                    <ModalForm closable={true} isModalVisible={isModalDelete} setIsModalVisible={setIsModalDelete}>
+                        <FormDeleteSchoolYear title="Xóa Lịch thi" setIsModalDelete={setIsModalDelete} />
+                    </ModalForm>
+                ) : ''
+            }
           </div>
         )
       }

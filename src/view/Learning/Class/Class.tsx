@@ -23,11 +23,11 @@ const Class = ({ setShowEdit }: EditProps) => {
   const [isModalVisible, setIsModalVisible] = useState(false)
   const [isModaldelete, setIsModalDelete] = useState(false)
 
-  
+
   const [isModalFile, setIsModalFile] = useState(false)
   const [showBtnAdd, setShowBtnAdd] = useState(false)
 
-  
+
   const { Search } = Input
   const { Option } = Select
   const data: IClass[] = [
@@ -154,7 +154,7 @@ const Class = ({ setShowEdit }: EditProps) => {
   const handleShowEditClass = () => {
     setShowEdit(false)
   }
-  const handleShowAdd= () => {
+  const handleShowAdd = () => {
     setShowBtnAdd(false)
     setIsModalVisible(true)
   }
@@ -175,7 +175,7 @@ const Class = ({ setShowEdit }: EditProps) => {
           </div>
 
         </Col>
-        <Col style={{ display: 'flex', alignItems: 'center' }}>
+        <Col style={{ display: 'flex', alignItems: 'center' , position: 'relative'}}>
           <IconDelete className="icon mr-16 " onClick={() => console.log(123)} style={{ color: '#C9C4C0' }} />
           <div className="border-left mr-16"></div>
           <Button variant="file" style={{ marginRight: '16px' }}>
@@ -188,28 +188,32 @@ const Class = ({ setShowEdit }: EditProps) => {
           {
             showBtnAdd === true ? (
               <>
-                <Modal
+               
+                <div className="modal-btn">
+                {/* <Modal
                   visible={showBtnAdd}
                   footer={false}
                   closable={false}
                   onCancel={() => setShowBtnAdd(false)}
+                  // style={{top:'11%', right: '11.5%'}}
                   bodyStyle={{
-                    float: 'right',
-                    marginTop: '5%',
-                    marginRight: '10px',
+                    
                   }}
-                >
+                > */}
                   <Button variant="file" style={{ marginBottom: '12px' }}
-                   onClick={() => handleShowAddFile()}
+                    onClick={() => handleShowAddFile()}
                   >
                     Tải file lên
                   </Button>
                   <Button variant="file"
                     onClick={() => handleShowAdd()}
+                    style={{opacity: 1}}
                   >
                     Nhập thủ công
                   </Button>
-                </Modal>
+                {/* </Modal> */}
+
+                </div>
 
               </>
             ) : ''
@@ -251,10 +255,10 @@ const Class = ({ setShowEdit }: EditProps) => {
           </ModalForm>
         ) : ''
       }
-       {isModalFile === true ?
+      {isModalFile === true ?
         (
           <ModalForm isModalVisible={isModalFile} setIsModalVisible={setIsModalFile}>
-            <FormExport setIsModalVisible={setIsModalFile}/>
+            <FormExport setIsModalVisible={setIsModalFile} />
           </ModalForm>
         ) : ''
       }

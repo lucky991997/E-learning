@@ -9,7 +9,7 @@ import InfoTeacher from './Profiles/component/InfoTeacher'
 
 const TeacherProfile = () => {
   const { pathname } = useLocation();
-  const components = ["/teacher/profilesstudent", "/teacher/phancong"];
+  const components = ["/teacher/profilesstudent", "/teacher/phancong", "/teacher/info"];
   const component = components.findIndex((item) => item === pathname);
   const ProfileTeacher = () => {
     switch (component) {
@@ -17,7 +17,8 @@ const TeacherProfile = () => {
         return <Profile />
       case 1:
         return <Assignment />
-
+      case 2: 
+        return <InfoTeacher/>
       default:
         return <Profile />
     }

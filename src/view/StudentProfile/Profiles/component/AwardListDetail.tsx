@@ -1,9 +1,12 @@
 import { Table } from 'antd'
 import Search from 'antd/lib/input/Search'
-import React from 'react'
+import React, { useState } from 'react'
 import { IconDelete, IconEdit } from '../../../../shared/component/Icon/Icon'
+import ModalForm from '../../../../shared/component/Modal/Modal'
+import FormUpdateBonus from '../Form/FormUpdateBonus'
 
 const AwardListDetail = () => {
+    const [isModalVisible, setIsModalVisible] = useState(false)
     const data = [
         {
             key: 1,
@@ -63,8 +66,8 @@ const AwardListDetail = () => {
             render: () => {
                 return (
 
-                    < div style={{display: 'flex', justifyContent:'center'}}>
-                        <IconEdit className="icon mr-16" />
+                    < div style={{ display: 'flex', justifyContent: 'center' }}>
+                        <IconEdit onClick={() => setIsModalVisible(true)} className="icon mr-16" />
                         <IconDelete className="icon" />
                     </ div>
                 )
@@ -80,8 +83,17 @@ const AwardListDetail = () => {
                 </Search>
             </div>
             <div className="table-content">
-                <Table dataSource={data} columns={columns} scroll={{y:250}} />
+                <Table dataSource={data} columns={columns} scroll={{ y: 250 }} />
             </div>
+
+            {isModalVisible === true ?
+                (
+                    <ModalForm isModalVisible={isModalVisible} setIsModalVisible={setIsModalVisible}>
+                        <FormUpdateBonus setIsModalVisible={setIsModalVisible} title="Khen thưởng"/>
+                    </ModalForm>
+                ) : ''
+            }
+          
         </div>
     )
 }

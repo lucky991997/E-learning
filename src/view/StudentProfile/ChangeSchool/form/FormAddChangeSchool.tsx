@@ -4,8 +4,8 @@ import { Col, DatePicker, Form, Input, Row, Select, Upload } from "antd";
 import { ImAttachment } from "react-icons/im";
 import { MdDateRange } from "react-icons/md";
 import Button from "../../../../shared/component/Button/Button";
-
-const FormAddChangeSchool = () => {
+import {IModal} from '../../../../shared/component/Modal/Modal'
+const FormAddChangeSchool = ({setIsModalVisible}: IModal) => {
   const { Option } = Select;
   const city = ["Lựa chọn", "Cần Thơ", "Đà Nẵng", "Cà Mau"];
   const province = ["Lựa chọn", "Quận 1", "Quận 2", "Quận 3"];
@@ -119,7 +119,9 @@ const FormAddChangeSchool = () => {
           </Form.Item>
           <Form.Item>
             <div className="form-layout-btn mt-32" style={{marginLeft:"25%"}}>
-                <Button variant="secondary">Hủy</Button>
+                <Button variant="secondary"
+                onClick={() => setIsModalVisible(false)}
+                >Hủy</Button>
                 <Button variant="primary">Lưu</Button>
             </div>
           </Form.Item>

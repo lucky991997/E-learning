@@ -14,6 +14,7 @@ import Assignment from "../view/TeacherProfile/assignment/Assignment";
 import Profile from "../view/TeacherProfile/Profiles/Profile";
 import TeacherProfile from "../view/TeacherProfile/TeacherProfiles";
 import StudentDetail from "../view/StudentProfile/Profiles/component/StudentDetail";
+import InfoTeacher from "../view/TeacherProfile/Profiles/component/InfoTeacher";
 
 
 
@@ -37,6 +38,7 @@ const RouteComponent = () => {
                     <Route path="/teacher/*" element={<TeacherProfile />} />
                     <Route path="/teacher/profilesteacher" element={<Profile />} />
                     <Route path="/teacher/phancong" element={<Assignment />} />
+                    <Route path="/teacher/info" element={<InfoTeacher />} />
                 </Route>
                 <Route path="/exam" element={<Exam />}></Route>
                 <Route path="/setting" element={<Setting />}></Route>

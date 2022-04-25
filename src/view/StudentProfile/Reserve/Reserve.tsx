@@ -1,12 +1,16 @@
 import { Input, Select, Table } from 'antd'
-import React from 'react'
+import React, { useState } from 'react'
 import { Link } from 'react-router-dom'
 import Button from '../../../shared/component/Button/Button'
 import { IconArrowRight, IconEye, IconSort } from '../../../shared/component/Icon/Icon'
+import ModalForm from '../../../shared/component/Modal/Modal'
+import FormReserve from './Form/FormReserve'
 
 const Resever = () => {
   const { Option } = Select
   const { Search } = Input
+  const [isModalVisible, setIsModalVisible] = useState(false)
+
   const data = [
     {
       key: 1,
@@ -209,7 +213,9 @@ const Resever = () => {
             <Option value="1">2020-2021</Option>
           </Select>
         </div>
-        <Button variant="primary" icon="add">Thêm</Button>
+        <Button variant="primary" icon="add"
+        onClick={() => setIsModalVisible(true)}
+        >Thêm</Button>
       </div>
       <div className="resever__list">
         <div className="title-content__search mb-24 ">
@@ -230,6 +236,13 @@ const Resever = () => {
         </div>
 
       </div>
+      {
+        isModalVisible === true ? (
+          <ModalForm isModalVisible={isModalVisible} setIsModalVisible={setIsModalVisible}>
+            <FormReserve setIsModalVisible={setIsModalVisible}/> 
+          </ModalForm>
+        ) : ''
+      }
     </div>
   )
 }

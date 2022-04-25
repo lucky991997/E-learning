@@ -1,12 +1,8 @@
 import { Col, Collapse, Row, Select } from 'antd'
 import React, { useState } from 'react'
-import { Link, useNavigate } from 'react-router-dom'
+
 import { Panel } from '../../../../layout/Index'
 import Button from '../../../../shared/component/Button/Button'
-import { IconArrowRight, IconDelete, IconEdit } from '../../../../shared/component/Icon/Icon'
-import Status from '../../../../shared/component/status/Status'
-import { IShowComponent } from '../../../Setting/Setting'
-import InfoStudent from './InfoStudent'
 
 import '../../../../styles/main-styles/collapse.scss'
 import DisciplinaryListDetail from './DisciplinaryListDetail'
@@ -15,21 +11,31 @@ import Result from './result/Result'
 
 const Process = () => {
     const { Option } = Select
-   
+
     const subComponent = [
         {
             name: 'Kết quả học tập',
-            component: <Result/>,
+            component: <Result />,
         },
         {
             name: 'Danh sách khen thưởng',
-            component: <AwardListDetail/>,
+            component: <AwardListDetail />,
         },
         {
             name: 'Danh sách kỷ luật',
             component: <DisciplinaryListDetail />,
         }
     ]
+    const [valueCollapse, setValueCollapse] = useState<number | []>(0)
+
+    const handleActiveCollapse = (index: number) => {
+
+        if (index === valueCollapse) {
+            setValueCollapse([])
+        } else {
+            setValueCollapse(index)
+        }
+    }
     return (
         <>
             <div className="control"
@@ -115,11 +121,17 @@ const Process = () => {
             </div>
 
             <div className="collapse">
-                <Collapse defaultActiveKey={0}>
+                <Collapse activeKey={valueCollapse} defaultActiveKey={valueCollapse}>
                     {
                         subComponent.map((item, index) =>
 
-                            <Panel header={item.name} key={index} style={{ marginBottom: '12px' }}>
+                            <Panel header={item.name} key={index} style={{ marginBottom: '12px' }}
+                                extra={
+                                    <div style={{ background: 'transparent', width: '100%', height: '100%' }} onClick={() => handleActiveCollapse(index)}>
+
+                                    </div>
+                                }
+                            >
                                 {item.component}
                             </Panel>
 

@@ -1,12 +1,19 @@
 import { Table } from 'antd'
 import Search from 'antd/lib/input/Search'
-import React from 'react'
+import React, { useState } from 'react'
+import FormDeleteMain from '../../../shared/component/Form/FormDeleteMain'
 import { IconDelete, IconEdit, IconEye, IconListTitle, IconSort } from '../../../shared/component/Icon/Icon'
+import ModalForm, { ModalFormClose } from '../../../shared/component/Modal/Modal'
+import FormDeleteSchoolYear from '../../Learning/SchoolYear/component/FormSchoolYear/FormDeleteSchoolYear'
 import { ExamListProps } from '../Exam'
+import FormDetailExam from '../form/FormDetailExam'
 
 
 
 const ExamList = ({setShowList} : ExamListProps) => {
+    const [isModalDetailExam, setIsModalDetailExam] = useState(false)
+    const [isModalDelete, setIsModalDelete] = useState(false)
+
     const data = [
         {
             key: 1,
@@ -247,9 +254,10 @@ const ExamList = ({setShowList} : ExamListProps) => {
             render: () => {
                 return (
                     <div style={{ display: 'flex' }}>
-                        <IconEye className="icon mr-24" />
+                        <IconEye onClick={() => setIsModalDetailExam(true)} className="icon mr-24" />
                         <IconEdit className="icon mr-24" />
-                        <IconDelete className="icon" />
+                        <IconDelete onClick={() => setIsModalDelete(true)}
+                        className="icon" />
                     </div>
 
                 )
@@ -275,6 +283,21 @@ const ExamList = ({setShowList} : ExamListProps) => {
                     hàng trong mỗi trang
                 </h3>
             </div>
+
+            {isModalDetailExam === true ?
+                (
+                    <ModalFormClose isModalVisible={isModalDetailExam} setIsModalVisible={setIsModalDetailExam}>
+                        <FormDetailExam setIsModalVisible={setIsModalDetailExam} />
+                    </ModalFormClose>
+                ) : ''
+            }
+            {isModalDelete === true ?
+                (
+                    <ModalForm closable={true} isModalVisible={isModalDelete} setIsModalVisible={setIsModalDelete}>
+                        <FormDeleteSchoolYear title="Xóa Lịch thi" setIsModalDelete={setIsModalDelete} />
+                    </ModalForm>
+                ) : ''
+            }
         </div>
     )
 }

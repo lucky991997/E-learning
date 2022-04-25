@@ -54,6 +54,9 @@ h4 {
 .mb-12 {
   margin-bottom: 12px;
 }
+.mb-8 {
+  margin-bottom: 8px;
+}
 
 .mt-51 {
   margin-top: 51px;
@@ -192,6 +195,13 @@ h4 {
   position: relative;
   margin-left: 150px;
 }
+//modal btn
+.modal-btn {
+  position: absolute;
+  right: 0;
+  top: 70px;
+  z-index: 99;
+}
 
 // active
 .active-role {
@@ -248,7 +258,6 @@ h4 {
 .active-sub {
   font-weight: 700;
   transition: font-weight ease-in-out 0.3s;
- 
 }
 
 //select-year
@@ -366,4 +375,3 @@ h4 {
     background: #cc5c00;
   }
 }
-

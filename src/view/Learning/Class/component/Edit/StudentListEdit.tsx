@@ -192,11 +192,7 @@ const ListStudent = () => {
 
               )
             }
-            {/* <IconEdit onClick={() => setIsUpdateStatus(true)}className='icon mr-24' />
-            {
-              key === rowKey  && isUpdateStatus === false ? ( <h1  onClick={() => setIsUpdateStatus(true)} >test 1 </h1>) : (<h2 onClick={() => setIsUpdateStatus(false)}>test 2</h2>)
-              
-            } */}
+         
 
           </div>
         )

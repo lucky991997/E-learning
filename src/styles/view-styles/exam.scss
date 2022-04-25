@@ -1,6 +1,7 @@
 @use "../index.scss" as *;
 
 .exam {
+
   position: relative;
   &__list {
     width: 1640px;
@@ -66,6 +67,10 @@
         @include flex(center, center);
         flex-direction: column;
         border-top: 1px solid $color-primary;
+
+        &:first-child{
+          border-top: none;
+        }
       }
       &-subject {
         border-top: 1px solid $color-primary;

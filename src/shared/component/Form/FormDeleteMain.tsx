@@ -1,18 +1,21 @@
 import React from "react";
+import { IProfile } from "../../../view/StudentProfile/Profiles/component/ProfileList";
 import Button from "../Button/Button";
 
 import "./form-main.scss";
 
-// export interface IFormDelete {
-//   handleCancel: () => void;
-//   handleDelete: () => void;
-// }
+
 
 type IFormDeleteProps = {
   setIsModalDelete: any
-} 
-const FormDeleteMain = ({setIsModalDelete}: IFormDeleteProps) => {
-
+  data?: IProfile[]
+}
+const FormDeleteMain = ({ setIsModalDelete, data }: IFormDeleteProps) => {
+  const handleDelete = () => {
+    if (data) {
+      console.log(data.pop())
+    }
+  }
   return (
     <div className="form-layout form-delete-main">
       <h2 className="title-28 mb-16" style={{ justifyContent: "center" }}>
@@ -33,7 +36,7 @@ const FormDeleteMain = ({setIsModalDelete}: IFormDeleteProps) => {
         >
           Hủy
         </Button>
-        <Button variant="primary">
+        <Button variant="primary" onClick={() => handleDelete()}>
           Xóa
         </Button>
       </div>

@@ -24,7 +24,7 @@ const StudentProfiles = () => {
       case 2:
         return <Resever />
       case 3: 
-        return <StudentDetail/>
+        return <StudentDetail />
 
       default:
         return <Profiles />

@@ -2,10 +2,11 @@ import { Row } from 'antd'
 import React, { useState } from 'react'
 import { useNavigate } from 'react-router-dom'
 import { IconArrowRight } from '../../../../shared/component/Icon/Icon'
+import { ICollapseShow } from '../Profiles'
 import InfoStudent from './InfoStudent'
 import Process from './Process'
 
-const StudentDetail = () => {
+const StudentDetail= () => {
     const navigate = useNavigate()
 
     const [itemIndex, setItemIndex] = useState(0)

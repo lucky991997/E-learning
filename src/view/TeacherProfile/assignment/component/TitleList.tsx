@@ -1,8 +1,13 @@
 import { Row, Table } from 'antd'
-import React from 'react'
+import React, { useState } from 'react'
 import { IconDelete, IconEdit } from '../../../../shared/component/Icon/Icon'
+import ModalForm from '../../../../shared/component/Modal/Modal'
+import FormDeleteSchoolYear from '../../../Learning/SchoolYear/component/FormSchoolYear/FormDeleteSchoolYear'
 
 const TitleList = () => {
+    const [isModaldelete, setIsModalDelete] = useState(false)
+ 
+
     const data = [
         {
             key: 1,
@@ -52,7 +57,7 @@ const TitleList = () => {
                 <h3 className="title-22">Danh sách chủ đề</h3>
                 <div className="title-list__title__event">
                     <IconEdit className="icon mr-32" />
-                    <IconDelete className="icon" />
+                    <IconDelete  onClick={() => setIsModalDelete(true)} className="icon" />
                 </div>
             </div>
             <div className="title-list__info mb-16">
@@ -73,6 +78,13 @@ const TitleList = () => {
                 {/* mai sửa lại pagination */}
                 <Table columns={columns} dataSource={data} pagination={false} />
             </div>
+            {isModaldelete === true ?
+        (
+          <ModalForm isModalVisible={isModaldelete} setIsModalVisible={setIsModalDelete}>
+            <FormDeleteSchoolYear setIsModalDelete={setIsModalDelete} title="Phân công" />
+          </ModalForm>
+        ) : ''
+      }
         </>
 
     )
