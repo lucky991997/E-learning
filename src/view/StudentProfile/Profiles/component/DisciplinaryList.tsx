@@ -2,81 +2,10 @@ import { Input, Table } from 'antd'
 import React from 'react'
 import { Link } from 'react-router-dom'
 import { IconEdit, IconEye, IconSort } from '../../../../shared/component/Icon/Icon'
+import { IStudent } from '../../StudentProfiles'
 
 
-const DisciplinaryList = () => {
-  const data = [
-    {
-      key: 1,
-      id: '20206A',
-      name: 'Nguyễn Văn A ',
-      birthday: '12/02/1998',
-      gender: 'Nam',
-      awards: 1,
-    },
-    {
-      key: 2,
-      id: '20206B',
-      name: 'Nguyễn Văn B',
-      birthday: '12/02/1998',
-      gender: 'Nam',
-      awards: 4,
-
-    },
-    {
-      key: 3,
-      id: '20206C',
-      name: 'Nguyễn Văn C',
-      birthday: '12/02/1998',
-      gender: 'Nam',
-      awards: 1,
-
-    },
-    {
-      key: 4,
-      id: '20207A',
-      name: 'Nguyễn Văn D',
-      birthday: '12/02/1998',
-      gender: 'Nam',
-      awards: 3,
-
-    },
-    {
-      key: 5,
-      id: '20207B',
-      name: 'Nguyễn Văn E',
-      birthday: '12/02/1998',
-      gender: 'Nam',
-      awards: 2,
-
-
-    },
-    {
-      key: 6,
-      id: '20208A',
-      name: 'Nguyễn Văn F',
-      birthday: '12/02/1998',
-      gender: 'Nam',
-      awards: 1,
-
-    },
-    {
-      key: 7,
-      id: '20208B',
-      name: 'Nguyễn Văn G',
-      birthday: '12/02/1998',
-      gender: 'Nam',
-      awards: 5,
-    },
-    {
-      key: 8,
-      id: '20209A',
-      name: 'Nguyễn Văn I',
-      birthday: '12/02/1998',
-      gender: 'Nam',
-      awards: 1,
-    },
-  ]
+const DisciplinaryList = ({studentList}: IStudent) => {
 
   const columns = [
     {
@@ -96,13 +25,18 @@ const DisciplinaryList = () => {
     },
     {
       title: (
-        <div style={{ display: 'flex', alignItems: 'center', justifyContent: 'center ' }}>
+        <div style={{ display: 'flex', alignItems: 'center', justifyContent: 'flex-start ', marginLeft: '20px' }}>
           Tên học viên
           <IconSort />
         </div>),
       sorter: true,
       dataIndex: 'name',
       key: 'name',
+      render: (name: string) => {
+        return (
+          <div style={{ textAlign: 'left', marginLeft: '20px' }}>{name}</div>
+        )
+      }
     },
     {
       title: (
@@ -126,16 +60,16 @@ const DisciplinaryList = () => {
     },
     {
       title: (
-        <div style={{ display: 'flex', alignItems: 'center', justifyContent: 'center ' }}>
+        <div style={{ display: 'flex', alignItems: 'center', justifyContent: 'flex-start ' }}>
           Số lần kỷ luật
           <IconSort />
         </div>),
       sorter: true,
-      dataIndex: 'awards',
-      key: 'awards',
-      render: (awards: number) => {
+      dataIndex: 'award',
+      key: 'award',
+      render: (award: number) => {
         return (
-          <div style={{ textAlign: 'left', marginLeft: '25%' }}>{awards}</div>
+          <div style={{ textAlign: 'left', marginLeft: '25%' }}>{award ? award: 4}</div>
         )
       }
     },
@@ -167,7 +101,7 @@ const DisciplinaryList = () => {
       </div>
 
       <div className="table-content">
-        <Table showSorterTooltip={false} columns={columns} dataSource={data} />
+        <Table showSorterTooltip={false} columns={columns} dataSource={studentList} />
       </div>
       <div className="title__show-value" style={{ bottom: 0 }}>
         <h3 className="title-16">

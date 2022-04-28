@@ -8,29 +8,16 @@ import ModalForm from '../../../shared/component/Modal/Modal'
 import FormDept from '../DepartmentOfSubject/form/FormAdd'
 import FormDeleteSchoolYear from '../SchoolYear/component/FormSchoolYear/FormDeleteSchoolYear'
 import CourseList from './component/CourseList'
+import { ILearningProps } from '../Learning'
 
 
-const Department = () => {
+const Department = ({learningList}:ILearningProps) => {
   const [isModalVisible, setIsModalVisible] = useState(false)
   const [isModaldelete, setIsModalDelete] = useState(false)
   const [isModalList, setIsModalList] = useState(false)
 
   const { Search } = Input
-  const data = [
-    {
-      key: 1,
-      nameDep: 'Văn hóa xã hội',
-      name: 'Nguyễn Văn A',
 
-
-    },
-    {
-      key: 2,
-      nameDep: 'Khoa học tự nhiên',
-      name: 'Trần Thị B',
-
-    },
-  ]
 
   const columns = [
     {
@@ -105,7 +92,7 @@ const Department = () => {
 
         <div className="table-content">
 
-          <Table columns={columns} dataSource={data} showSorterTooltip={false} />
+          <Table columns={columns} dataSource={learningList} showSorterTooltip={false} />
 
         </div>
 

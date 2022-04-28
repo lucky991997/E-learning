@@ -51,6 +51,7 @@ const Sidebar = () => {
 
     const { pathname } = useLocation()
     const curPath = pathname.split('/')[1]
+   
     const activeMenu = sideBar.findIndex(item => item.section === curPath)
     const [itemMenu, setItemMenu] = useState(activeMenu)
     useEffect(() => {
@@ -74,7 +75,7 @@ const Sidebar = () => {
                     {
                         sideBar.map((item, index) => (
                             <div  key={index} className={`${index === itemMenu ? "active-sidebar" : ''}`}>
-                                <Link  onClick={() => handleItemMenu(index)} to={item.path} >
+                                <Link   to={item.path} >
                                     {item.icon}
                                 </Link>
                             </div>

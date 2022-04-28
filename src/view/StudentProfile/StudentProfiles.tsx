@@ -1,5 +1,5 @@
 import { Select } from 'antd'
-import React from 'react'
+import React, { useEffect } from 'react'
 
 import ChangeSchool from './ChangeSchool/ChangeSchool'
 import Profiles from './Profiles/Profiles'
@@ -7,6 +7,13 @@ import Resever from './Reserve/Reserve'
 import '../../styles/view-styles/student-profiles.scss'
 import { useLocation } from 'react-router-dom'
 import StudentDetail from './Profiles/component/StudentDetail'
+import { Student } from '../../core/enums/EnumsStudentType'
+
+
+export interface IStudent  {
+  studentList: Array<Student>
+}
+
 const StudentProfiles = () => {
   const { pathname } = useLocation();
 

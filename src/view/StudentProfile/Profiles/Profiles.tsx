@@ -1,5 +1,9 @@
 import { Select } from 'antd'
-import React, { useState } from 'react'
+import React, { useEffect, useState } from 'react'
+import { useSelector } from 'react-redux'
+import { useDispatch } from 'react-redux'
+import { RootState } from '../../../core'
+import { getStudentList } from '../../../core/action/StudentAction'
 import Button from '../../../shared/component/Button/Button'
 import FormDeleteMain from '../../../shared/component/Form/FormDeleteMain'
 import FormExport from '../../../shared/component/Form/FormExport'
@@ -16,6 +20,12 @@ export interface ICollapseShow {
 }
 
 const Profiles = () => {
+  const { studentList } = useSelector((state: RootState) => state.StudentReducer)
+  const dispatch = useDispatch()
+  useEffect(() => {
+      // @ts-ignore
+      dispatch(getStudentList())
+  }, [dispatch])
   const [isModalVisible, setIsModalVisible] = useState(false)
   const [isModaldelete, setIsModalDelete] = useState(false)
 
@@ -26,16 +36,16 @@ const Profiles = () => {
   const tabProfiles = [
     {
       name: 'Tất cả hồ sơ',
-      component: <ProfileList />,
+      component: <ProfileList studentList={studentList}/>,
     },
     {
       name: 'Khen thưởng',
-      component: <AwardList />,
+      component: <AwardList studentList={studentList}/>,
 
     },
     {
       name: 'Kỷ luật',
-      component: <DisciplinaryList />,
+      component: <DisciplinaryList studentList={studentList}/>,
 
     },
   ]

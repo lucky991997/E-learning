@@ -1,99 +1,19 @@
 import { Col, Input, Row, Select, Table } from 'antd'
 import React, { useState } from 'react'
+import { ILearning, ILearningState } from '../../../core/enums/EnumsLearningType'
 
 
 import Button from '../../../shared/component/Button/Button'
 import { IconDelete, IconEdit, IconSort } from '../../../shared/component/Icon/Icon'
 import ModalForm from '../../../shared/component/Modal/Modal'
+import { ILearningProps } from '../Learning'
 import FormDeleteSchoolYear from '../SchoolYear/component/FormSchoolYear/FormDeleteSchoolYear'
 import FormSubject from './form/FormSubject'
 
 
-const Subject = () => {
+const Subject = ({ learningList }: ILearningProps) => {
   const [isModalVisible, setIsModalVisible] = useState(false)
-  const [isModaldelete,setIsModalDelete ] = useState(false)
-  interface ISubject  {
-    key: number, 
-    id: string,
-    name: string,
-    type: string,
-    sem1: number, 
-    sem2: number,
-  }
-  const data:ISubject[] = [
-    {
-      key: 1,
-      id: 'KHTN',
-      name: 'Toán ',
-      type: 'Môn bắt buộc',
-      sem1: 4,
-      sem2: 4,
-
-    },
-    {
-      key: 2,
-      id: 'VHXH',
-      name: 'Ngữ Văn',
-      type: 'Môn tự chọn',
-      sem1: 4,
-      sem2: 4,
-
-    },
-    {
-      key: 3,
-      id: 'AV',
-      name: 'Anh Văn',
-      type: 'Môn tự chọn',
-      sem1: 4,
-      sem2: 4,
-
-    },
-    {
-      key: 4,
-      id: 'KHTN',
-      name: 'Toán ',
-      type: 'Môn bắt buộc',
-      sem1: 4,
-      sem2: 4,
-
-    },
-    {
-      key: 5,
-      id: 'VHXH',
-      name: 'Ngữ Văn',
-      type: 'Môn tự chọn',
-      sem1: 4,
-      sem2: 4,
-
-    },
-    {
-      key: 6,
-      id: 'AV',
-      name: 'Anh Văn',
-      type: 'Môn tự chọn',
-      sem1: 4,
-      sem2: 4,
-
-    },
-    {
-      key: 7,
-      id: 'KHTN',
-      name: 'Toán ',
-      type: 'Môn bắt buộc',
-      sem1: 4,
-      sem2: 4,
-
-    },
-    {
-      key: 8,
-      id: 'VHXH',
-      name: 'Ngữ Văn',
-      type: 'Môn tự chọn',
-      sem1: 4,
-      sem2: 4,
-
-    },
-  ]
+  const [isModaldelete, setIsModalDelete] = useState(false)
 
   const columns = [
 
@@ -104,8 +24,8 @@ const Subject = () => {
           <IconSort />
         </div>),
       sorter: true,
-      dataIndex: 'id',
-      key: 'id',
+      dataIndex: 'idCourse',
+      key: 'idCourse',
     },
     {
       title: (
@@ -114,8 +34,8 @@ const Subject = () => {
           <IconSort />
         </div>),
       sorter: true,
-      dataIndex: 'name',
-      key: 'name',
+      dataIndex: 'nameCourse',
+      key: 'nameCourse',
     },
     {
       title: (
@@ -124,19 +44,29 @@ const Subject = () => {
           <IconSort />
         </div>),
       sorter: true,
-      dataIndex: 'type',
-      key: 'type',
+      dataIndex: 'typeCourse',
+      key: 'typeCourse',
     },
     {
       title: 'Số tiết HK1',
       dataIndex: 'sem1',
       key: 'sem1',
+      render: (sem1: string) => {
+        return (
+          <div>{sem1 ? sem1 : 2}</div>
+        )
+      }
 
     },
     {
       title: 'Số tiết HK2',
       dataIndex: 'sem2',
       key: 'sem2',
+      render: (sem2: string) => {
+        return (
+          <div>{sem2 ? sem2 : 2}</div>
+        )
+      }
 
     },
     {
@@ -146,16 +76,16 @@ const Subject = () => {
       render: () => {
         return (
           <div >
-            <IconEdit  onClick = {() => setIsModalVisible(true)} className='icon mr-24' />
-            <IconDelete  onClick = {() => setIsModalDelete(true)} className='icon' />
+            <IconEdit onClick={() => setIsModalVisible(true)} className='icon mr-24' />
+            <IconDelete onClick={() => setIsModalDelete(true)} className='icon' />
           </div>
         )
       }
     }
   ]
-  const [selectRow, setSelectRow] = useState<ISubject[]>([])
+  const [selectRow, setSelectRow] = useState<ILearning[]>([])
   const rowSelection = {
-    onChange: (selectedRowKeys: React.Key[], selectedRows: ISubject[]) => {
+    onChange: (selectedRowKeys: React.Key[], selectedRows: ILearning[]) => {
       setSelectRow(selectedRows)
     },
   };
@@ -182,10 +112,10 @@ const Subject = () => {
           </div>
         </Col>
         <Col style={{ display: 'flex', alignItems: 'center' }}>
-          <IconDelete className="icon mr-16 " onClick = {() => setIsModalDelete(true)}  style={{ color:`${selectRow.length > 0 ? '#FF7506' :'#C9C4C0'}`  }} />
+          <IconDelete className="icon mr-16 " onClick={() => setIsModalDelete(true)} style={{ color: `${selectRow.length > 0 ? '#FF7506' : '#C9C4C0'}` }} />
           <div className="border-left mr-16"></div>
           <Button variant="primary" icon="add"
-             onClick = {() => setIsModalVisible(true)}
+            onClick={() => setIsModalVisible(true)}
           >
             Thêm mới
           </Button>
@@ -204,7 +134,7 @@ const Subject = () => {
 
           <div className="table-content">
 
-            <Table rowSelection={{type:'checkbox', ...rowSelection  }} columns={columns} dataSource={data} showSorterTooltip={false} />
+            <Table rowSelection={{ type: 'checkbox', ...rowSelection }} columns={columns} dataSource={learningList} showSorterTooltip={false} />
 
           </div>
 
@@ -217,14 +147,14 @@ const Subject = () => {
       {isModalVisible === true ?
         (
           <ModalForm isModalVisible={isModalVisible} setIsModalVisible={setIsModalVisible}>
-            <FormSubject setIsModalVisible={setIsModalVisible}/>
+            <FormSubject setIsModalVisible={setIsModalVisible} />
           </ModalForm>
         ) : ''
       }
       {isModaldelete === true ?
         (
           <ModalForm isModalVisible={isModaldelete} setIsModalVisible={setIsModalDelete}>
-              <FormDeleteSchoolYear setIsModalDelete={setIsModalDelete} title="Xóa"/>
+            <FormDeleteSchoolYear setIsModalDelete={setIsModalDelete} title="Xóa" />
           </ModalForm>
         ) : ''
       }

@@ -7,18 +7,15 @@ import ModalForm from '../../../shared/component/Modal/Modal'
 import FormClass from './component/form/FormClass'
 import FormDeleteSchoolYear from '../SchoolYear/component/FormSchoolYear/FormDeleteSchoolYear'
 import FormExport from '../../../shared/component/Form/FormExport'
+import { ILearning } from '../../../core/enums/EnumsLearningType'
+import { ILearningProps } from '../Learning'
 
-export type EditProps = {
+export type EditProps ={
   setShowEdit: any,
 }
-export interface IClass {
-  key: number,
-  id: string,
-  name: string,
-  teacher: string,
+export type classProps = EditProps & ILearningProps
 
-}
-const Class = ({ setShowEdit }: EditProps) => {
+const Class = ({ setShowEdit, learningList }: classProps) => {
 
   const [isModalVisible, setIsModalVisible] = useState(false)
   const [isModaldelete, setIsModalDelete] = useState(false)
@@ -30,66 +27,7 @@ const Class = ({ setShowEdit }: EditProps) => {
 
   const { Search } = Input
   const { Option } = Select
-  const data: IClass[] = [
-    {
-      key: 1,
-      id: '2020-6A',
-      name: '6A ',
-      teacher: 'Trần Quốc Tuấn',
 
-
-    },
-    {
-      key: 2,
-      id: '2020-6B',
-      name: '6B',
-      teacher: 'Trần Quốc Tuấn',
-
-
-    },
-    {
-      key: 3,
-      id: '2020-6C',
-      name: '6C',
-      teacher: 'Trần Quốc Tuấn',
-
-    },
-    {
-      key: 4,
-      id: '2020-7A',
-      name: '7A ',
-      teacher: 'Trần Quốc Tuấn',
-
-
-    },
-    {
-      key: 5,
-      id: '2020-7B',
-      name: '7B',
-      teacher: 'Trần Quốc Tuấn',
-
-
-    },
-    {
-      key: 6,
-      id: '2020-8A',
-      name: '8A',
-      teacher: 'Trần Quốc Tuấn',
-
-    },
-    {
-      key: 7,
-      id: '2020-8B',
-      name: '8B ',
-      teacher: 'Trần Quốc Tuấn',
-    },
-    {
-      key: 8,
-      id: '2020-9A',
-      name: '9A',
-      teacher: 'Trần Quốc Tuấn',
-    },
-  ]
   const columns = [
 
     {
@@ -99,8 +37,8 @@ const Class = ({ setShowEdit }: EditProps) => {
           <IconSort />
         </div>),
       sorter: true,
-      dataIndex: 'id',
-      key: 'id',
+      dataIndex: 'idClass',
+      key: 'idClass',
     },
     {
       title: (
@@ -109,8 +47,8 @@ const Class = ({ setShowEdit }: EditProps) => {
           <IconSort />
         </div>),
       sorter: true,
-      dataIndex: 'name',
-      key: 'name',
+      dataIndex: 'nameClass',
+      key: 'nameClass',
     },
     {
       title: (
@@ -140,10 +78,10 @@ const Class = ({ setShowEdit }: EditProps) => {
   ]
 
   const rowSelection = {
-    onChange: (selectedRowKeys: React.Key[], selectedRows: IClass[]) => {
+    onChange: (selectedRowKeys: React.Key[], selectedRows: ILearning[]) => {
       console.log(`selectedRowKeys: ${selectedRowKeys}`, 'selectedRows: ', selectedRows);
     },
-    getCheckboxProps: (record: IClass) => ({
+    getCheckboxProps: (record: ILearning) => ({
       disabled: record.name === 'Disabled User', // Column configuration not to be checked
       name: record.name,
     }),
@@ -234,7 +172,7 @@ const Class = ({ setShowEdit }: EditProps) => {
 
           <div className="table-content">
 
-            <Table rowSelection={{ type: 'checkbox', ...rowSelection }} columns={columns} dataSource={data} showSorterTooltip={false} />
+            <Table rowSelection={{ type: 'checkbox', ...rowSelection }} columns={columns} dataSource={learningList} showSorterTooltip={false} />
 
           </div>
 

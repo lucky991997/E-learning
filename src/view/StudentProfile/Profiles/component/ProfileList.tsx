@@ -5,6 +5,7 @@ import FormDeleteMain from '../../../../shared/component/Form/FormDeleteMain'
 import { IconDelete, IconEye, IconSort, IconUpdate } from '../../../../shared/component/Icon/Icon'
 import ModalForm from '../../../../shared/component/Modal/Modal'
 import Status from '../../../../shared/component/status/Status'
+import { IStudent } from '../../StudentProfiles'
 import FormUpdateEvaluate from '../Form/FormUpdateBonus'
 import FormUpdateBonus from '../Form/FormUpdateBonus'
 import { FormUpdateClass, FormUpdateSchool } from '../Form/FormUpdateClass'
@@ -22,7 +23,7 @@ export interface IProfile {
   status: string,
 }
 
-const ProfileList = () => {
+const ProfileList = ({studentList}:IStudent) => {
   const [isModaldelete, setIsModalDelete] = useState(false)
   const [isUpdate, setIsUpdate] = useState(false)
   const [isUpdateAward, setIsUpdateAward] = useState(false)
@@ -32,94 +33,6 @@ const ProfileList = () => {
   const [isUpdateClass, setIsUpdateClass] = useState(false)
   const [isUpdateSchool, setIsUpdateSchool] = useState(false)
 
-  const data: IProfile[] = [
-    {
-      key: 1,
-      id: '2020-6A',
-      name: 'Nguyễn Văn A ',
-      birthday: '12/02/1998',
-      gender: 'Nam',
-      nation: 'Kinh',
-      class: '6A',
-      status: 'isStudy',
-    },
-    {
-      key: 2,
-      id: '2020-6B',
-      name: 'Nguyễn Văn B',
-      birthday: '12/02/1998',
-      gender: 'Nam',
-      nation: 'Kinh',
-      class: '6A',
-      status: 'isStudy',
-
-    },
-    {
-      key: 3,
-      id: '2020-6C',
-      name: 'Nguyễn Văn C',
-      birthday: '12/02/1998',
-      gender: 'Nam',
-      nation: 'Kinh',
-      class: '6A',
-      status: 'graduate',
-
-    },
-    {
-      key: 4,
-      id: '2020-7A',
-      name: 'Nguyễn Văn D',
-      birthday: '12/02/1998',
-      gender: 'Nam',
-      nation: 'Kinh',
-      class: '6A',
-      status: 'noStudy',
-
-    },
-    {
-      key: 5,
-      id: '2020-7B',
-      name: 'Nguyễn Văn E',
-      birthday: '12/02/1998',
-      gender: 'Nam',
-      nation: 'Kinh',
-      class: '6A',
-      status: 'noStudy',
-
-
-    },
-    {
-      key: 6,
-      id: '2020-8A',
-      name: 'Nguyễn Văn F',
-      birthday: '12/02/1998',
-      gender: 'Nam',
-      nation: 'Kinh',
-      class: '6A',
-      status: 'changSchool',
-
-    },
-    {
-      key: 7,
-      id: '2020-8B',
-      name: 'Nguyễn Văn G',
-      birthday: '12/02/1998',
-      gender: 'Nam',
-      nation: 'Kinh',
-      class: '6A',
-      status: 'changClass',
-    },
-    {
-      key: 8,
-      id: '2020-9A',
-      name: 'Nguyễn Văn I',
-      birthday: '12/02/1998',
-      gender: 'Nam',
-      nation: 'Kinh',
-      class: '6A',
-      status: 'graduate',
-    },
-  ]
   const handleUpdateAward = () => {
     setIsUpdateAward(true)
     setIsUpdate(false)
@@ -157,13 +70,18 @@ const ProfileList = () => {
     },
     {
       title: (
-        <div style={{ display: 'flex', alignItems: 'center', justifyContent: 'center ' }}>
+        <div style={{ display: 'flex', alignItems: 'center', justifyContent: 'flex-start ' , marginLeft: '20px'}}>
           Tên học viên
           <IconSort />
         </div>),
       sorter: true,
       dataIndex: 'name',
       key: 'name',
+      render: (name:string) => {
+        return (
+          <div style={{textAlign: 'left', marginLeft: '20px'}}>{name}</div>
+        )
+      }
     },
     {
       title: (
@@ -307,9 +225,10 @@ const ProfileList = () => {
 
       <div className="table-content">
         <Table
+         
           rowSelection={{ type: 'checkbox' }}
           showSorterTooltip={false} columns={columns}
-          dataSource={data}
+          dataSource={studentList}
           onRow={(r) => (
             { onClick: () => setRowKey(r.key), }
           )}
@@ -327,7 +246,7 @@ const ProfileList = () => {
       {isModaldelete === true ?
         (
           <ModalForm isModalVisible={isModaldelete} setIsModalVisible={setIsModalDelete}>
-            <FormDeleteMain data={data} setIsModalDelete={setIsModalDelete} />
+            <FormDeleteMain data={studentList} setIsModalDelete={setIsModalDelete} />
           </ModalForm>
         ) : ''
       }

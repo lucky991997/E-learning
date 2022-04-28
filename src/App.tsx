@@ -3,15 +3,17 @@ import './styles/index.scss'
 import './styles/main-styles/form-layout.scss'
 import Index from "./layout/Index";
 import { BrowserRouter } from "react-router-dom";
-import FormDetailExam from "./view/Examination/form/FormDetailExam";
-
+import { Provider } from "react-redux";
+import store from "./core";
+import "antd/dist/antd.css";
 
 function App() {
   return <>
-    <BrowserRouter>
-      <Index />
-    </BrowserRouter>
-
+    <Provider store={store}>
+      <BrowserRouter>
+        <Index />
+      </BrowserRouter>
+    </Provider>
   </>
 }
 

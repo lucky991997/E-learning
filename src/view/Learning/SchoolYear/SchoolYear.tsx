@@ -1,55 +1,15 @@
 import { Col, Input, Row, Table } from 'antd'
 import React, { useState } from 'react'
 
-import { FiEdit } from 'react-icons/fi'
-import { RiDeleteBinLine } from 'react-icons/ri'
 import Button from '../../../shared/component/Button/Button'
 import { IconDelete, IconEdit, IconSort } from '../../../shared/component/Icon/Icon'
 import ModalForm from '../../../shared/component/Modal/Modal'
+import { ILearningProps } from '../Learning'
 import FormAddSchoolYear from './component/FormSchoolYear/FormAddSchoolYear'
 import FormDeleteSchoolYear from './component/FormSchoolYear/FormDeleteSchoolYear'
 
 
-const SchoolYear = () => {
-  const data = [
-    {
-      key: 1,
-      schoolYear: '2020-2021',
-      startDate: '05/10/2020',
-      endDate: '05/10/2021',
-
-    },
-    {
-      key: 2,
-      schoolYear: '2019-2020',
-      startDate: '05/10/2020',
-      endDate: '05/10/2021',
-
-    },
-    {
-      key: 3,
-      schoolYear: '2018-2019',
-      startDate: '05/10/2020',
-      endDate: '05/10/2021',
-
-    },
-    {
-      key: 4,
-      schoolYear: '2020-2021',
-      startDate: '05/10/2020',
-      endDate: '05/10/2020',
-
-    },
-    {
-      key: 5,
-      schoolYear: '2020-2021',
-      startDate: '05/10/2020',
-      endDate: '05/10/2020',
-
-    },
-
-
-  ]
+const SchoolYear = ({learningList}:ILearningProps) => {
 
   const columns = [
     {
@@ -127,7 +87,7 @@ const SchoolYear = () => {
 
           <div className="table-content">
 
-            <Table columns={columns} dataSource={data} showSorterTooltip={false} />
+            <Table columns={columns} dataSource={learningList} showSorterTooltip={false} />
 
           </div>
 

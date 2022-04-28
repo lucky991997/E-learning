@@ -1,5 +1,5 @@
 import { Row, Select } from 'antd'
-import React, { useState } from 'react'
+import React, { useEffect, useState } from 'react'
 
 import '../../styles/view-styles/learning.scss'
 import '../../styles/main-styles/table-list.scss'
@@ -10,35 +10,49 @@ import PointType from './PointType/PointType'
 import SchoolYear from './SchoolYear/SchoolYear'
 import Subject from './Subject/Subject'
 import EditClass from './Class/component/Edit/EditClass'
+import { RootState } from '../../core'
+import { useDispatch, useSelector } from 'react-redux'
+import {getLearningList} from '../../core/action/LearningAction'
+import { ILearning } from '../../core/enums/EnumsLearningType'
 
+export interface ILearningProps {
+    learningList: ILearning[]
+}
 
 const Learning = () => {
+    const {learningList, pointList} = useSelector((state:RootState) => state.LearningReducer)
+    const dispatch = useDispatch()
+    console.log(learningList)
+    useEffect(() => {
+        //@ts-ignore
+        dispatch(getLearningList())
+    },[dispatch])
     const [showEdit, setShowEdit] = useState(true)
     const tableContent = [
         {
             name: 'Niên  Khóa',
-            component: <SchoolYear />,
+            component: <SchoolYear learningList={learningList}/>,
         },
         {
             name: 'Tổ - Bộ môn',
-            component: <Department />,
+            component: <Department learningList={learningList}/>,
         },
 
         {
             name: 'Khoa - Khối',
-            component: <DepartmentOfSubject />,
+            component: <DepartmentOfSubject  learningList={learningList}/>,
         },
         {
-            name: 'Môn học',
-            component: <Subject />,
+            name: 'Môn học', 
+            component: <Subject learningList={learningList}/>,
         },
         {
             name: 'Lớp học',
-            component: <Class setShowEdit={setShowEdit} />
+            component: <Class setShowEdit={setShowEdit} learningList={learningList} />
         },
         {
             name: 'Loại điểm',
-            component: <PointType />
+            component: <PointType learningList={learningList}/>
         }
 
 

@@ -12,6 +12,14 @@
     padding: 24px 64px;
   }
   &__date {
+    &-calendar {
+      padding: 24px 64px;
+      .ant-picker-content thead {
+        font-size: 20px; 
+       font-weight: 700 !important;
+      }
+    }
+   
     &__list {
       &-day {
         @include flex(center, center);

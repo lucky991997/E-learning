@@ -8,30 +8,14 @@ import ModalForm from '../../../shared/component/Modal/Modal'
 import FormAddChangeSchool from '../../StudentProfile/ChangeSchool/form/FormAddChangeSchool'
 import FormDeleteSchoolYear from '../SchoolYear/component/FormSchoolYear/FormDeleteSchoolYear'
 import FormDepartment from '../Department/form/FormDepartment'
-import CourseList from '../Department/component/CourseList'
+import { ILearningProps } from '../Learning'
 
 
-const DepartmentOfSubject = () => {
+const DepartmentOfSubject = ({learningList}:ILearningProps) => {
   const [isModalVisible, setIsModalVisible] = useState(false)
   const [isModaldelete,setIsModalDelete ] = useState(false)
   const [isModalList, setIsModalList] = useState(false)
-  const data = [
-    {
-      key: 1,
-      id: '09',
-      name: 'Khối 09',
-    },
-    {
-      key: 2,
-      id: '10',
-      name: 'Khối 10',
-    },
-    {
-      key: 3,
-      id: '11',
-      name: 'Khối 11',
-    },
-  ]
+ 
 
   const columns = [
     {
@@ -41,8 +25,8 @@ const DepartmentOfSubject = () => {
           <IconSort />
         </div>
       ),
-      dataIndex: 'id',
-      key: 'id',
+      dataIndex: 'idKhoi',
+      key: 'idKhoi',
       sorter: (a: any, b: any) => {
         console.log(a.key, b.key)
         return a.key - b.key
@@ -63,11 +47,11 @@ const DepartmentOfSubject = () => {
           <IconSort />
         </div>),
       sorter: true,
-      dataIndex: 'name',
-      key: 'name',
+      dataIndex: 'nameKhoi',
+      key: 'nameKhoi',
       render: (text: any) => {
         return (
-          <div style={{ textAlign: 'left' }}>
+          <div style={{ textAlign: 'left', marginLeft: '10px' }}>
             {text}
           </div>
         )
@@ -114,7 +98,7 @@ const DepartmentOfSubject = () => {
 
         <div className="table-content">
 
-          <Table columns={columns} dataSource={data} showSorterTooltip={false} />
+          <Table columns={columns} dataSource={learningList} showSorterTooltip={false} />
 
         </div>
     
