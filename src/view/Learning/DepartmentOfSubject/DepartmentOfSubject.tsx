@@ -9,6 +9,7 @@ import FormAddChangeSchool from '../../StudentProfile/ChangeSchool/form/FormAddC
 import FormDeleteSchoolYear from '../SchoolYear/component/FormSchoolYear/FormDeleteSchoolYear'
 import FormDepartment from '../Department/form/FormDepartment'
 import { ILearningProps } from '../Learning'
+import { pageSize } from '../../../layout/Index'
 
 
 const DepartmentOfSubject = ({learningList}:ILearningProps) => {
@@ -98,7 +99,7 @@ const DepartmentOfSubject = ({learningList}:ILearningProps) => {
 
         <div className="table-content">
 
-          <Table columns={columns} dataSource={learningList} showSorterTooltip={false} />
+          <Table pagination={{pageSize}} columns={columns} dataSource={learningList} showSorterTooltip={false} />
 
         </div>
     

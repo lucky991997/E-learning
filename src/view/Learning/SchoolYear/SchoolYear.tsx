@@ -7,7 +7,7 @@ import ModalForm from '../../../shared/component/Modal/Modal'
 import { ILearningProps } from '../Learning'
 import FormAddSchoolYear from './component/FormSchoolYear/FormAddSchoolYear'
 import FormDeleteSchoolYear from './component/FormSchoolYear/FormDeleteSchoolYear'
-
+import {pageSize} from '../../../layout/Index'
 
 const SchoolYear = ({learningList}:ILearningProps) => {
 
@@ -87,7 +87,7 @@ const SchoolYear = ({learningList}:ILearningProps) => {
 
           <div className="table-content">
 
-            <Table columns={columns} dataSource={learningList} showSorterTooltip={false} />
+            <Table pagination={{pageSize:pageSize}} columns={columns} dataSource={learningList} showSorterTooltip={false} />
 
           </div>
 

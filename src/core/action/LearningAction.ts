@@ -1,7 +1,7 @@
 import { ThunkAction } from "redux-thunk";
 import { RootState } from "../";
 import firebase, { dbLearning } from "../../config/ConfigFirebase";
-import { ILearning, IPoint, learningType } from "../enums/EnumsLearningType";
+import { ILearning, learningType } from "../enums/EnumsLearningType";
 import { Action } from "./ActionType";
 
 export const getLearningList = (): ThunkAction<
@@ -21,19 +21,16 @@ export const getLearningList = (): ThunkAction<
             const data = snapshot.docs.map((doc) => ({
               ...doc.data(),
             }));
-            const point = data.map((item) => ({...item.point}))
+           
             
             if (data.length > 0) {
                 const learningList = data as ILearning[];
-                const pointList = point as IPoint[]
+            
                 dispatch({
                   type: learningType.GET_LEARNING_LIST,
                   payload: learningList,
                 });
-                dispatch({
-                    type: learningType.GET_POINT_LIST,
-                    payload: pointList,
-                  });
+               
               }
           }
         );

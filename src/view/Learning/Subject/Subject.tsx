@@ -1,6 +1,7 @@
 import { Col, Input, Row, Select, Table } from 'antd'
 import React, { useState } from 'react'
 import { ILearning, ILearningState } from '../../../core/enums/EnumsLearningType'
+import { pageSize } from '../../../layout/Index'
 
 
 import Button from '../../../shared/component/Button/Button'
@@ -134,7 +135,7 @@ const Subject = ({ learningList }: ILearningProps) => {
 
           <div className="table-content">
 
-            <Table rowSelection={{ type: 'checkbox', ...rowSelection }} columns={columns} dataSource={learningList} showSorterTooltip={false} />
+            <Table pagination={{pageSize:pageSize}} rowSelection={{ type: 'checkbox', ...rowSelection }} columns={columns} dataSource={learningList} showSorterTooltip={false} />
 
           </div>
 

@@ -12,39 +12,39 @@ import Subject from './Subject/Subject'
 import EditClass from './Class/component/Edit/EditClass'
 import { RootState } from '../../core'
 import { useDispatch, useSelector } from 'react-redux'
-import {getLearningList} from '../../core/action/LearningAction'
+import { getLearningList } from '../../core/action/LearningAction'
 import { ILearning } from '../../core/enums/EnumsLearningType'
-
+import { pageSize } from '../../layout/Index'
 export interface ILearningProps {
     learningList: ILearning[]
 }
 
 const Learning = () => {
-    const {learningList, pointList} = useSelector((state:RootState) => state.LearningReducer)
+    const { learningList } = useSelector((state: RootState) => state.LearningReducer)
     const dispatch = useDispatch()
-    console.log(learningList)
+
     useEffect(() => {
         //@ts-ignore
         dispatch(getLearningList())
-    },[dispatch])
+    }, [dispatch])
     const [showEdit, setShowEdit] = useState(true)
     const tableContent = [
         {
             name: 'Niên  Khóa',
-            component: <SchoolYear learningList={learningList}/>,
+            component: <SchoolYear learningList={learningList} />,
         },
         {
             name: 'Tổ - Bộ môn',
-            component: <Department learningList={learningList}/>,
+            component: <Department learningList={learningList} />,
         },
 
         {
             name: 'Khoa - Khối',
-            component: <DepartmentOfSubject  learningList={learningList}/>,
+            component: <DepartmentOfSubject learningList={learningList} />,
         },
         {
-            name: 'Môn học', 
-            component: <Subject learningList={learningList}/>,
+            name: 'Môn học',
+            component: <Subject learningList={learningList} />,
         },
         {
             name: 'Lớp học',
@@ -52,7 +52,7 @@ const Learning = () => {
         },
         {
             name: 'Loại điểm',
-            component: <PointType learningList={learningList}/>
+            component: <PointType />
         }
 
 
@@ -99,7 +99,7 @@ const Learning = () => {
                                 {
                                     tableContent.map((item, index) => (
                                         <div key={index} className={`tab-control__content ${activeTableContent(index)}`} onClick={() => handleActive(index)}>
-                                            <h3 className="title-18" style={{ color: '#000', display:'flex' }}>{item.name}</h3>
+                                            <h3 className="title-18" style={{ color: '#000', display: 'flex' }}>{item.name}</h3>
                                         </div>
                                     ))
                                 }
@@ -118,7 +118,7 @@ const Learning = () => {
                                 <div className="learning-title__show-value">
                                     <h3 className="title-16">
                                         Hiển thị
-                                        <input value="8" onChange={(e) => e.target.value} />
+                                        <input value={pageSize} onChange={(e) => e.target.value} />
                                         hàng trong mỗi trang
                                     </h3>
                                 </div>
@@ -127,7 +127,7 @@ const Learning = () => {
                         </div>
                     </>
                 ) : (
-                    <EditClass setShowEdit={setShowEdit}/>
+                    <EditClass setShowEdit={setShowEdit} />
                 )
             }
 

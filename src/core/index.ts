@@ -3,10 +3,14 @@ import thunk from 'redux-thunk';
 
 import StudentReducer from './reducers/StudentReducer';
 import LearningReducer from './reducers/LearningReducer';
+import TeacherReducer from './reducers/TeacherReducer';
+import PointReducer from './reducers/PointReducer';
 
 const rootReducer = combineReducers({
     StudentReducer,
     LearningReducer,
+    TeacherReducer,
+    PointReducer,
 })
 
 

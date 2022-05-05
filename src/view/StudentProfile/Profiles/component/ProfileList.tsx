@@ -142,7 +142,7 @@ const ProfileList = ({studentList}:IStudent) => {
           case 'changClass':
             return <Status variant='coming'>Đã chuyển lớp</Status>
           case 'noStudy':
-            return <Status styles={{ width: '127px' }} variant='end'>Đả thôi học</Status>
+            return <Status styles={{ minWidth: '130px' }} variant='end'>Đả thôi học</Status>
           case 'graduate':
             return <Status variant='graduate'>Đã tốt nghiệp</Status>
           default:

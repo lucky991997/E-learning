@@ -9,6 +9,7 @@ import FormDeleteSchoolYear from '../SchoolYear/component/FormSchoolYear/FormDel
 import FormExport from '../../../shared/component/Form/FormExport'
 import { ILearning } from '../../../core/enums/EnumsLearningType'
 import { ILearningProps } from '../Learning'
+import { pageSize } from '../../../layout/Index'
 
 export type EditProps ={
   setShowEdit: any,
@@ -172,7 +173,7 @@ const Class = ({ setShowEdit, learningList }: classProps) => {
 
           <div className="table-content">
 
-            <Table rowSelection={{ type: 'checkbox', ...rowSelection }} columns={columns} dataSource={learningList} showSorterTooltip={false} />
+            <Table pagination={{pageSize:pageSize}} rowSelection={{ type: 'checkbox', ...rowSelection }} columns={columns} dataSource={learningList} showSorterTooltip={false} />
 
           </div>
 

@@ -6,186 +6,44 @@ import Button from '../../../shared/component/Button/Button'
 import FormDeleteMain from '../../../shared/component/Form/FormDeleteMain'
 import ModalForm from '../../../shared/component/Modal/Modal'
 import FormPoint from './component/form/FormPoint'
-import { ILearningProps } from '../Learning'
-import { ILearning, IPoint } from '../../../core/enums/EnumsLearningType'
+import { useDispatch, useSelector } from 'react-redux'
+import { RootState } from '../../../core'
+import {  getPointList } from '../../../core/action/PointAction'
+import FormUpdatePoint from './component/form/FormUpdatePoint'
+import { pageSize } from '../../../layout/Index'
 
 
-const PointType = ({ learningList }: ILearningProps) => {
+
+const PointType = () => {
   const [isModalVisible, setIsModalVisible] = useState(false)
+  const [isModalUpdateVisible, setIsModalUpdateVisible] = useState(false)
   const [isModaldelete, setIsModalDelete] = useState(false)
-  const data = [
-    {
-      key: 1,
-      pointType: 'Kiểm tra miệng',
-      heSo: 1,
-      sem1: 3,
-      sem2: 3,
-    },
-    {
-      key: 2,
-      pointType: 'Kiểm tra 15 phút',
-      heSo: 1,
-      sem1: 2,
-      sem2: 2,
-    },
-    {
-      key: 3,
-      pointType: 'Kiểm tra 45 phút',
-      heSo: 2,
-      sem1: 2,
-      sem2: 2,
-    },
-    {
-      key: 4,
-      pointType: 'Kiểm tra giữa kỳ',
-      heSo: 2,
-      sem1: 1,
-      sem2: 1,
-    },
-  ]
+  const dispatch = useDispatch()
+  const { pointList, point } = useSelector((state: RootState) => state.PointReducer)
+  const [idPoint, setIdPoint] = useState<string>('')
 
+  const pointLength = pointList.length
 
+  useEffect(() => {
+    //@ts-ignore
+    dispatch(getPointList())
+    //@ts-ignore
 
-  // const columns = [
-  //   {
-  //     title: (
-  //       <div style={{ display: 'flex', alignItems: 'center', justifyContent: 'flex-start ', marginLeft: '24px' }}>
-  //         Loại điểm
-  //         <IconSort />
-  //       </div>
-  //     ),
-  //     dataIndex: 'point',
-  //     key: 'point',
-  //     sorter: (a: any, b: any) => {
-  //       console.log(a.key, b.key)
-  //       return a.key - b.key
-  //     },
-  //     render: (point: IPoint[]) => {
-  //       return (
+  }, [dispatch, pointLength, pointList]);
+  
 
-  //         <div style={{ textAlign: 'left', marginLeft: '24px' }}>
-  //           {point && point.map((item) => (<h3>{item.pointType}</h3>))}
-  //         </div>
-  //       )
-  //     }
-  //   },
-  //   {
-  //     title: (
-  //       <div style={{ display: 'flex', alignItems: 'center', justifyContent: 'flex-start ', marginLeft: '24px' }}>
-  //         hệ số
-  //         <IconSort />
-  //       </div>
-  //     ),
-  //     dataIndex: 'point',
-  //     key: 'point',
-  //     sorter: (a: any, b: any) => {
-  //       console.log(a.key, b.key)
-  //       return a.key - b.key
-  //     },
-  //     render: (point: IPoint[]) => {
-  //       return (
+  const handleDelete = (id: string) => {
+    setIsModalDelete(true)
+    setIdPoint(id)
+  }
+  const handleUpdate = (id: string) => {
 
-  //         <div style={{ textAlign: 'left', marginLeft: '24px' }}>
-  //           {point && point.map((item) => (<h3>{item.heSo}</h3>))}
-  //         </div>
-  //       )
-  //     }
-  //   },
+    setIsModalUpdateVisible(true)
+    setIdPoint(id)
+    
 
-  //   {
-  //     title: (
-  //       <div style={{ display: 'flex', alignItems: 'center', justifyContent: 'flex-start ' }}>
-  //         Hệ số
-  //         <IconSort />
-  //       </div>),
-  //     sorter: true,
-  //     dataIndex: 'heSo',
-  //     key: 'heSo',
-  //     render: (text: any) => {
-  //       return (
-  //         <div style={{ textAlign: 'left' }}>
-  //           {text}
-  //         </div>
-  //       )
-  //     }
-  //   },
-  //   {
+  }
 
-  //   //   title: (
-  //   //     <div className="border-table-row">
-  //   //       Số cột điểm tối thiểu
-  //   //     </div>
-  //   //   ),
-  //   //   width: 305,
-  //   //   height: 80,
-  //   //   children: [
-  //   //     {
-  //   //       width: 150,
-  //   //       title: 'Học kì 1',
-  //   //       dataIndex: 'point',
-  //   //       key: 'point',
-  //   //       render: (point: IPoint[]) => {
-  //   //         return (
-
-  //   //           <div style={{ textAlign: 'left', marginLeft: '24px' }}>
-  //   //             {point && point.map((item) => (<h3>{item.sem1}</h3>))}
-  //   //           </div>
-  //   //         )
-  //   //       }
-  //   //     },
-  //   //     {
-  //   //       width: 150,
-  //   //       title: 'Học kì 2',
-  //   //       dataIndex: 'point',
-  //   //       key: 'point',
-  //   //       render: (point: IPoint[]) => {
-  //   //         return (
-
-  //   //           <div style={{ textAlign: 'left', marginLeft: '24px' }}>
-  //   //             {point && point.map((item) => (<h3>{item.sem2}</h3>))}
-  //   //           </div>
-  //   //         )
-  //   //       }
-  //   //     },
-  //   //   ],
-  //   // },
-  //   // {
-  //   //   title: '',
-  //   //   dataIndex: 'point',
-  //   //   key: 'point',
-
-  //   //   render: (point: IPoint[]) => {
-  //   //     return (
-
-  //   //       <div style={{ textAlign: 'left', marginLeft: '24px' }}>
-  //   //         {point && point.map((item) => (
-  //   //           <h3>
-  //   //             <IconEdit onClick={() => setIsModalVisible(true)} className='icon mr-24' />
-  //   //             <IconDelete onClick={() => setIsModalDelete(true)} className='icon' />
-
-  //   //           </h3>
-  //   //         ))}
-  //   //       </div>
-  //   //     )
-  //   //   }
-  //   // },
-  //   // {
-  //   //   title: '',
-  //   //   dataIndex: 'point',
-  //   //   key: 'point',
-  //   //   render: () => {
-  //   //     return (
-
-  //   //       <div >
-
-  //   //         <IconEdit onClick={() => setIsModalVisible(true)} className='icon mr-24' />
-  //   //         <IconDelete onClick={() => setIsModalDelete(true)} className='icon' />
-
-  //   //       </div>
-  //   //     )
-  //   //   }
-  //   // }
-  // ]
   const columns = [
     {
       title: (
@@ -194,8 +52,8 @@ const PointType = ({ learningList }: ILearningProps) => {
           <IconSort />
         </div>
       ),
-      dataIndex: 'pointType',
-      key: 'pointType',
+      dataIndex: 'pointTyp',
+      key: 'pointTyp',
       sorter: (a: any, b: any) => {
         console.log(a.key, b.key)
         return a.key - b.key
@@ -252,15 +110,15 @@ const PointType = ({ learningList }: ILearningProps) => {
     },
     {
       title: '',
-      dataIndex: 'subjectInfor',
-      key: 'subjectInfor',
-      render: () => {
+      dataIndex: 'id',
+      key: 'id',
+      render: (id: string) => {
         return (
           <div >
-            
-            <IconEdit  onClick = {() => setIsModalVisible(true)} className='icon mr-24' />
-            <IconDelete  onClick = {() => setIsModalDelete(true)} className='icon' />
-          
+
+            <IconEdit onClick={() => handleUpdate(id)} className='icon mr-24' />
+            <IconDelete onClick={() => handleDelete(id)} className='icon' />
+
           </div>
         )
       }
@@ -293,14 +151,18 @@ const PointType = ({ learningList }: ILearningProps) => {
 
           <div className="table-content">
 
-            <Table columns={columns} dataSource={data} showSorterTooltip={false} />
+            <Table 
+            rowKey={`id`} 
+            columns={columns} 
+            dataSource={pointList} 
+            showSorterTooltip={false} 
+            pagination={{pageSize}}
+            />
 
           </div>
 
         </div>
       </Row>
-
-
       {isModalVisible === true ?
         (
           <ModalForm isModalVisible={isModalVisible} setIsModalVisible={setIsModalVisible}>
@@ -308,10 +170,18 @@ const PointType = ({ learningList }: ILearningProps) => {
           </ModalForm>
         ) : ''
       }
+
+      {isModalUpdateVisible === true ?
+        (
+          <ModalForm isModalVisible={isModalUpdateVisible} setIsModalVisible={setIsModalUpdateVisible}>
+            <FormUpdatePoint pointList={pointList}  setIsModalVisible={setIsModalUpdateVisible} id={idPoint} />
+          </ModalForm>
+        ) : ''
+      }
       {isModaldelete === true ?
         (
           <ModalForm isModalVisible={isModaldelete} setIsModalVisible={setIsModalDelete}>
-            <FormDeleteMain setIsModalDelete={setIsModalDelete} />
+            <FormDeleteMain setIsModalDelete={setIsModalDelete} id={idPoint} />
           </ModalForm>
         ) : ''
       }

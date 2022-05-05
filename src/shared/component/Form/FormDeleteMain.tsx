@@ -1,4 +1,6 @@
 import React from "react";
+import { useDispatch } from "react-redux";
+import { deletePoint } from "../../../core/action/PointAction";
 import { IProfile } from "../../../view/StudentProfile/Profiles/component/ProfileList";
 import Button from "../Button/Button";
 
@@ -9,13 +11,16 @@ import "./form-main.scss";
 type IFormDeleteProps = {
   setIsModalDelete: any
   data?: IProfile[]
+  id?: string,
 }
-const FormDeleteMain = ({ setIsModalDelete, data }: IFormDeleteProps) => {
+const FormDeleteMain = ({ setIsModalDelete, id }: IFormDeleteProps) => {
+  const dispatch = useDispatch()
   const handleDelete = () => {
-    if (data) {
-      console.log(data.pop())
-    }
+    //@ts-ignore
+    dispatch(deletePoint(id))
+    setIsModalDelete(false)
   }
+  
   return (
     <div className="form-layout form-delete-main">
       <h2 className="title-28 mb-16" style={{ justifyContent: "center" }}>
@@ -36,7 +41,7 @@ const FormDeleteMain = ({ setIsModalDelete, data }: IFormDeleteProps) => {
         >
           Hủy
         </Button>
-        <Button variant="primary" onClick={() => handleDelete()}>
+        <Button variant="primary" onClick={() => handleDelete()} >
           Xóa
         </Button>
       </div>

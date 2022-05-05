@@ -1,5 +1,5 @@
 import { Select } from 'antd'
-import React, { useEffect } from 'react'
+
 
 import ChangeSchool from './ChangeSchool/ChangeSchool'
 import Profiles from './Profiles/Profiles'

@@ -1,12 +1,17 @@
 import { Input, Select, Table } from 'antd'
-import React, { useState } from 'react'
+import React, { useEffect, useState } from 'react'
+import { useDispatch } from 'react-redux'
+import { useSelector } from 'react-redux'
 import { Link } from 'react-router-dom'
+import { RootState } from '../../../core'
+import { getTeacherList } from '../../../core/action/TeacherAction'
+import { pageSize } from '../../../layout/Index'
 import Button from '../../../shared/component/Button/Button'
 import FormDeleteMain from '../../../shared/component/Form/FormDeleteMain'
-import { IconArrowRight, IconDelete, IconEdit, IconEye, IconSort, IconUpdate } from '../../../shared/component/Icon/Icon'
+import { IconArrowRight, IconDelete, IconEye, IconSort, IconUpdate } from '../../../shared/component/Icon/Icon'
 import ModalForm from '../../../shared/component/Modal/Modal'
 import Status from '../../../shared/component/status/Status'
-import FormAddContact from './component/Form/FormAddContact'
+
 import FormTeacherProfile from './component/Form/FormTeacherProfile'
 
 const Profile = () => {
@@ -16,94 +21,14 @@ const Profile = () => {
     const [isModalUpdateOff, setIssModalUpdateOff] = useState(false)
     const [isModalUpdateOffWork, setIsModalUpdateOffWork] = useState(false)
     const [rowKey, setRowKey] = useState<number>()
-    const data = [
-        {
-            key: 1,
-            id: '2020-6A',
-            name: 'Nguyễn Văn A ',
-            birthday: '12/02/1998',
-            gender: 'Nam',
-            nation: 'Kinh',
-            chucvu: 'Giáo viên',
-            status: 'isStudy',
-        },
-        {
-            key: 2,
-            id: '2020-6B',
-            name: 'Nguyễn Văn B',
-            birthday: '12/02/1998',
-            gender: 'Nam',
-            nation: 'Kinh',
-            chucvu: 'Giáo viên',
-            status: 'isStudy',
-
-        },
-        {
-            key: 3,
-            id: '2020-6C',
-            name: 'Nguyễn Văn C',
-            birthday: '12/02/1998',
-            gender: 'Nam',
-            nation: 'Kinh',
-            chucvu: 'Giáo viên',
-            status: 'graduate',
-
-        },
-        {
-            key: 4,
-            id: '2020-7A',
-            name: 'Nguyễn Văn D',
-            birthday: '12/02/1998',
-            gender: 'Nam',
-            nation: 'Kinh',
-            chucvu: 'Giáo viên',
-            status: 'noStudy',
-
-        },
-        {
-            key: 5,
-            id: '2020-7B',
-            name: 'Nguyễn Văn E',
-            birthday: '12/02/1998',
-            gender: 'Nam',
-            nation: 'Kinh',
-            chucvu: 'Giáo viên',
-            status: 'noStudy',
-
-
-        },
-        {
-            key: 6,
-            id: '2020-8A',
-            name: 'Nguyễn Văn F',
-            birthday: '12/02/1998',
-            gender: 'Nam',
-            nation: 'Kinh',
-            chucvu: 'Giáo viên',
-            status: 'changSchool',
-
-        },
-        {
-            key: 7,
-            id: '2020-8B',
-            name: 'Nguyễn Văn G',
-            birthday: '12/02/1998',
-            gender: 'Nam',
-            nation: 'Kinh',
-            chucvu: 'Giáo viên',
-            status: 'changClass',
-        },
-        {
-            key: 8,
-            id: '2020-9A',
-            name: 'Nguyễn Văn I',
-            birthday: '12/02/1998',
-            gender: 'Nam',
-            nation: 'Kinh',
-            chucvu: 'Giáo viên',
-            status: 'graduate',
-        },
-    ]
+    const { teacherList } = useSelector((state:RootState) => state.TeacherReducer)
+    const dispatch = useDispatch()
+   
+    useEffect(() => {
+        //@ts-ignore
+        dispatch(getTeacherList())
+    },[dispatch])
+  
     const handleUpdateRetirement = () => {
         setIsModalUpdateRetirement(true)
         setIsUpdate(false)
@@ -264,10 +189,10 @@ const Profile = () => {
     const { Option } = Select
    
 
-    const handleHideUpdate = (key: number) => {
-        setRowKey(key)
-        setIsUpdate(true)
-    }
+    // const handleHideUpdate = (key: number) => {
+    //     setRowKey(key)
+    //     setIsUpdate(true)
+    // }
     return (
         <div className="teacher">
             <div className="teacher__title" style={{ marginBottom: '42px' }}>
@@ -301,10 +226,11 @@ const Profile = () => {
 
                 <div className="table-content">
                     <Table
+                        pagination={{pageSize: pageSize}}
                         rowSelection={{ type: 'checkbox' }}
                         showSorterTooltip={false}
                         columns={columns}
-                        dataSource={data}
+                        dataSource={teacherList}
                         onRow={(r) => (
                             { onClick: () => setRowKey(r.key), }
                         )}
@@ -313,7 +239,7 @@ const Profile = () => {
                 <div className="title__show-value" style={{ bottom: 0 }}>
                     <h3 className="title-16">
                         Hiển thị
-                        <input defaultValue="8" onChange={(e) => e.target.value} />
+                        <input value={pageSize} onChange={(e) => e.target.value} />
                         hàng trong mỗi trang
                     </h3>
                 </div>
