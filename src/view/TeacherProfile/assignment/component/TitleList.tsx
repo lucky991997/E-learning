@@ -1,35 +1,36 @@
-import { Row, Table } from 'antd'
+import { Table } from 'antd'
 import React, { useState } from 'react'
+
 import { IconDelete, IconEdit } from '../../../../shared/component/Icon/Icon'
 import ModalForm from '../../../../shared/component/Modal/Modal'
 import FormDeleteSchoolYear from '../../../Learning/SchoolYear/component/FormSchoolYear/FormDeleteSchoolYear'
 
 const TitleList = () => {
     const [isModaldelete, setIsModalDelete] = useState(false)
- 
+
 
     const data = [
         {
             key: 1,
-            name:'Lorem ipsum dolor sit amet',
+            name: 'Lorem ipsum dolor sit amet',
             description: 'Nullam malesuada posuere justo, in dictum ipsum',
             endDate: '01/01/2190',
         },
         {
             key: 2,
-            name:'Lorem ipsum dolor sit amet',
+            name: 'Lorem ipsum dolor sit amet',
             description: 'Nullam malesuada posuere justo, in dictum ipsum',
             endDate: '01/01/2190',
         },
         {
             key: 3,
-            name:'Lorem ipsum dolor sit amet',
+            name: 'Lorem ipsum dolor sit amet',
             description: 'Nullam malesuada posuere justo, in dictum ipsum',
             endDate: '01/01/2190',
         },
         {
             key: 4,
-            name:'Lorem ipsum dolor sit amet',
+            name: 'Lorem ipsum dolor sit amet',
             description: 'Nullam malesuada posuere justo, in dictum ipsum',
             endDate: '01/01/2190',
         },
@@ -57,7 +58,7 @@ const TitleList = () => {
                 <h3 className="title-22">Danh sách chủ đề</h3>
                 <div className="title-list__title__event">
                     <IconEdit className="icon mr-32" />
-                    <IconDelete  onClick={() => setIsModalDelete(true)} className="icon" />
+                    <IconDelete onClick={() => setIsModalDelete(true)} className="icon" />
                 </div>
             </div>
             <div className="title-list__info mb-16">
@@ -79,12 +80,12 @@ const TitleList = () => {
                 <Table columns={columns} dataSource={data} pagination={false} />
             </div>
             {isModaldelete === true ?
-        (
-          <ModalForm isModalVisible={isModaldelete} setIsModalVisible={setIsModalDelete}>
-            <FormDeleteSchoolYear setIsModalDelete={setIsModalDelete} title="Phân công" />
-          </ModalForm>
-        ) : ''
-      }
+                (
+                    <ModalForm isModalVisible={isModaldelete} setIsModalVisible={setIsModalDelete}>
+                        <FormDeleteSchoolYear setIsModalDelete={setIsModalDelete} title="Phân công" />
+                    </ModalForm>
+                ) : ''
+            }
         </>
 
     )

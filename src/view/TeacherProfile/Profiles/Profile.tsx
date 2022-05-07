@@ -5,7 +5,6 @@ import { useSelector } from 'react-redux'
 import { Link } from 'react-router-dom'
 import { RootState } from '../../../core'
 import { getTeacherList } from '../../../core/action/TeacherAction'
-import { pageSize } from '../../../layout/Index'
 import Button from '../../../shared/component/Button/Button'
 import FormDeleteMain from '../../../shared/component/Form/FormDeleteMain'
 import { IconArrowRight, IconDelete, IconEye, IconSort, IconUpdate } from '../../../shared/component/Icon/Icon'
@@ -15,25 +14,27 @@ import Status from '../../../shared/component/status/Status'
 import FormTeacherProfile from './component/Form/FormTeacherProfile'
 
 const Profile = () => {
+    const { pageSizeConfig } = useSelector((state: RootState) => state.ConfigPageReducer)
+
     const [isModalDelete, setIsModalDelete] = useState(false)
     const [isUpdate, setIsUpdate] = useState(false)
     const [isModalUpdateRetirement, setIsModalUpdateRetirement] = useState(false)
     const [isModalUpdateOff, setIssModalUpdateOff] = useState(false)
     const [isModalUpdateOffWork, setIsModalUpdateOffWork] = useState(false)
     const [rowKey, setRowKey] = useState<number>()
-    const { teacherList } = useSelector((state:RootState) => state.TeacherReducer)
+    const { teacherList } = useSelector((state: RootState) => state.TeacherReducer)
     const dispatch = useDispatch()
-   
+
     useEffect(() => {
         //@ts-ignore
         dispatch(getTeacherList())
-    },[dispatch])
-  
+    }, [dispatch])
+
     const handleUpdateRetirement = () => {
         setIsModalUpdateRetirement(true)
         setIsUpdate(false)
     }
-    const handleUpdateOff= () => {
+    const handleUpdateOff = () => {
         setIssModalUpdateOff(true)
         setIsUpdate(false)
     }
@@ -41,8 +42,8 @@ const Profile = () => {
         setIsModalUpdateOffWork(true)
         setIsUpdate(false)
     }
-    const handleShowIsUpdate = (key:number) => {
-        if(key === rowKey) {
+    const handleShowIsUpdate = (key: number) => {
+        if (key === rowKey) {
             setIsUpdate(false)
         }
         else {
@@ -155,7 +156,7 @@ const Profile = () => {
 
                             {
                                 key === rowKey && isUpdate === true ? (
-                                    <div className="profile-update" style={{height:'140px'}}>
+                                    <div className="profile-update" style={{ height: '140px' }}>
                                         <h3 className="title-16" onClick={() => setIsUpdate(false)}>Sửa hồ sơ</h3>
                                         <div className="profile-update__border-b"></div>
 
@@ -172,7 +173,7 @@ const Profile = () => {
                                         <h3 className="title-16"
                                             onClick={() => handleUpdateReverse()}
                                         >   Cập nhật tạm nghỉ</h3>
-                                       
+
 
 
                                     </div>
@@ -187,12 +188,7 @@ const Profile = () => {
     ]
     const { Search } = Input
     const { Option } = Select
-   
 
-    // const handleHideUpdate = (key: number) => {
-    //     setRowKey(key)
-    //     setIsUpdate(true)
-    // }
     return (
         <div className="teacher">
             <div className="teacher__title" style={{ marginBottom: '42px' }}>
@@ -226,7 +222,7 @@ const Profile = () => {
 
                 <div className="table-content">
                     <Table
-                        pagination={{pageSize: pageSize}}
+                        pagination={{ pageSize: pageSizeConfig }}
                         rowSelection={{ type: 'checkbox' }}
                         showSorterTooltip={false}
                         columns={columns}
@@ -239,7 +235,7 @@ const Profile = () => {
                 <div className="title__show-value" style={{ bottom: 0 }}>
                     <h3 className="title-16">
                         Hiển thị
-                        <input value={pageSize} onChange={(e) => e.target.value} />
+                        <input value={pageSizeConfig} onChange={(e) => e.target.value} />
                         hàng trong mỗi trang
                     </h3>
                 </div>
@@ -254,21 +250,21 @@ const Profile = () => {
             {isModalUpdateRetirement === true ?
                 (
                     <ModalForm isModalVisible={isModalUpdateRetirement} setIsModalVisible={setIsModalUpdateRetirement}>
-                        <FormTeacherProfile setIsModalVisible={setIsModalUpdateRetirement} title="Nghỉ hưu"/>
+                        <FormTeacherProfile setIsModalVisible={setIsModalUpdateRetirement} title="Nghỉ hưu" />
                     </ModalForm>
                 ) : ''
             }
-             {isModalUpdateOff === true ?
+            {isModalUpdateOff === true ?
                 (
                     <ModalForm isModalVisible={isModalUpdateOff} setIsModalVisible={setIssModalUpdateOff}>
-                        <FormTeacherProfile setIsModalVisible={setIssModalUpdateOff} title="Nghỉ việc"/>
+                        <FormTeacherProfile setIsModalVisible={setIssModalUpdateOff} title="Nghỉ việc" />
                     </ModalForm>
                 ) : ''
             }
-             {isModalUpdateOffWork === true ?
+            {isModalUpdateOffWork === true ?
                 (
                     <ModalForm isModalVisible={isModalUpdateOffWork} setIsModalVisible={setIsModalUpdateOffWork}>
-                        <FormTeacherProfile setIsModalVisible={setIsModalUpdateOffWork} title="Tạm nghỉ"/>
+                        <FormTeacherProfile setIsModalVisible={setIsModalUpdateOffWork} title="Tạm nghỉ" />
                     </ModalForm>
                 ) : ''
             }

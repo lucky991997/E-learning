@@ -4,10 +4,14 @@ import { Link } from 'react-router-dom'
 import {IconEye, IconSort } from '../../../../shared/component/Icon/Icon'
 import ModalForm from '../../../../shared/component/Modal/Modal'
 import { IStudent } from '../../StudentProfiles'
+import { IProfileStudents } from '../Profiles'
+import { StudentProps } from './ProfileList'
 
 
 
-const AwardList = ({studentList}: IStudent) => {
+
+
+const AwardList = ({studentList, pageSizeConfig}: StudentProps) => {
   const [isModalVisible, setIsModalVisible] = useState()
 
   const handleList = () => {
@@ -109,12 +113,12 @@ const AwardList = ({studentList}: IStudent) => {
       </div>
 
       <div className="table-content">
-        <Table showSorterTooltip={false} columns={columns} dataSource={studentList} />
+        <Table pagination={{pageSize: pageSizeConfig}} showSorterTooltip={false} columns={columns} dataSource={studentList} />
       </div>
       <div className="title__show-value" style={{ bottom: 0 }}>
         <h3 className="title-16">
           Hiển thị
-          <input defaultValue="8" onChange={(e) => e.target.value} />
+          <input value={pageSizeConfig} onChange={(e) => console.log(e)} />
           hàng trong mỗi trang
         </h3>
       </div>

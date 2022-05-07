@@ -64,8 +64,6 @@ const Setting = () => {
   ]
   const [itemIndex, setItemIndex] = useState<number>(0)
 
-  console.log(itemIndex)
-
   const handleShowComponent = (index: number) => {
     setItemIndex(index)
     setShowComponent(false)

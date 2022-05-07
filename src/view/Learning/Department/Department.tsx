@@ -12,7 +12,7 @@ import { ILearningProps } from '../Learning'
 import { pageSize } from '../../../layout/Index'
 
 
-const Department = ({learningList}:ILearningProps) => {
+const Department = ({learningList, pageSizeConfig}:ILearningProps) => {
   const [isModalVisible, setIsModalVisible] = useState(false)
   const [isModaldelete, setIsModalDelete] = useState(false)
   const [isModalList, setIsModalList] = useState(false)
@@ -93,7 +93,7 @@ const Department = ({learningList}:ILearningProps) => {
 
         <div className="table-content">
 
-          <Table pagination={{pageSize:pageSize}} columns={columns} dataSource={learningList} showSorterTooltip={false} />
+          <Table pagination={{pageSize:pageSizeConfig}} columns={columns} dataSource={learningList} showSorterTooltip={false} />
 
         </div>
 

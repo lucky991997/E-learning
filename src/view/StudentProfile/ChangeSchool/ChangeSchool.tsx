@@ -6,7 +6,10 @@ import { IconArrowRight, IconEdit, IconEye, IconSort } from '../../../shared/com
 import ModalForm from '../../../shared/component/Modal/Modal'
 import FormAddChangeSchool from './form/FormAddChangeSchool'
 
-const ChangeSchool = () => {
+type ChangeSchoolProfiles = {
+  pageSizeConfig?:number,
+}
+const ChangeSchool = ({pageSizeConfig}: ChangeSchoolProfiles) => {
   const [isModalVisible, setIsModalVisible] = useState(false)
   const { Option } = Select
   const { Search } = Input
@@ -222,13 +225,13 @@ const ChangeSchool = () => {
         </div>
         <div className="table-content">
 
-          <Table columns={columns} dataSource={data} />
+          <Table pagination={{pageSize: pageSizeConfig}}columns={columns} dataSource={data} />
         </div>
 
         <div className="title__show-value" style={{ bottom: 0 }}>
           <h3 className="title-16">
             Hiển thị
-            <input defaultValue="8" onChange={(e) => e.target.value} />
+            <input value={pageSizeConfig} onChange={(e) => console.log(e)} />
             hàng trong mỗi trang
           </h3>
         </div>

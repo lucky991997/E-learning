@@ -11,12 +11,12 @@ import { ILearning } from '../../../core/enums/EnumsLearningType'
 import { ILearningProps } from '../Learning'
 import { pageSize } from '../../../layout/Index'
 
-export type EditProps ={
+export type EditProps = {
   setShowEdit: any,
 }
 export type classProps = EditProps & ILearningProps
 
-const Class = ({ setShowEdit, learningList }: classProps) => {
+const Class = ({ setShowEdit, learningList, pageSizeConfig }: classProps) => {
 
   const [isModalVisible, setIsModalVisible] = useState(false)
   const [isModaldelete, setIsModalDelete] = useState(false)
@@ -114,7 +114,7 @@ const Class = ({ setShowEdit, learningList }: classProps) => {
           </div>
 
         </Col>
-        <Col style={{ display: 'flex', alignItems: 'center' , position: 'relative'}}>
+        <Col style={{ display: 'flex', alignItems: 'center', position: 'relative' }}>
           <IconDelete className="icon mr-16 " onClick={() => console.log(123)} style={{ color: '#C9C4C0' }} />
           <div className="border-left mr-16"></div>
           <Button variant="file" style={{ marginRight: '16px' }}>
@@ -127,9 +127,9 @@ const Class = ({ setShowEdit, learningList }: classProps) => {
           {
             showBtnAdd === true ? (
               <>
-               
+
                 <div className="modal-btn">
-                {/* <Modal
+                  {/* <Modal
                   visible={showBtnAdd}
                   footer={false}
                   closable={false}
@@ -146,11 +146,11 @@ const Class = ({ setShowEdit, learningList }: classProps) => {
                   </Button>
                   <Button variant="file"
                     onClick={() => handleShowAdd()}
-                    style={{opacity: 1}}
+                    style={{ opacity: 1 }}
                   >
                     Nhập thủ công
                   </Button>
-                {/* </Modal> */}
+                  {/* </Modal> */}
 
                 </div>
 
@@ -173,7 +173,7 @@ const Class = ({ setShowEdit, learningList }: classProps) => {
 
           <div className="table-content">
 
-            <Table pagination={{pageSize:pageSize}} rowSelection={{ type: 'checkbox', ...rowSelection }} columns={columns} dataSource={learningList} showSorterTooltip={false} />
+            <Table pagination={{ pageSize: pageSizeConfig }} rowSelection={{ type: 'checkbox', ...rowSelection }} columns={columns} dataSource={learningList} showSorterTooltip={false} />
 
           </div>
 

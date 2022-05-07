@@ -7,9 +7,10 @@ import ModalForm from '../../../shared/component/Modal/Modal'
 import { ILearningProps } from '../Learning'
 import FormAddSchoolYear from './component/FormSchoolYear/FormAddSchoolYear'
 import FormDeleteSchoolYear from './component/FormSchoolYear/FormDeleteSchoolYear'
-import {pageSize} from '../../../layout/Index'
+import { pageSize } from '../../../layout/Index'
+import Alert from '../../../shared/component/Alert/Alert'
 
-const SchoolYear = ({learningList}:ILearningProps) => {
+const SchoolYear = ({ learningList, pageSizeConfig }: ILearningProps) => {
 
   const columns = [
     {
@@ -62,7 +63,7 @@ const SchoolYear = ({learningList}:ILearningProps) => {
     }
   ]
   const [isModalVisible, setIsModalVisible] = useState(false)
-  const [isModaldelete,setIsModalDelete ] = useState(false)
+  const [isModaldelete, setIsModalDelete] = useState(false)
   const { Search } = Input
 
   return (
@@ -78,6 +79,7 @@ const SchoolYear = ({learningList}:ILearningProps) => {
         <div className="learning-title learning-content">
 
           <div className="title-content__search mb-24">
+            <Alert content='test' />
 
             <h3 className="title-22">Niên Khóa</h3>
 
@@ -87,7 +89,7 @@ const SchoolYear = ({learningList}:ILearningProps) => {
 
           <div className="table-content">
 
-            <Table pagination={{pageSize:pageSize}} columns={columns} dataSource={learningList} showSorterTooltip={false} />
+            <Table pagination={{ pageSize: pageSizeConfig }} columns={columns} dataSource={learningList} showSorterTooltip={false} />
 
           </div>
 
@@ -103,8 +105,8 @@ const SchoolYear = ({learningList}:ILearningProps) => {
       }
       {isModaldelete === true ?
         (
-          <ModalForm isModalVisible={isModaldelete} setIsModalVisible={setIsModalDelete} style={{width:'435px'}}>
-            <FormDeleteSchoolYear setIsModalDelete={setIsModalDelete}/>
+          <ModalForm isModalVisible={isModaldelete} setIsModalVisible={setIsModalDelete} style={{ width: '435px' }}>
+            <FormDeleteSchoolYear setIsModalDelete={setIsModalDelete} />
           </ModalForm>
         ) : ''
       }

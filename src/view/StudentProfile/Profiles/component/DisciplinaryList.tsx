@@ -1,11 +1,11 @@
 import { Input, Table } from 'antd'
 import React from 'react'
 import { Link } from 'react-router-dom'
-import { IconEdit, IconEye, IconSort } from '../../../../shared/component/Icon/Icon'
-import { IStudent } from '../../StudentProfiles'
+import {  IconEye, IconSort } from '../../../../shared/component/Icon/Icon'
+import { StudentProps } from './ProfileList'
 
 
-const DisciplinaryList = ({studentList}: IStudent) => {
+const DisciplinaryList = ({studentList, pageSizeConfig}: StudentProps) => {
 
   const columns = [
     {
@@ -101,12 +101,12 @@ const DisciplinaryList = ({studentList}: IStudent) => {
       </div>
 
       <div className="table-content">
-        <Table showSorterTooltip={false} columns={columns} dataSource={studentList} />
+        <Table pagination={{ pageSize: pageSizeConfig }}showSorterTooltip={false} columns={columns} dataSource={studentList} />
       </div>
       <div className="title__show-value" style={{ bottom: 0 }}>
         <h3 className="title-16">
           Hiển thị
-          <input defaultValue="8" onChange={(e) => e.target.value} />
+          <input value={pageSizeConfig} onChange={(e) => console.log(e)} />
           hàng trong mỗi trang
         </h3>
       </div>

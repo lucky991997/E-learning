@@ -1,7 +1,9 @@
 import { Col, Row, Select, Table } from 'antd'
 import React, { useState } from 'react'
 import { BsBook } from 'react-icons/bs'
+import { useSelector } from 'react-redux'
 import { useNavigate } from 'react-router-dom'
+import { RootState } from '../../../core'
 import { IconArrowRight, IconDelete, IconEdit, IconListTitle, IconSort } from '../../../shared/component/Icon/Icon'
 import ModalForm from '../../../shared/component/Modal/Modal'
 import FormDeleteSchoolYear from '../../Learning/SchoolYear/component/FormSchoolYear/FormDeleteSchoolYear'
@@ -15,6 +17,8 @@ const ExamDate = ({setShowList} : ExamListProps) => {
   const { Option } = Select
   const [showPoint, setShowPoint] = useState(false)
   const [isModalDelete, setIsModalDelete] = useState(false)
+  const { pageSizeConfig } = useSelector((state:RootState) => state.ConfigPageReducer)
+
   const data = [
     {
       key: 1,
@@ -213,7 +217,7 @@ const ExamDate = ({setShowList} : ExamListProps) => {
                 <div className="exam__date__list">
                   <h3 className="title-22 mb-16 mb-24">Danh sách lớp tham gia</h3>
                   <div className="table-content">
-                    <Table columns={columns} dataSource={data} />
+                    <Table columns={columns} dataSource={data} pagination={{pageSize: pageSizeConfig}}/>
                   </div>
                 </div>
               </Col>

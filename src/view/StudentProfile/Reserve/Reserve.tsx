@@ -5,8 +5,10 @@ import Button from '../../../shared/component/Button/Button'
 import { IconArrowRight, IconEye, IconSort } from '../../../shared/component/Icon/Icon'
 import ModalForm from '../../../shared/component/Modal/Modal'
 import FormReserve from './Form/FormReserve'
-
-const Resever = () => {
+type ReseverProfiles = {
+  pageSizeConfig?:number,
+}
+const Resever = ({pageSizeConfig}: ReseverProfiles) => {
   const { Option } = Select
   const { Search } = Input
   const [isModalVisible, setIsModalVisible] = useState(false)
@@ -224,13 +226,13 @@ const Resever = () => {
         </div>
         <div className="table-content">
 
-          <Table columns={columns} dataSource={data} />
+          <Table pagination={{pageSize: pageSizeConfig}}columns={columns} dataSource={data} />
         </div>
 
         <div className="title__show-value" style={{ bottom: 0 }}>
           <h3 className="title-16">
             Hiển thị
-            <input defaultValue="8" onChange={(e) => e.target.value} />
+            <input value={pageSizeConfig} onChange={(e) => console.log(e)} />
             hàng trong mỗi trang
           </h3>
         </div>

@@ -5,12 +5,14 @@ import StudentReducer from './reducers/StudentReducer';
 import LearningReducer from './reducers/LearningReducer';
 import TeacherReducer from './reducers/TeacherReducer';
 import PointReducer from './reducers/PointReducer';
+import ConfigPageReducer from './reducers/ConfigPageReducer';
 
 const rootReducer = combineReducers({
     StudentReducer,
     LearningReducer,
     TeacherReducer,
     PointReducer,
+    ConfigPageReducer,
 })
 
 

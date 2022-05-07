@@ -1,4 +1,4 @@
-import React from "react";
+import React, { ReactChild, useState } from "react";
 import {
   AiOutlineInfoCircle,
   AiFillMinusCircle,
@@ -9,12 +9,47 @@ import "./index.scss";
 import Button from "../../../../../shared/component/Button/Button";
 import { MdDateRange } from "react-icons/md";
 import { IModal } from "../../../../../shared/component/Modal/Modal";
+import Alert from "../../../../../shared/component/Alert/Alert";
 
 
-
+export interface TestProp {
+  title: string,
+  from: string,
+  to: string,
+}
 const FormAddSchoolYear = ({ setIsModalVisible }: IModal) => {
   const { Option } = Select;
   const date = ["2020", "2021", "2022"];
+
+  const showAddFieldData: Array<TestProp> = []
+  const handleShow = {
+    title: 'Tên học kì:',
+    from: 'từ',
+    to: 'đến',
+  }
+  const [addFieldData, setAddFieldData] = useState<typeof showAddFieldData>([handleShow])
+  const handleAddfield = () => {
+    if (addFieldData.length < 5) {
+      showAddFieldData.push(handleShow)
+      setAddFieldData(prev => [...prev, ...showAddFieldData])
+    } else {
+      alert('add tối da là 5')
+    }
+
+  }
+  const handleRemoveAddfield = (indexArray: number) => {
+    console.log(addFieldData.length)
+    if (addFieldData.length > 1) {
+      const indexItem = addFieldData.filter((item, index) => index !== indexArray)
+      setAddFieldData([...indexItem])
+    }
+    else {
+      alert('remove tối thiểu còn lại 1')
+    }
+
+  }
+
+  console.log(addFieldData.length)
 
   return (
     <div className="form-layout form-school">
@@ -29,7 +64,7 @@ const FormAddSchoolYear = ({ setIsModalVisible }: IModal) => {
               >
                 Niên khóa:
               </h2>
-             
+
               <div className="select">
                 <Select className='form-school-select' value={2020}>
                   {
@@ -107,46 +142,56 @@ const FormAddSchoolYear = ({ setIsModalVisible }: IModal) => {
         >
           Cài đặt thời gian
         </h2>
-        <div className="form-school__add-setting">
-          <div className="form-school__add-setting__name">
-            <AiFillMinusCircle
-              className="form-school__add-setting__icon"
-              style={{ width: "36px", height: "24px" }}
-              onClick={() => console.log(123)}
-            />
-            <h3
-              className="form-school__title-16"
-              style={{ marginBottom: 0, width: "118px" }}
-            >
-              Tên học kì:
-            </h3>
-            <Input style={{ marginRight: "9px" }} placeholder="Enter value" />
-          </div>
 
-          <div className="form-school__add-setting__date">
-            <div className="form-school__add-setting__date-start">
-              <h3 className="title-16" style={{ margin: "0 15px" }}>
-                Từ
-              </h3>
-              <DatePicker className="select__calendar" picker="date" suffixIcon={<MdDateRange className="select__calendar-icon" style={{ right: '3%' }} />} />
-            </div>
-            <div className="form-school__add-setting__date-end">
-              <h3 className="title-16" style={{ margin: "0 15px" }}>
-                đến
-              </h3>
-              <DatePicker className="select__calendar" picker="date" suffixIcon={<MdDateRange className="select__calendar-icon" />} />
-            </div>
-          </div>
-        </div>
+        {
+          addFieldData.map((item: any, index: number) => (
+            <div key={index} className="form-school__add-setting">
+              <div className="form-school__add-setting__name">
+                <AiFillMinusCircle
+                  className="form-school__add-setting__icon"
+                  style={{
+                    width: "36px", height: "24px",
+                    color: `${addFieldData.length === 1 ? '#F2F2F2' : '#0B80EC'}`,
+                    cursor: `${addFieldData.length === 1 ? 'default' : 'pointer'}`
+                  }}
+                  onClick={() => handleRemoveAddfield(index)}
+                />
+                <h3
+                  className="form-school__title-16"
+                  style={{ marginBottom: 0, width: "118px" }}
+                >
+                  {item.title}
+                </h3>
+                <Input style={{ marginRight: "9px" }} placeholder="Enter value" />
+              </div>
 
-        <div className="form-school__add-field">
+              <div className="form-school__add-setting__date">
+                <div className="form-school__add-setting__date-start">
+                  <h3 className="title-16" style={{ margin: "0 15px" }}>
+                    {item.from}
+                  </h3>
+                  <DatePicker className="select__calendar" picker="date" suffixIcon={<MdDateRange className="select__calendar-icon" style={{ right: '3%' }} />} />
+                </div>
+                <div className="form-school__add-setting__date-end">
+                  <h3 className="title-16" style={{ margin: "0 15px" }}>
+                    {item.to}
+                  </h3>
+                  <DatePicker className="select__calendar" picker="date" suffixIcon={<MdDateRange className="select__calendar-icon" />} />
+                </div>
+              </div>
+            </div>
+          ))
+        }
+
+        <div className="form-school__add-field" style={{ cursor: 'pointer' }} onClick={() => handleAddfield()}>
           <AiFillPlusCircle
             className="form-school__add-field__icon"
+            style={{ color: `${addFieldData.length === 5 ? 'gray' : '#0B80EC'}` }}
             onClick={() => console.log(123)}
           />
           <h3
             className="form-school__title-16"
-            style={{ marginBottom: "0", width: "118px", color: "#0B80EC" }}
+            style={{ marginBottom: "0", width: "118px", color: `${addFieldData.length === 5 ? 'gray' : '#0B80EC'}`}}
           >
             Thêm học kì mới
           </h3>
@@ -163,10 +208,10 @@ const FormAddSchoolYear = ({ setIsModalVisible }: IModal) => {
           <Button onClick={() => console.log(123)} variant="primary">
             Lưu
           </Button>
+
         </div>
       </div>
     </div>
   );
 };
-
 export default FormAddSchoolYear;

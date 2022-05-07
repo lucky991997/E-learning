@@ -3,6 +3,7 @@ import { studentType } from "../enums/EnumsStudentType";
 import { ILearning, learningType } from "../enums/EnumsLearningType";
 import { ITeacher, teacherType } from "../enums/EnumTeacherType";
 import { IPoint, PointType } from "../enums/EnumsPoint";
+import { configPageType } from "../enums/EnumsConfigPage";
 
 // StudentAction
 export interface getStudentList {
@@ -50,6 +51,12 @@ export interface detailPoint {
   type: typeof PointType.DETAILS_POINT;
   payload: string;
 }
+
+//config page
+export interface pageSizeConfig {
+  type: typeof configPageType.GET_PAGE_SIZE;
+  payload: number;
+}
 export type Action =
   | getStudentList
   | getLearningList
@@ -60,4 +67,5 @@ export type Action =
   | updatePoint
   | getStudentDetail
   | getTeacherList
-  | getTeacherDetail;
+  | getTeacherDetail
+  | pageSizeConfig;

@@ -17,10 +17,14 @@ import { ILearning } from '../../core/enums/EnumsLearningType'
 import { pageSize } from '../../layout/Index'
 export interface ILearningProps {
     learningList: ILearning[]
+    pageSizeConfig: number
 }
 
 const Learning = () => {
     const { learningList } = useSelector((state: RootState) => state.LearningReducer)
+    const { pageSizeConfig } = useSelector((state:RootState) => state.ConfigPageReducer)
+   
+   
     const dispatch = useDispatch()
 
     useEffect(() => {
@@ -31,24 +35,24 @@ const Learning = () => {
     const tableContent = [
         {
             name: 'Niên  Khóa',
-            component: <SchoolYear learningList={learningList} />,
+            component: <SchoolYear learningList={learningList} pageSizeConfig={pageSizeConfig} />,
         },
         {
             name: 'Tổ - Bộ môn',
-            component: <Department learningList={learningList} />,
+            component: <Department learningList={learningList} pageSizeConfig={pageSizeConfig} />,
         },
 
         {
             name: 'Khoa - Khối',
-            component: <DepartmentOfSubject learningList={learningList} />,
+            component: <DepartmentOfSubject learningList={learningList}  pageSizeConfig={pageSizeConfig}/>,
         },
         {
             name: 'Môn học',
-            component: <Subject learningList={learningList} />,
+            component: <Subject learningList={learningList}  pageSizeConfig={pageSizeConfig}/>,
         },
         {
             name: 'Lớp học',
-            component: <Class setShowEdit={setShowEdit} learningList={learningList} />
+            component: <Class setShowEdit={setShowEdit} learningList={learningList}  pageSizeConfig={pageSizeConfig}/>
         },
         {
             name: 'Loại điểm',
@@ -118,7 +122,7 @@ const Learning = () => {
                                 <div className="learning-title__show-value">
                                     <h3 className="title-16">
                                         Hiển thị
-                                        <input value={pageSize} onChange={(e) => e.target.value} />
+                                        <input  value={pageSizeConfig} onChange={(e) => e.target.value} />
                                         hàng trong mỗi trang
                                     </h3>
                                 </div>

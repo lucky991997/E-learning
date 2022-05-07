@@ -18,9 +18,12 @@ import ProfileList from './component/ProfileList'
 export interface ICollapseShow {
   itemIndex : number;
 }
-
+export interface IProfileStudents {
+  pageSizeConfig:number
+}
 const Profiles = () => {
   const { studentList } = useSelector((state: RootState) => state.StudentReducer)
+  const { pageSizeConfig } = useSelector((state:RootState) => state.ConfigPageReducer)
   const dispatch = useDispatch()
   useEffect(() => {
       // @ts-ignore
@@ -36,16 +39,16 @@ const Profiles = () => {
   const tabProfiles = [
     {
       name: 'Tất cả hồ sơ',
-      component: <ProfileList studentList={studentList}/>,
+      component: <ProfileList studentList={studentList} pageSizeConfig={pageSizeConfig}/>,
     },
     {
       name: 'Khen thưởng',
-      component: <AwardList studentList={studentList}/>,
+      component: <AwardList studentList={studentList} pageSizeConfig={pageSizeConfig}/>,
 
     },
     {
       name: 'Kỷ luật',
-      component: <DisciplinaryList studentList={studentList}/>,
+      component: <DisciplinaryList studentList={studentList} pageSizeConfig={pageSizeConfig}/>,
 
     },
   ]

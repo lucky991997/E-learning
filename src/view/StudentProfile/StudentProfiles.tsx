@@ -8,6 +8,8 @@ import '../../styles/view-styles/student-profiles.scss'
 import { useLocation } from 'react-router-dom'
 import StudentDetail from './Profiles/component/StudentDetail'
 import { Student } from '../../core/enums/EnumsStudentType'
+import { useSelector } from 'react-redux'
+import { RootState } from '../../core'
 
 
 export interface IStudent  {
@@ -17,6 +19,7 @@ export interface IStudent  {
 const StudentProfiles = () => {
   const { pathname } = useLocation();
 
+  const { pageSizeConfig } = useSelector((state:RootState) => state.ConfigPageReducer)
 
   const components = ["/student/profilesstudent", "/student/change", "/student/reserve","/student/info" ];
 
@@ -27,9 +30,9 @@ const StudentProfiles = () => {
       case 0:
         return <Profiles />
       case 1:
-        return <ChangeSchool />
+        return <ChangeSchool  pageSizeConfig={pageSizeConfig}/>
       case 2:
-        return <Resever />
+        return <Resever pageSizeConfig={pageSizeConfig}/>
       case 3: 
         return <StudentDetail />
 

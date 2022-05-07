@@ -12,7 +12,7 @@ import FormDeleteSchoolYear from '../SchoolYear/component/FormSchoolYear/FormDel
 import FormSubject from './form/FormSubject'
 
 
-const Subject = ({ learningList }: ILearningProps) => {
+const Subject = ({ learningList, pageSizeConfig }: ILearningProps) => {
   const [isModalVisible, setIsModalVisible] = useState(false)
   const [isModaldelete, setIsModalDelete] = useState(false)
 
@@ -135,7 +135,7 @@ const Subject = ({ learningList }: ILearningProps) => {
 
           <div className="table-content">
 
-            <Table pagination={{pageSize:pageSize}} rowSelection={{ type: 'checkbox', ...rowSelection }} columns={columns} dataSource={learningList} showSorterTooltip={false} />
+            <Table pagination={{pageSize:pageSizeConfig}} rowSelection={{ type: 'checkbox', ...rowSelection }} columns={columns} dataSource={learningList} showSorterTooltip={false} />
 
           </div>
 

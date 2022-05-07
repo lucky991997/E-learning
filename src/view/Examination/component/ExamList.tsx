@@ -1,6 +1,8 @@
 import { Table } from 'antd'
 import Search from 'antd/lib/input/Search'
 import React, { useState } from 'react'
+import { useSelector } from 'react-redux'
+import { RootState } from '../../../core'
 import FormDeleteMain from '../../../shared/component/Form/FormDeleteMain'
 import { IconDelete, IconEdit, IconEye, IconListTitle, IconSort } from '../../../shared/component/Icon/Icon'
 import ModalForm, { ModalFormClose } from '../../../shared/component/Modal/Modal'
@@ -13,6 +15,7 @@ import FormDetailExam from '../form/FormDetailExam'
 const ExamList = ({setShowList} : ExamListProps) => {
     const [isModalDetailExam, setIsModalDetailExam] = useState(false)
     const [isModalDelete, setIsModalDelete] = useState(false)
+    const { pageSizeConfig } = useSelector((state:RootState) => state.ConfigPageReducer)
 
     const data = [
         {
@@ -274,12 +277,12 @@ const ExamList = ({setShowList} : ExamListProps) => {
                 </div>
             </div>
             <div className="table-content">
-                <Table columns={columns} dataSource={data} showSorterTooltip={false}/>
+                <Table pagination={{pageSize: pageSizeConfig}}columns={columns} dataSource={data} showSorterTooltip={false}/>
             </div>
             <div className="title__show-value" style={{ bottom: 0 }}>
                 <h3 className="title-16">
                     Hiển thị
-                    <input defaultValue="8" onChange={(e) => e.target.value} />
+                    <input value={pageSizeConfig} onChange={(e) => console.log(e)} />
                     hàng trong mỗi trang
                 </h3>
             </div>

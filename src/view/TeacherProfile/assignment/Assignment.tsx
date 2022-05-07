@@ -1,5 +1,7 @@
 import { Col, Row, Select, Table } from 'antd'
 import React, { useState } from 'react'
+import { useSelector } from 'react-redux'
+import { RootState } from '../../../core'
 import Button from '../../../shared/component/Button/Button'
 import { IconArrowRight, IconDelete } from '../../../shared/component/Icon/Icon'
 import ModalForm from '../../../shared/component/Modal/Modal'
@@ -9,6 +11,8 @@ import TitleList from './component/TitleList'
 
 const Assignment = () => {
   const { Option } = Select
+  const { pageSizeConfig } = useSelector((state:RootState) => state.ConfigPageReducer)
+
   const tableContent = [
     {
       name: 'Tô An',
@@ -131,7 +135,7 @@ const Assignment = () => {
               <div className="title__show-value" style={{ bottom: 0 }}>
                 <h3 className="title-16">
                   Hiển thị
-                  <input defaultValue="8" onChange={(e) => e.target.value} />
+                  <input value={pageSizeConfig} onChange={(e) => console.log(e)} />
                   hàng trong mỗi trang
                 </h3>
               </div>

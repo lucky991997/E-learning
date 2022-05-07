@@ -1,5 +1,7 @@
 import { Checkbox, Table } from 'antd'
 import React, { useState } from 'react'
+import { useSelector } from 'react-redux';
+import { RootState } from '../../../../core';
 import { IconDelete, IconEdit, IconListTitle } from '../../../../shared/component/Icon/Icon'
 import ModalForm from '../../../../shared/component/Modal/Modal';
 import FormDeleteSchoolYear from '../../../Learning/SchoolYear/component/FormSchoolYear/FormDeleteSchoolYear';
@@ -12,6 +14,8 @@ type AssignProps = {
 const AssignList = ({ setShowTitleList }: AssignProps) => {
     const [isModaldelete, setIsModalDelete] = useState(false)
     const [isModalUpdate, setIsModalUpdate] = useState(false)
+    const { pageSizeConfig } = useSelector((state: RootState) => state.ConfigPageReducer)
+
     const data = [
         {
             key: 1,
@@ -133,7 +137,7 @@ const AssignList = ({ setShowTitleList }: AssignProps) => {
                 return (
                     <div >
                         <IconEdit onClick={() => setIsModalUpdate(true)} className='icon mr-24' />
-                        <IconDelete  onClick={() => setIsModalDelete(true)} className='icon mr-24' />
+                        <IconDelete onClick={() => setIsModalDelete(true)} className='icon mr-24' />
                     </div>
                 )
             }
@@ -141,23 +145,23 @@ const AssignList = ({ setShowTitleList }: AssignProps) => {
     ]
     return (
         <>
-        <div className="table-content">
-            <Table columns={columns} dataSource={data} />
-        </div>
-        {isModaldelete === true ?
-        (
-          <ModalForm isModalVisible={isModaldelete} setIsModalVisible={setIsModalDelete}>
-            <FormDeleteSchoolYear setIsModalDelete={setIsModalDelete} title="Phân công" />
-          </ModalForm>
-        ) : ''
-      }
-       {isModalUpdate === true ?
-        (
-          <ModalForm isModalVisible={isModalUpdate} setIsModalVisible={setIsModalUpdate}>
-            <FormUpdateDate setIsModalVisible={setIsModalUpdate} title="Phân công" />
-          </ModalForm>
-        ) : ''
-      }
+            <div className="table-content">
+                <Table pagination={{pageSize: pageSizeConfig}}columns={columns} dataSource={data} />
+            </div>
+            {isModaldelete === true ?
+                (
+                    <ModalForm isModalVisible={isModaldelete} setIsModalVisible={setIsModalDelete}>
+                        <FormDeleteSchoolYear setIsModalDelete={setIsModalDelete} title="Phân công" />
+                    </ModalForm>
+                ) : ''
+            }
+            {isModalUpdate === true ?
+                (
+                    <ModalForm isModalVisible={isModalUpdate} setIsModalVisible={setIsModalUpdate}>
+                        <FormUpdateDate setIsModalVisible={setIsModalUpdate} title="Phân công" />
+                    </ModalForm>
+                ) : ''
+            }
         </>
     )
 }

@@ -1,11 +1,37 @@
-import { Checkbox, Col, Row, Select } from 'antd'
+import { Checkbox, Col, Input, Row, Select } from 'antd'
 import React from 'react'
+import { useFormik } from 'formik'
 import Button from '../../../shared/component/Button/Button'
 import { IconArrowDown, IconArrowRight } from '../../../shared/component/Icon/Icon'
 import { IShowComponent } from '../Setting'
+import { useDispatch } from 'react-redux'
+import { getPageSize } from '../../../core/action/ConfigPageAction'
+import { useSelector } from 'react-redux'
+import { RootState } from '../../../core'
+export interface IConfig {
+    pageSize: number
+}
+const ConfigSetting = ({ setShowComponent }: IShowComponent) => {
+    const { pageSizeConfig } = useSelector((state: RootState) => state.ConfigPageReducer)
 
-const ConfigSetting = ( {setShowComponent} : IShowComponent) => {
     const { Option } = Select
+    const dispatch = useDispatch()
+    const initialValues: IConfig = {
+        pageSize: 0
+    }
+    //@ts-ignore
+    const formik = useFormik({
+        initialValues,
+    })
+
+    const handleConfig = () => {
+        //@ts-ignore
+        dispatch(getPageSize(formik.values.pageSize))
+        setTimeout(() => {
+
+            setShowComponent(true)
+        }, 500)
+    }
     return (
         <div className="config">
             <div className="config__title mb-32" onClick={() => setShowComponent(true)}>
@@ -23,7 +49,7 @@ const ConfigSetting = ( {setShowComponent} : IShowComponent) => {
                         <Checkbox />
                         <h3 className="title-16 ml-8">Kích hoạt captcha khi đăng nhập vào hệ thống</h3>
                     </div>
-                    <div className="config-setting__config-language">
+                    <div className="config-setting__config-language" style={{ marginBottom: '24px' }}>
                         <h3 className="title-16-bold">Ngôn ngữ</h3>
 
                         <Select
@@ -34,6 +60,15 @@ const ConfigSetting = ( {setShowComponent} : IShowComponent) => {
                         </Select>
 
                     </div>
+                    <div className="config-setting__config-language">
+                        <h4 className="title-16-bold" style={{ width: '114px' }}>phân trang</h4>
+                        <Input
+                            name="pageSize"
+                            value={formik.values.pageSize === 0 ? pageSizeConfig : formik.values.pageSize}
+                            onChange={formik.handleChange}
+                            style={{ width: '100px', height: '40px' }} />
+                    </div>
+
 
                 </div>
                 <div className="config-setting__theme">
@@ -68,8 +103,8 @@ const ConfigSetting = ( {setShowComponent} : IShowComponent) => {
 
                 <div className="config-setting__event">
                     <Button variant="secondary">Hủy</Button>
-                    <Button variant="primary">Lưu</Button>
-                    
+                    <Button variant="primary" onClick={() => handleConfig()}>Lưu</Button>
+
                 </div>
             </div>
         </div>

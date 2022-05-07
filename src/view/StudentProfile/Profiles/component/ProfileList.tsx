@@ -11,7 +11,7 @@ import FormUpdateBonus from '../Form/FormUpdateBonus'
 import { FormUpdateClass, FormUpdateSchool } from '../Form/FormUpdateClass'
 import FormUpdateDecrease from '../Form/FormUpdateDecrease'
 import FormUpdateReserve from '../Form/FormUpdateReserve'
-import { ICollapseShow } from '../Profiles'
+import {  IProfileStudents } from '../Profiles'
 export interface IProfile {
   key: number,
   id: string,
@@ -22,8 +22,8 @@ export interface IProfile {
   class: string,
   status: string,
 }
-
-const ProfileList = ({studentList}:IStudent) => {
+export type StudentProps = IProfileStudents & IStudent
+const ProfileList = ({ studentList, pageSizeConfig }: StudentProps) => {
   const [isModaldelete, setIsModalDelete] = useState(false)
   const [isUpdate, setIsUpdate] = useState(false)
   const [isUpdateAward, setIsUpdateAward] = useState(false)
@@ -70,16 +70,16 @@ const ProfileList = ({studentList}:IStudent) => {
     },
     {
       title: (
-        <div style={{ display: 'flex', alignItems: 'center', justifyContent: 'flex-start ' , marginLeft: '20px'}}>
+        <div style={{ display: 'flex', alignItems: 'center', justifyContent: 'flex-start ', marginLeft: '20px' }}>
           Tên học viên
           <IconSort />
         </div>),
       sorter: true,
       dataIndex: 'name',
       key: 'name',
-      render: (name:string) => {
+      render: (name: string) => {
         return (
-          <div style={{textAlign: 'left', marginLeft: '20px'}}>{name}</div>
+          <div style={{ textAlign: 'left', marginLeft: '20px' }}>{name}</div>
         )
       }
     },
@@ -160,7 +160,7 @@ const ProfileList = ({studentList}:IStudent) => {
           <div style={{ display: 'flex', alignItems: 'center' }}>
             <Link to='/student/info'>
 
-              <IconEye  className='icon mr-24' />
+              <IconEye className='icon mr-24' />
             </Link>
             <div className="icon-update" style={{ position: 'relative' }}>
               <IconUpdate onClick={() => setIsUpdate(true)} className='icon mr-24' style={{ position: 'relative' }} />
@@ -182,7 +182,7 @@ const ProfileList = ({studentList}:IStudent) => {
                     <div className="profile-update__border-b"></div>
 
                     <h3 className="title-16"
-                    onClick={() => handleUpdateReverse()}
+                      onClick={() => handleUpdateReverse()}
                     >Bảo lưu</h3>
                     <div className="profile-update__border-b"></div>
 
@@ -225,7 +225,7 @@ const ProfileList = ({studentList}:IStudent) => {
 
       <div className="table-content">
         <Table
-         
+          pagination={{ pageSize: pageSizeConfig }}
           rowSelection={{ type: 'checkbox' }}
           showSorterTooltip={false} columns={columns}
           dataSource={studentList}
@@ -237,7 +237,7 @@ const ProfileList = ({studentList}:IStudent) => {
       <div className="title__show-value" style={{ bottom: 0 }}>
         <h3 className="title-16">
           Hiển thị
-          <input defaultValue="8" onChange={(e) => e.target.value} />
+          <input value={pageSizeConfig} onChange={(e) => console.log(e)} />
           hàng trong mỗi trang
         </h3>
       </div>
@@ -282,14 +282,14 @@ const ProfileList = ({studentList}:IStudent) => {
           </ModalForm>
         ) : ''
       }
-       {isUpdateClass === true ?
+      {isUpdateClass === true ?
         (
           <ModalForm isModalVisible={isUpdateClass} setIsModalVisible={setIsUpdateClass}>
             <FormUpdateClass setIsModalVisible={setIsUpdateClass} />
           </ModalForm>
         ) : ''
       }
-       {isUpdateSchool === true ?
+      {isUpdateSchool === true ?
         (
           <ModalForm isModalVisible={isUpdateSchool} setIsModalVisible={setIsUpdateSchool}>
             <FormUpdateSchool setIsModalVisible={setIsUpdateSchool} />
